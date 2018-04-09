@@ -30,7 +30,10 @@
  */
 #include "arch/riscv/faults.hh"
 
+#include "arch/riscv/registers.hh"
+#include "arch/riscv/system.hh"
 #include "arch/riscv/utility.hh"
+#include "cpu/base.hh"
 #include "cpu/thread_context.hh"
 #include "sim/debug.hh"
 #include "sim/full_system.hh"
@@ -54,6 +57,23 @@ RiscvFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
         advancePC(pcState, inst);
         tc->pcState(pcState);
     }
+}
+
+void Reset::invoke(ThreadContext *tc, const StaticInstPtr &inst)
+{
+    if (FullSystem)
+    {
+        tc->getCpuPtr()->clearInterrupts(tc->threadId());
+        tc->clearArchRegs();
+        MSTATUS status = tc->readMiscRegNoEffect(MISCREG_MSTATUS);
+        status.mie = 0;
+        status.mprv = 0;
+        tc->setMiscRegNoEffect(MISCREG_MSTATUS, status);
+    }
+
+    // Advance the PC to the implementation-defined reset vector
+    PCState pc = RiscvSystem::resetVect(tc);
+    tc->pcState(pc);
 }
 
 void
@@ -96,4 +116,69 @@ SyscallFault::invoke_se(ThreadContext *tc, const StaticInstPtr &inst)
 {
     Fault *fault = NoFault;
     tc->syscall(tc->readIntReg(SyscallNumReg), fault);
+}
+
+void
+SyscallFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
+{
+    // just check the redirects and then set pc to trap
+    MiscRegIndex cause = MISCREG_MCAUSE;
+    MiscRegIndex epc = MISCREG_MEPC;
+    if (bits(tc->readMiscReg(MISCREG_MEDELEG), _code) != 0) {
+        cause = MISCREG_SCAUSE;
+        epc = MISCREG_SEPC;
+    }
+    if (bits(tc->readMiscReg(MISCREG_SEDELEG), _code) != 0) {
+        cause = MISCREG_UCAUSE;
+        epc = MISCREG_UEPC;
+    }
+    tc->setMiscReg(cause, _code);
+    tc->setMiscReg(epc, tc->instAddr());
+
+    inform("SyscallFault: mepc = %#x\n",
+        tc->readMiscRegNoEffect(MISCREG_MEPC));
+
+    // disable interrupts
+    MSTATUS status = tc->readMiscReg(MISCREG_MSTATUS);
+    status.mpie = status.mie;
+    status.mie = 0;
+    tc->setMiscReg(MISCREG_MSTATUS, status);
+
+    PCState pc;
+    pc = tc->readMiscReg(MISCREG_MTVEC);
+    tc->pcState(pc);
+}
+
+void
+InterruptFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
+{
+    MiscRegIndex cause = MISCREG_MCAUSE;
+    MiscRegIndex epc = MISCREG_MEPC;
+    MCAUSE mcause = tc->readMiscRegNoEffect(MISCREG_MCAUSE);
+    if (bits(tc->readMiscReg(MISCREG_MIDELEG), _code) != 0) {
+        cause = MISCREG_SCAUSE;
+        epc = MISCREG_SEPC;
+    }
+    if (bits(tc->readMiscReg(MISCREG_SIDELEG), _code) != 0) {
+        cause = MISCREG_UCAUSE;
+        epc = MISCREG_UEPC;
+    }
+
+    mcause.intr = 1;
+    mcause.exc = _code;
+    tc->setMiscReg(cause, mcause);
+    tc->setMiscReg(epc, tc->instAddr());
+
+    inform("InterruptFault: mepc = %#x\n",
+        tc->readMiscRegNoEffect(MISCREG_MEPC));
+
+    // disable interrupts
+    MSTATUS status = tc->readMiscReg(MISCREG_MSTATUS);
+    status.mpie = status.mie;
+    status.mie = 0;
+    tc->setMiscReg(MISCREG_MSTATUS, status);
+
+    PCState pc;
+    pc = tc->readMiscReg(MISCREG_MTVEC);
+    tc->pcState(pc);
 }

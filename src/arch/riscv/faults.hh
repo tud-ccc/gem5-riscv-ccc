@@ -47,6 +47,7 @@ const uint32_t FloatDivZero = 1 << 3;
 const uint32_t FloatInvalid = 1 << 4;
 
 enum ExceptionCode {
+    // exceptions
     INST_ADDR_MISALIGNED = 0,
     INST_ACCESS = 1,
     INST_ILLEGAL = 2,
@@ -60,12 +61,24 @@ enum ExceptionCode {
     ECALL_USER = 8,
     ECALL_SUPER = 9,
     ECALL_HYPER = 10,
-    ECALL_MACH = 11
+    ECALL_MACH = 11,
+
+    // interrupts
+    INT_USER_SW = 0,     // user software interrupt
+    INT_SUPV_SW = 1,     // supervisor software interrupt
+    INT_MACH_SW = 3,     // machine software interrupt
+    INT_USER_TIMER = 4,  // user timer interrupt
+    INT_SUPV_TIMER = 5,  // supervisor timer interrupt
+    INT_MACH_TIMER = 7,  // machine timer interrupt
+    INT_USER_EXT = 8,    // user external interrupt
+    INT_SUPV_EXT = 9,    // supervor external interrupt
+    INT_MACH_EXT = 11,   // machine external interrupt
 };
 
 enum InterruptCode {
     SOFTWARE,
-    TIMER
+    TIMER,
+    EXTERNAL
 };
 
 class RiscvFault : public FaultBase
@@ -104,6 +117,23 @@ class RiscvFault : public FaultBase
     invoke(ThreadContext *tc, const StaticInstPtr &inst);
 };
 
+class Reset : public FaultBase
+{
+
+  public:
+    Reset()
+        : _name("reset")
+    {}
+
+    FaultName name() const override { return _name; }
+
+    void
+    invoke(ThreadContext *tc, const StaticInstPtr &inst =
+        StaticInst::nullStaticInstPtr) override;
+
+  private:
+    const FaultName _name;
+};
 
 class UnknownInstFault : public RiscvFault
 {
@@ -175,8 +205,21 @@ class SyscallFault : public RiscvFault
     SyscallFault() : RiscvFault("System call", ECALL_USER, SOFTWARE)
     {}
 
-    void
-    invoke_se(ThreadContext *tc, const StaticInstPtr &inst);
+    void invoke_se(ThreadContext *tc, const StaticInstPtr &inst);
+
+    void invoke(ThreadContext *tc, const StaticInstPtr &inst);
+};
+
+class InterruptFault : public RiscvFault
+{
+  public:
+    // TODO: need something more sufficient as we might want to
+    // have a generic interrupt fault.
+    InterruptFault(ExceptionCode c, InterruptCode i)
+        : RiscvFault("Interrupt", c, i)
+    {}
+
+    void invoke(ThreadContext *tc, const StaticInstPtr &inst);
 };
 
 } // namespace RiscvISA

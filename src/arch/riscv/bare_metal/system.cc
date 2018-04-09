@@ -1,7 +1,6 @@
 /*
- * Copyright (c) 2002-2005 The Regents of The University of Michigan
- * Copyright (c) 2007 MIPS Technologies, Inc.
- * All rights reserved.
+ * Copyright (c) 2018 TU Dresden
+ * All rights reserved
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -26,72 +25,56 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * Authors: Ali Saidi
- *          Nathan Binkert
- *          Jaidev Patwardhan
- *          Robert Scheffel
+ * Authors: Robert Scheffel
  */
 
-#include "arch/riscv/system.hh"
+#include "arch/riscv/bare_metal/system.hh"
 
-#include "arch/vtophys.hh"
-#include "base/loader/hex_file.hh"
 #include "base/loader/object_file.hh"
-#include "base/loader/symtab.hh"
-#include "base/trace.hh"
-#include "mem/physical.hh"
-#include "params/RiscvSystem.hh"
-#include "sim/byteswap.hh"
 
-using namespace LittleEndianGuest;
-
-RiscvSystem::RiscvSystem(Params *p)
-    : System(p),
-      _isBareMetal(p->bare_metal),
-      _resetVect(p->resetVect)
+BareMetalRiscvSystem::BareMetalRiscvSystem(Params *p)
+    : RiscvSystem(p)
 {
+    bootloaderSymtab = new SymbolTable;
+
+    // load bootloader code into memory
+    bootloader = createObjectFile(p->bootloader);
+    if (bootloader == NULL) {
+         fatal("Could not load bootloader file %s", p->bootloader);
+    }
+
+    // load symbols
+    if (!bootloader->loadGlobalSymbols(bootloaderSymtab)) {
+        panic("Could not load bootloader symbols\n");
+    }
+
+    if (!bootloader->loadLocalSymbols(bootloaderSymtab)) {
+        panic("Could not load bootloader symbols\n");
+    }
+
+    _resetVect = bootloader->entryPoint();
 }
 
-RiscvSystem::~RiscvSystem()
+BareMetalRiscvSystem::~BareMetalRiscvSystem()
 {
-}
-
-/**
- * Return the reset vector.
- */
-Addr
-RiscvSystem::resetVect(ThreadContext* tc)
-{
-    return dynamic_cast<RiscvSystem *>(tc->getSystemPtr())->resetVect();
-}
-
-/**
- * Return the bare metal checker.
- */
-bool
-RiscvSystem::isBareMetal(ThreadContext* tc)
-{
-    return dynamic_cast<RiscvSystem *>(tc->getSystemPtr())->isBareMetal();
-}
-
-Addr
-RiscvSystem::fixFuncEventAddr(Addr addr)
-{
-    return addr;
+    delete bootloaderSymtab;
+    delete bootloader;
 }
 
 void
-RiscvSystem::setRiscvAccess(Addr access)
-{}
-
-bool
-RiscvSystem::breakpoint()
+BareMetalRiscvSystem::initState()
 {
-    return 0;
+    // Call the initialisation of the super class
+    RiscvSystem::initState();
+
+    // load program sections into memory
+    if (!bootloader->loadSections(physProxy)) {
+        warn("could not load sections to memory");
+    }
 }
 
-RiscvSystem *
-RiscvSystemParams::create()
+BareMetalRiscvSystem *
+BareMetalRiscvSystemParams::create()
 {
-    return new RiscvSystem(this);
+    return new BareMetalRiscvSystem(this);
 }

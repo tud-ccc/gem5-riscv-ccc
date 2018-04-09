@@ -1,7 +1,6 @@
 /*
- * Copyright (c) 2002-2005 The Regents of The University of Michigan
- * Copyright (c) 2007 MIPS Technologies, Inc.
- * All rights reserved.
+ * Copyright (c) 2018 TU Dresden
+ * All rights reserved
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -26,72 +25,34 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * Authors: Ali Saidi
- *          Nathan Binkert
- *          Jaidev Patwardhan
- *          Robert Scheffel
+ * Authors: Robert Scheffel
  */
+
+#ifndef __ARCH_RISCV_BARE_METAL_SYSTEM_HH__
+#define __ARCH_RISCV_BARE_METAL_SYSTEM_HH__
 
 #include "arch/riscv/system.hh"
+#include "params/BareMetalRiscvSystem.hh"
 
-#include "arch/vtophys.hh"
-#include "base/loader/hex_file.hh"
-#include "base/loader/object_file.hh"
-#include "base/loader/symtab.hh"
-#include "base/trace.hh"
-#include "mem/physical.hh"
-#include "params/RiscvSystem.hh"
-#include "sim/byteswap.hh"
-
-using namespace LittleEndianGuest;
-
-RiscvSystem::RiscvSystem(Params *p)
-    : System(p),
-      _isBareMetal(p->bare_metal),
-      _resetVect(p->resetVect)
+class BareMetalRiscvSystem : public RiscvSystem
 {
-}
+  protected:
+    // bootloader object file
+    ObjectFile *bootloader;
 
-RiscvSystem::~RiscvSystem()
-{
-}
+    // bootloader symbol table, not sure if needed
+    SymbolTable *bootloaderSymtab;
 
-/**
- * Return the reset vector.
- */
-Addr
-RiscvSystem::resetVect(ThreadContext* tc)
-{
-    return dynamic_cast<RiscvSystem *>(tc->getSystemPtr())->resetVect();
-}
+  public:
+    typedef BareMetalRiscvSystemParams Params;
+    BareMetalRiscvSystem(Params *p);
+    ~BareMetalRiscvSystem();
 
-/**
- * Return the bare metal checker.
- */
-bool
-RiscvSystem::isBareMetal(ThreadContext* tc)
-{
-    return dynamic_cast<RiscvSystem *>(tc->getSystemPtr())->isBareMetal();
-}
+    // initialize the system
+    virtual void initState();
 
-Addr
-RiscvSystem::fixFuncEventAddr(Addr addr)
-{
-    return addr;
-}
+  protected:
+    const Params *params() const { return (const Params *)_params; }
+};
 
-void
-RiscvSystem::setRiscvAccess(Addr access)
-{}
-
-bool
-RiscvSystem::breakpoint()
-{
-    return 0;
-}
-
-RiscvSystem *
-RiscvSystemParams::create()
-{
-    return new RiscvSystem(this);
-}
+#endif // __ARCH_RISCV_BARE_METAL_SYSTEM_HH__

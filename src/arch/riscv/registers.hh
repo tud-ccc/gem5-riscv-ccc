@@ -55,6 +55,7 @@
 #include "arch/generic/vec_reg.hh"
 #include "arch/isa_traits.hh"
 #include "arch/riscv/generated/max_inst_regs.hh"
+#include "base/bitunion.hh"
 #include "base/types.hh"
 
 namespace RiscvISA {
@@ -397,6 +398,57 @@ const std::map<int, std::string> MiscRegNames = {
     {MISCREG_DPC, "dpc"},
     {MISCREG_DSCRATCH, "dscratch"}
 };
+
+BitUnion64(MSTATUS)
+    Bitfield<63>        sd;
+    Bitfield<35, 34>    sxl;
+    Bitfield<33, 32>    uxl;
+    Bitfield<22>        tsr;
+    Bitfield<21>        tw;
+    Bitfield<20>        tvm;
+    Bitfield<19>        mxr;
+    Bitfield<18>        sum;
+    Bitfield<17>        mprv;
+    Bitfield<16, 15>    xs;
+    Bitfield<14, 13>    fs;
+    Bitfield<12, 11>    mpp;
+    Bitfield<8>         spp;
+    Bitfield<7>         mpie;
+    Bitfield<5>         spie;
+    Bitfield<4>         upie;
+    Bitfield<3>         mie;
+    Bitfield<1>         sie;
+    Bitfield<0>         uie;
+EndBitUnion(MSTATUS)
+
+BitUnion64(MIP)
+    Bitfield<11>        meip;
+    Bitfield<9>         seip;
+    Bitfield<9>         ueip;
+    Bitfield<7>         mtip;
+    Bitfield<5>         stip;
+    Bitfield<4>         utip;
+    Bitfield<3>         msip;
+    Bitfield<1>         ssip;
+    Bitfield<0>         usip;
+EndBitUnion(MIP)
+
+BitUnion64(MIE)
+    Bitfield<11>        meie;
+    Bitfield<9>         seie;
+    Bitfield<9>         ueie;
+    Bitfield<7>         mtie;
+    Bitfield<5>         stie;
+    Bitfield<4>         utie;
+    Bitfield<3>         msie;
+    Bitfield<1>         ssie;
+    Bitfield<0>         usie;
+EndBitUnion(MIE)
+
+BitUnion64(MCAUSE)
+    Bitfield<63>        intr;
+    Bitfield<62, 0>     exc;
+EndBitUnion(MCAUSE)
 
 }
 

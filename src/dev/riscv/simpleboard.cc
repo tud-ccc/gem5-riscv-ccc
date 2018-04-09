@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2002-2005 The Regents of The University of Michigan
- * Copyright (c) 2007 MIPS Technologies, Inc.
+ * Copyright (c) 2018 TU Dresden
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,72 +25,38 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * Authors: Ali Saidi
- *          Nathan Binkert
- *          Jaidev Patwardhan
- *          Robert Scheffel
+ * Authors: Robert Scheffel
  */
 
-#include "arch/riscv/system.hh"
+#include "dev/riscv/simpleboard.hh"
 
-#include "arch/vtophys.hh"
-#include "base/loader/hex_file.hh"
-#include "base/loader/object_file.hh"
-#include "base/loader/symtab.hh"
-#include "base/trace.hh"
-#include "mem/physical.hh"
-#include "params/RiscvSystem.hh"
-#include "sim/byteswap.hh"
-
-using namespace LittleEndianGuest;
-
-RiscvSystem::RiscvSystem(Params *p)
-    : System(p),
-      _isBareMetal(p->bare_metal),
-      _resetVect(p->resetVect)
+SimpleBoard::SimpleBoard(const Params *p)
+    : Platform(p), system(p->system)
 {
 }
 
-RiscvSystem::~RiscvSystem()
+// implement virtual functions from platform base class
+void SimpleBoard::postConsoleInt()
 {
+    // do nothing
 }
 
-/**
- * Return the reset vector.
- */
-Addr
-RiscvSystem::resetVect(ThreadContext* tc)
+void SimpleBoard::clearConsoleInt()
 {
-    return dynamic_cast<RiscvSystem *>(tc->getSystemPtr())->resetVect();
+    // do nothing
 }
 
-/**
- * Return the bare metal checker.
- */
-bool
-RiscvSystem::isBareMetal(ThreadContext* tc)
+void SimpleBoard::postPciInt(int line)
 {
-    return dynamic_cast<RiscvSystem *>(tc->getSystemPtr())->isBareMetal();
+    // do nothing
 }
 
-Addr
-RiscvSystem::fixFuncEventAddr(Addr addr)
+void SimpleBoard::clearPciInt(int line)
 {
-    return addr;
+    // do nothing
 }
 
-void
-RiscvSystem::setRiscvAccess(Addr access)
-{}
-
-bool
-RiscvSystem::breakpoint()
+SimpleBoard* SimpleBoardParams::create()
 {
-    return 0;
-}
-
-RiscvSystem *
-RiscvSystemParams::create()
-{
-    return new RiscvSystem(this);
+    return new SimpleBoard(this);
 }

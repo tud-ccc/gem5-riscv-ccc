@@ -65,6 +65,24 @@ void ISA::clear()
     miscRegFile[MISCREG_MARCHID] = 0;
     miscRegFile[MISCREG_MIMPID] = 0;
     miscRegFile[MISCREG_MISA] = 0x8000000000101129ULL;
+
+    if (FullSystem)
+    {
+        MSTATUS status = miscRegFile[MISCREG_MSTATUS];
+        status.sxl = 0x2;
+        status.uxl = 0x2;
+        status.fs = 0x1;
+        miscRegFile[MISCREG_MSTATUS] = status;
+
+        // enable interrupts locally
+        // that means setting the mie register to 1
+        // the binary should enable interrupts globally
+        MIE mie = miscRegFile[MISCREG_MIE];
+        mie.msie = 1;
+        mie.mtie = 1;
+        mie.meie = 1;
+        miscRegFile[MISCREG_MIE] = mie;
+    }
 }
 
 

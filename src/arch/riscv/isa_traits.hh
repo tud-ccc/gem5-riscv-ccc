@@ -66,6 +66,27 @@ const bool HasUnalignedMemAcc = true;
 const bool CurThreadInfoImplemented = false;
 const int CurThreadInfoReg = -1;
 
+////////////////////////////////////////////////////////////////////////
+//
+//  Interrupt types
+//
+enum InterruptTypes
+{
+    INT_USI =  0,  // user software interrupt
+    INT_SSI =  1,  // supervisor software interrupt
+    INT_MSI =  3,  // machine software interrupt
+
+    INT_UTI =  4,  // user timer interrupt
+    INT_STI =  5,  // supervisor timer interrupt
+    INT_MTI =  7,  // machine time interrupt
+
+    INT_UEI =  8,  // user external interrupt
+    INT_SEI =  9,  // supervisor external interrupt
+    INT_MEI = 11,   // machine external interrupt
+
+    NumInterruptTypes = 12
+};
+
 }
 
 #endif //__ARCH_RISCV_ISA_TRAITS_HH__

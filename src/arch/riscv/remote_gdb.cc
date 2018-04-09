@@ -156,8 +156,20 @@ RemoteGDB::RemoteGDB(System *_system, ThreadContext *tc, int _port)
 bool
 RemoteGDB::acc(Addr va, size_t len)
 {
-    panic_if(FullSystem, "acc not implemented for RISCV FS!");
-    return context()->getProcessPtr()->pTable->lookup(va) != nullptr;
+    // panic_if(FullSystem, "acc not implemented for RISCV FS!");
+    if (FullSystem) {
+        /**
+         * currently no mapping from virt to phys
+         * va = phys
+         */
+        if (va) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return context()->getProcessPtr()->pTable->lookup(va) != nullptr;
+    }
 }
 
 void

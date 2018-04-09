@@ -1,7 +1,4 @@
-# -*- mode:python -*-
-
-# Copyright (c) 2016 RISC-V Foundation
-# Copyright (c) 2016 The University of Virginia
+# Copyright (c) 2018 TU Dresden
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -27,24 +24,37 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# Authors: Alec Roelke
-#          Robert Scheffel
+# Authors: Robert Scheffel
 
 from m5.params import *
-from System import System
+from m5.proxy import *
+
+from Device import BasicPioDevice
+from Platform import Platform
+from Terminal import Terminal
+from Uart import Uart8250
 
 
-class RiscvSystem(System):
-    type = 'RiscvSystem'
-    cxx_header = 'arch/riscv/system.hh'
-    bare_metal = Param.Bool(False, "Using Bare Metal Application?")
-    resetVect = Param.Addr(0x0, 'Reset vector')
-    load_addr_mask = 0xFFFFFFFFFFFFFFFF
+class TimerCpu(BasicPioDevice):
+    type = 'TimerCpu'
+    cxx_header = 'dev/riscv/timer_cpu.hh'
+
+    cpu = Param.BaseCPU(Parent.any, "Cpu this device is part of.")
 
 
-class BareMetalRiscvSystem(RiscvSystem):
-    type = 'BareMetalRiscvSystem'
-    cxx_header = 'arch/riscv/bare_metal/system.hh'
-    bootloader = Param.String("File, that contains the bootloader code")
+class SimpleBoard(Platform):
+    type = 'SimpleBoard'
+    cxx_header = 'dev/riscv/simpleboard.hh'
+    system = Param.System(Parent.any, 'system')
 
-    bare_metal = True
+    timer_cpu = TimerCpu(pio_addr=0x80000100)
+
+    term = Terminal()
+    uart = Uart8250(pio_addr=0x80000000)
+
+    # attach I/O devices to bus
+    # call this method after bus is defined at system level
+    def attachIO(self, bus):
+        self.timer_cpu.pio = bus.master
+        self.uart.device = self.term
+        self.uart.pio = bus.master

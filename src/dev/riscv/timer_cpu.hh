@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2002-2005 The Regents of The University of Michigan
- * Copyright (c) 2007 MIPS Technologies, Inc.
+ * Copyright (c) 2018 TU Dresden
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,72 +25,64 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * Authors: Ali Saidi
- *          Nathan Binkert
- *          Jaidev Patwardhan
- *          Robert Scheffel
+ * Authors: Robert Scheffel
  */
 
-#include "arch/riscv/system.hh"
+#ifndef __DEV_RISCV_TIMER_CPU_HH__
+#define __DEV_RISCV_TIMER_CPU_HH__
 
-#include "arch/vtophys.hh"
-#include "base/loader/hex_file.hh"
-#include "base/loader/object_file.hh"
-#include "base/loader/symtab.hh"
-#include "base/trace.hh"
-#include "mem/physical.hh"
-#include "params/RiscvSystem.hh"
-#include "sim/byteswap.hh"
+#include "dev/io_device.hh"
+#include "params/TimerCpu.hh"
 
-using namespace LittleEndianGuest;
+class BaseCPU;
 
-RiscvSystem::RiscvSystem(Params *p)
-    : System(p),
-      _isBareMetal(p->bare_metal),
-      _resetVect(p->resetVect)
+class TimerCpu : public BasicPioDevice
 {
-}
+  public:
+    enum {
+      Time      = 0x00,
+      TimeCmp   = 0x08,
+      Size      = 0x10
+    };
 
-RiscvSystem::~RiscvSystem()
-{
-}
+  private:
+    /** cpu the timer belongs to */
+    BaseCPU *cpu;
 
-/**
- * Return the reset vector.
- */
-Addr
-RiscvSystem::resetVect(ThreadContext* tc)
-{
-    return dynamic_cast<RiscvSystem *>(tc->getSystemPtr())->resetVect();
-}
+    /** mtimecmp register */
+    uint64_t timecmp;
 
-/**
- * Return the bare metal checker.
- */
-bool
-RiscvSystem::isBareMetal(ThreadContext* tc)
-{
-    return dynamic_cast<RiscvSystem *>(tc->getSystemPtr())->isBareMetal();
-}
+    /** called if time == timecmp */
+    void timerAlarm();
+    EventFunctionWrapper timerAlarmEvent;
 
-Addr
-RiscvSystem::fixFuncEventAddr(Addr addr)
-{
-    return addr;
-}
+    /** start the timer, if a value is written in timecmp */
+    void startTimer(uint64_t val);
 
-void
-RiscvSystem::setRiscvAccess(Addr access)
-{}
+  public:
+    typedef TimerCpuParams Params;
+    const Params *
+    params() const
+    {
+      return dynamic_cast<const Params *>(_params);
+    }
 
-bool
-RiscvSystem::breakpoint()
-{
-    return 0;
-}
+    /**
+     * The constructor.
+     */
+    TimerCpu(Params *p);
 
-RiscvSystem *
-RiscvSystemParams::create()
-{
-    return new RiscvSystem(this);
-}
+    /**
+     * Overrides pure virtual read method.
+     * Handles a read to the device.
+     */
+    Tick read(PacketPtr pkt) override;
+
+    /**
+     * Overrides pure virtual write method.
+     * Handles a write to the device.
+     */
+    Tick write(PacketPtr pkt) override;
+};
+
+#endif // __DEV_RISCV_TIMER_CPU_HH__

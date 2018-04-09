@@ -115,8 +115,10 @@ getArgument(ThreadContext *tc, int &number, uint16_t size, bool fp)
     return 0;
 }
 
-inline void startupCPU(ThreadContext *tc, int cpuId)
+inline void
+startupCPU(ThreadContext *tc, int cpuId)
 {
+    tc->activate();
 }
 
 inline void
@@ -183,11 +185,10 @@ getExecutingAsid(ThreadContext *tc)
     return 0;
 }
 
-inline void
-initCPU(ThreadContext *, int cpuId)
-{
-    panic("initCPU not implemented for Riscv.\n");
-}
+/**
+ * init Cpu function
+ */
+void initCPU(ThreadContext *tc, int cpuId);
 
 } // namespace RiscvISA
 

@@ -31,6 +31,9 @@
 #ifndef __ARCH_RISCV_INTERRUPT_HH__
 #define __ARCH_RISCV_INTERRUPT_HH__
 
+#include "arch/riscv/faults.hh"
+#include "arch/riscv/isa_traits.hh"
+#include "arch/riscv/registers.hh"
 #include "base/logging.hh"
 #include "params/RiscvInterrupts.hh"
 #include "sim/sim_object.hh"
@@ -45,6 +48,13 @@ class Interrupts : public SimObject
   private:
     BaseCPU * cpu;
 
+    bool interrupts[NumInterruptTypes];
+    uint64_t intstatus;
+
+    ExceptionCode recentInt;  // stores the most recent interrupt
+    uint64_t ip;              // summary of pending interrupts
+    bool update;              // indicates a change in pending interrupts
+
   public:
     typedef RiscvInterruptsParams Params;
 
@@ -54,51 +64,43 @@ class Interrupts : public SimObject
         return dynamic_cast<const Params *>(_params);
     }
 
-    Interrupts(Params * p) : SimObject(p), cpu(nullptr)
-    {}
+    Interrupts(Params * p);
 
-    void
-    setCPU(BaseCPU * _cpu)
-    {
-        cpu = _cpu;
-    }
+    void setCPU(BaseCPU * _cpu) { cpu = _cpu; }
 
-    void
-    post(int int_num, int index)
-    {
-        panic("Interrupts::post not implemented.\n");
-    }
+    /**
+     * post(int int_num, int index) is responsible for
+     * posting an interrupt.
+     */
+    void post(int int_num, int index);
+    // void post(int int_num, ThreadContext *tc);
 
-    void
-    clear(int int_num, int index)
-    {
-        panic("Interrupts::clear not implemented.\n");
-    }
+    /**
+     * clear(int int_num, int index) is responsible
+     * for clearing an interrupt.
+     */
+    void clear(int int_num, int index);
 
-    void
-    clearAll()
-    {
-        panic("Interrupts::clearAll not implemented.\n");
-    }
+    /**
+     * clearAll() is responsible for clearing all interrupts.
+     * It sets intstatus to 0 and clears every entry in
+     * the interrupts array.
+     */
+    void clearAll();
+    // void clearAll(ThreadContext *tc);
 
-    bool
-    checkInterrupts(ThreadContext *tc) const
-    {
-        panic("Interrupts::checkInterrupts not implemented.\n");
-    }
+    /**
+     * getInterrupt(ThreadContext * tc) checks if an interrupt
+     * should be returned. It ands the interrupt mask and
+     * and interrupt pending bits to see if one exists. It
+     * also makes sure interrupts are enabled globally (mstatus.xie)
+     * and locally (mie)
+     */
+    Fault getInterrupt(ThreadContext *tc);
 
-    Fault
-    getInterrupt(ThreadContext *tc)
-    {
-        assert(checkInterrupts(tc));
-        panic("Interrupts::getInterrupt not implemented.\n");
-    }
+    bool checkInterrupts(ThreadContext *tc) const;
 
-    void
-    updateIntrInfo(ThreadContext *tc)
-    {
-        panic("Interrupts::updateIntrInfo not implemented.\n");
-    }
+    void updateIntrInfo(ThreadContext *tc);
 };
 
 } // namespace RiscvISA

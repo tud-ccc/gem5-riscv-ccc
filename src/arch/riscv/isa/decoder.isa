@@ -1692,9 +1692,34 @@ decode QUADRANT default Unknown::unknown() {
                     0x1: ebreak({{
                         fault = make_shared<BreakpointFault>();
                     }}, IsSerializeAfter, IsNonSpeculative, No_OpClass);
-                    0x100: eret({{
-                        fault = make_shared<UnimplementedFault>("eret");
-                    }}, No_OpClass);
+                    0x2: uret({{
+                        MSTATUS status = xc->readMiscReg(MISCREG_MSTATUS);
+                        status.uie = status.upie;
+                        status.upie = 1;
+                        xc->setMiscReg(MISCREG_MSTATUS, status);
+                        // restore process counter
+                        PCState pc = xc->readMiscReg(MISCREG_UEPC);
+                        xc->pcState(pc)
+                    }}, IsReturn);
+                    0x102: sret({{
+                        MSTATUS status = xc->readMiscReg(MISCREG_MSTATUS);
+                        status.sie = status.spie;
+                        status.spie = 1;
+                        status.spp = 0;
+                        xc->setMiscReg(MISCREG_MSTATUS, status);
+                        // restore process counter
+                        PCState pc = xc->readMiscReg(MISCREG_SEPC);
+                        xc->pcState(pc)
+                    }}, IsReturn);
+                    0x302: mret({{
+                        MSTATUS status = xc->readMiscReg(MISCREG_MSTATUS);
+                        status.mie = status.mpie;
+                        status.mpie = 1;
+                        status.mpp = 0;
+                        xc->setMiscReg(MISCREG_MSTATUS, status);
+                        // restore process counter
+                        NPC = xc->readMiscReg(MISCREG_MEPC);
+                    }}, IsReturn, No_OpClass);
                 }
             }
             format CSROp {
