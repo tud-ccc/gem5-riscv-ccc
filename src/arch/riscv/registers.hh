@@ -421,6 +421,25 @@ BitUnion64(MSTATUS)
     Bitfield<0>         uie;
 EndBitUnion(MSTATUS)
 
+BitUnion64(SSTATUS)
+    Bitfield<63>        sd;
+    Bitfield<33, 32>    uxl;
+    Bitfield<19>        mxr;
+    Bitfield<18>        sum;
+    Bitfield<16, 15>    xs;
+    Bitfield<14, 13>    fs;
+    Bitfield<8>         spp;
+    Bitfield<5>         spie;
+    Bitfield<4>         upie;
+    Bitfield<1>         sie;
+    Bitfield<0>         uie;
+EndBitUnion(SSTATUS)
+
+BitUnion64(USTATUS)
+    Bitfield<4>         upie;
+    Bitfield<0>         uie;
+EndBitUnion(USTATUS)
+
 BitUnion64(MIP)
     Bitfield<11>        meip;
     Bitfield<9>         seip;
