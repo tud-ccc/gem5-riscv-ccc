@@ -73,6 +73,8 @@ enum ExceptionCode {
     INT_USER_EXT = 8,    // user external interrupt
     INT_SUPV_EXT = 9,    // supervor external interrupt
     INT_MACH_EXT = 11,   // machine external interrupt
+
+    UNSPECIFIED = 16
 };
 
 enum InterruptCode {

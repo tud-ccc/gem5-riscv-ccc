@@ -38,7 +38,7 @@ namespace RiscvISA {
 
 Interrupts::Interrupts(Params * p)
     : SimObject(p), cpu(nullptr),
-      recentInt(INT_USER_SW), ip(0x0), update(false)
+      ip(0x0), update(false)
 {
     clearAll();
 }
@@ -54,21 +54,7 @@ Interrupts::post(int int_num, int index)
 
     interrupts[int_num] |= 1 << index;
     intstatus |= (ULL(1) << int_num);
-
-    recentInt = static_cast<ExceptionCode>(int_num);
 }
-
-// void
-// Interrupts::post(int int_num, ThreadContext *tc)
-// {
-//     DPRINTF(Interrupt, "Interrupt %d posted\n", int_num);
-//     if (int_num < 0 || int_num >= NumInterruptTypes)
-//         panic("int_num out of bounds\n");
-
-//     uint64_t mip = tc->readMiscRegNoEffect(MISCREG_MIP);
-//     mip |= 1 << int_num;
-//     tc->setMiscRegNoEffect(MISCREG_MIP, mip);
-// }
 
 void
 Interrupts::clear(int int_num, int index)
@@ -93,14 +79,6 @@ Interrupts::clearAll()
     intstatus = 0;
     memset(interrupts, 0, sizeof(interrupts));
 }
-
-// void
-// Interrupts::clearAll(ThreadContext *tc)
-// {
-//     DPRINTF(Interrupt, "Interrupts all cleared\n");
-//     uint64_t mip = 0;
-//     tc->setMiscRegNoEffect(MISCREG_MIP, mip);
-// }
 
 bool
 Interrupts::checkInterrupts(ThreadContext *tc) const
@@ -127,35 +105,52 @@ Fault
 Interrupts::getInterrupt(ThreadContext *tc)
 {
     assert(checkInterrupts(tc));
-    assert(recentInt);
 
     MSTATUS status = tc->readMiscRegNoEffect(MISCREG_MSTATUS);
     assert(status.mie);
 
-    uint64_t ints = 0;
-    uint64_t mie = tc->readMiscRegNoEffect(MISCREG_MIE);
+    uint64_t ints;        // all pending interrupts, that are enabled
+    ExceptionCode intr;   // stores the interrupt, that will be taken
+    InterruptCode icode;  // find out if it is a timer or sw interrupt
+    uint64_t mie;         // interrupt enable bits
+    ints = 0;
+    intr = UNSPECIFIED;
+    mie = tc->readMiscRegNoEffect(MISCREG_MIE);
 
     // and the interrupt status with the interrupt pending bits
     // now we know which interrupt we can take and which not
     ints = mie & intstatus;
 
-    DPRINTF(Interrupt, "Interrupt!  %#lx \n", (uint64_t)recentInt);
+    // user level interrupts
+    for (int i = 0; i < NumInterruptTypes; i += 4) {
+        if (interrupts[i])
+            intr = static_cast<ExceptionCode>(i);
+    }
+    // supervisor level interrupts
+    for (int i = 1; i < NumInterruptTypes; i += 4) {
+        if (interrupts[i])
+            intr = static_cast<ExceptionCode>(i);
+    }
+    // machine level interrupts
+    for (int i = 3; i < NumInterruptTypes; i += 4) {
+        if (interrupts[i])
+            intr = static_cast<ExceptionCode>(i);
+    }
 
-    // find out if it is a timer or software interrupt
-    InterruptCode i;
+    DPRINTF(Interrupt, "Interrupt!  %#lx \n", intr);
 
-    if (recentInt & 0x8)
-        i = EXTERNAL;
-    else if (recentInt & 0x4)
-        i = TIMER;
-    else if (recentInt & 0x2)
-        i = SOFTWARE;
+    if (intr & 0x8)
+        icode = EXTERNAL;
+    else if (intr & 0x4)
+        icode = TIMER;
     else
-        fatal("Unspecified interrupt code\n");
-
+        icode = SOFTWARE;
     ip = ints;
     update = true;
-    return std::make_shared<InterruptFault>(recentInt, i);
+
+    assert(intr != UNSPECIFIED);
+
+    return std::make_shared<InterruptFault>(intr, icode);
 }
 
 void

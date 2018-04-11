@@ -48,10 +48,9 @@ class Interrupts : public SimObject
   private:
     BaseCPU * cpu;
 
-    bool interrupts[NumInterruptTypes];
+    uint64_t interrupts[NumInterruptTypes];
     uint64_t intstatus;
 
-    ExceptionCode recentInt;  // stores the most recent interrupt
     uint64_t ip;              // summary of pending interrupts
     bool update;              // indicates a change in pending interrupts
 
