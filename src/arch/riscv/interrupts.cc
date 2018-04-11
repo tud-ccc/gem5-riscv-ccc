@@ -121,16 +121,7 @@ Interrupts::getInterrupt(ThreadContext *tc)
     // now we know which interrupt we can take and which not
     ints = mie & intstatus;
 
-    // user level interrupts
-    for (int i = 0; i < NumInterruptTypes; i += 4) {
-        if (interrupts[i])
-            intr = static_cast<ExceptionCode>(i);
-    }
-    // supervisor level interrupts
-    for (int i = 1; i < NumInterruptTypes; i += 4) {
-        if (interrupts[i])
-            intr = static_cast<ExceptionCode>(i);
-    }
+    // per default, interrupts trap to machine mode
     // machine level interrupts
     for (int i = 3; i < NumInterruptTypes; i += 4) {
         if (interrupts[i])
