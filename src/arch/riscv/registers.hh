@@ -84,7 +84,7 @@ const int NumFloatRegs = 32;
 // This has to be one to prevent warnings that are treated as errors
 const unsigned NumVecRegs = 1;
 const int NumCCRegs = 0;
-const int NumMiscRegs = 4096;
+const int NumMiscRegs = 4097;
 
 // Semantically meaningful register indices
 const int ZeroReg = 0;
@@ -202,7 +202,11 @@ enum MiscRegIndex {
     MISCREG_TDATA3 = 0x7A3,
     MISCREG_DCSR = 0x7B0,
     MISCREG_DPC = 0x7B1,
-    MISCREG_DSCRATCH = 0x7B2
+    MISCREG_DSCRATCH = 0x7B2,
+
+    // This register should not be accessible by software; to accomplish that,
+    // its index lies outside the range of possible 12-bit values
+    MISCREG_PRV = 0x1000
 };
 
 const std::map<int, std::string> MiscRegNames = {
@@ -463,11 +467,6 @@ BitUnion64(MIE)
     Bitfield<1>         ssie;
     Bitfield<0>         usie;
 EndBitUnion(MIE)
-
-BitUnion64(MCAUSE)
-    Bitfield<63>        intr;
-    Bitfield<62, 0>     exc;
-EndBitUnion(MCAUSE)
 
 }
 

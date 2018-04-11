@@ -83,6 +83,9 @@ void ISA::clear()
         mie.meie = 1;
         miscRegFile[MISCREG_MIE] = mie;
     }
+
+    // 0x0 = user; 0x1 = supervisor; 0x3 = machine
+    miscRegFile[MISCREG_PRV] = 0x3;
 }
 
 

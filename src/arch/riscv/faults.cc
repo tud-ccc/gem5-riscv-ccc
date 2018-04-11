@@ -135,9 +135,6 @@ SyscallFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
     tc->setMiscReg(cause, _code);
     tc->setMiscReg(epc, tc->instAddr());
 
-    inform("SyscallFault: mepc = %#x\n",
-        tc->readMiscRegNoEffect(MISCREG_MEPC));
-
     // disable interrupts
     MSTATUS status = tc->readMiscReg(MISCREG_MSTATUS);
     status.mpie = status.mie;
@@ -154,26 +151,33 @@ InterruptFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
 {
     MiscRegIndex cause = MISCREG_MCAUSE;
     MiscRegIndex epc = MISCREG_MEPC;
-    MCAUSE mcause = tc->readMiscRegNoEffect(MISCREG_MCAUSE);
-    if (bits(tc->readMiscReg(MISCREG_MIDELEG), _code) != 0) {
+    MiscReg prv = 0x3;
+    MiscReg pp = tc->readMiscRegNoEffect(MISCREG_PRV);
+    MSTATUS status = tc->readMiscReg(MISCREG_MSTATUS);
+
+    // delegate traps that occur in s or u mode to s mode
+    if (bits(tc->readMiscReg(MISCREG_PRV), 1) == 0
+        && bits(tc->readMiscReg(MISCREG_MEDELEG), _code) != 0) {
         cause = MISCREG_SCAUSE;
         epc = MISCREG_SEPC;
+        prv = 0x1;
     }
-    if (bits(tc->readMiscReg(MISCREG_SIDELEG), _code) != 0) {
+    // delegate traps that occur in u mode to u mode
+    if (tc->readMiscReg(MISCREG_PRV) == 0
+        && bits(tc->readMiscReg(MISCREG_SEDELEG), _code) != 0) {
         cause = MISCREG_UCAUSE;
         epc = MISCREG_UEPC;
+        prv = 0x0;
     }
 
-    mcause.intr = 1;
-    mcause.exc = _code;
-    tc->setMiscReg(cause, mcause);
+    //_code = (1 << ((sizeof(MiscReg) * 8) - 1)) | _code;
+    tc->setMiscReg(cause, _code);
+    inform("size = %d\n",  (sizeof(_code)));
     tc->setMiscReg(epc, tc->instAddr());
-
-    inform("InterruptFault: mepc = %#x\n",
-        tc->readMiscRegNoEffect(MISCREG_MEPC));
+    tc->setMiscReg(MISCREG_PRV, prv);
 
     // disable interrupts
-    MSTATUS status = tc->readMiscReg(MISCREG_MSTATUS);
+    status.mpp = bits(pp, 1, 2);
     status.mpie = status.mie;
     status.mie = 0;
     tc->setMiscReg(MISCREG_MSTATUS, status);

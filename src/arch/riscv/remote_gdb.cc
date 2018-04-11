@@ -186,7 +186,7 @@ RemoteGDB::RiscvGdbRegCache::getRegs(ThreadContext *context)
     r.fflags = context->readMiscReg(MISCREG_FFLAGS);
     r.frm = context->readMiscReg(MISCREG_FRM);
     r.fcsr = context->readMiscReg(MISCREG_FCSR);
-    for (int i = ExplicitCSRs; i < NumMiscRegs; i++)
+    for (int i = ExplicitCSRs; i < NumMiscRegs - 1; i++)
         r.csr[i - ExplicitCSRs] = context->readMiscReg(i);
 }
 

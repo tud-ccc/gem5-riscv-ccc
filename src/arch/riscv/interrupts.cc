@@ -93,10 +93,14 @@ Interrupts::checkInterrupts(ThreadContext *tc) const
 
     MIE mie = tc->readMiscRegNoEffect(MISCREG_MIE);
 
-    // TODO: consider delegation register
-
-    return ((interrupts[INT_MSI] && mie.msie) ||
+    return ((interrupts[INT_USI] && mie.usie) ||
+            (interrupts[INT_SSI] && mie.ssie) ||
+            (interrupts[INT_MSI] && mie.msie) ||
+            (interrupts[INT_UTI] && mie.utie) ||
+            (interrupts[INT_STI] && mie.stie) ||
             (interrupts[INT_MTI] && mie.mtie) ||
+            (interrupts[INT_UEI] && mie.ueie) ||
+            (interrupts[INT_SEI] && mie.seie) ||
             (interrupts[INT_MEI] && mie.meie)
            );
 }
@@ -110,7 +114,7 @@ Interrupts::getInterrupt(ThreadContext *tc)
     assert(status.mie);
 
     uint64_t ints;        // all pending interrupts, that are enabled
-    ExceptionCode intr;   // stores the interrupt, that will be taken
+    uint64_t intr;        // stores the interrupt, that will be taken
     InterruptCode icode;  // find out if it is a timer or sw interrupt
     uint64_t mie;         // interrupt enable bits
     ints = 0;
@@ -125,7 +129,7 @@ Interrupts::getInterrupt(ThreadContext *tc)
     // machine level interrupts
     for (int i = 3; i < NumInterruptTypes; i += 4) {
         if (interrupts[i])
-            intr = static_cast<ExceptionCode>(i);
+            intr = i;
     }
 
     DPRINTF(Interrupt, "Interrupt!  %#lx \n", intr);
@@ -141,7 +145,8 @@ Interrupts::getInterrupt(ThreadContext *tc)
 
     assert(intr != UNSPECIFIED);
 
-    return std::make_shared<InterruptFault>(intr, icode);
+    return std::make_shared<InterruptFault>(
+        static_cast<ExceptionCode>(intr), icode);
 }
 
 void

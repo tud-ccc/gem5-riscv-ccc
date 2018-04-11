@@ -67,7 +67,7 @@ class RemoteGDB : public BaseRemoteGDB
             uint32_t fflags;
             uint32_t frm;
             uint32_t fcsr;
-            MiscReg csr[NumMiscRegs - ExplicitCSRs];
+            MiscReg csr[NumMiscRegs - ExplicitCSRs -1];
         } __attribute__((__packed__)) r;
       public:
         char *data() const { return (char *)&r; }

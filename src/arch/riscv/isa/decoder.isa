@@ -1694,7 +1694,9 @@ decode QUADRANT default Unknown::unknown() {
                     }}, IsSerializeAfter, IsNonSpeculative, No_OpClass);
                     0x2: uret({{
                         USTATUS status = xc->readMiscReg(MISCREG_USTATUS);
+                        // xie -> xpie
                         status.uie = status.upie;
+                        // xpie -> 1
                         status.upie = 1;
                         xc->setMiscReg(MISCREG_USTATUS, status);
                         // restore process counter
@@ -1703,8 +1705,13 @@ decode QUADRANT default Unknown::unknown() {
                     }}, IsReturn);
                     0x102: sret({{
                         SSTATUS status = xc->readMiscReg(MISCREG_SSTATUS);
+                        // change priv lvl to xpp
+                        xc->setMiscReg(MISCREG_PRV, status.spp);
+                        // xie -> xpie
                         status.sie = status.spie;
+                        // xpie -> 1
                         status.spie = 1;
+                        // xpp -> U (0)
                         status.spp = 0;
                         xc->setMiscReg(MISCREG_SSTATUS, status);
                         // restore process counter
@@ -1713,8 +1720,13 @@ decode QUADRANT default Unknown::unknown() {
                     }}, IsReturn);
                     0x302: mret({{
                         MSTATUS status = xc->readMiscReg(MISCREG_MSTATUS);
+                        // change priv lvl to xpp
+                        xc->setMiscReg(MISCREG_PRV, status.mpp);
+                        // xie -> xpie
                         status.mie = status.mpie;
+                        // xpie -> 1
                         status.mpie = 1;
+                        // xpp -> U (0)
                         status.mpp = 0;
                         xc->setMiscReg(MISCREG_MSTATUS, status);
                         // restore process counter
