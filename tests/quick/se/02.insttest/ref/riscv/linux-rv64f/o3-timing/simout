@@ -3,10 +3,10 @@ Redirecting stderr to build/RISCV/tests/opt/quick/se/02.insttest/riscv/linux-rv6
 gem5 Simulator System.  http://gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
-gem5 compiled Jul 13 2017 17:09:45
-gem5 started Jul 13 2017 17:09:50
-gem5 executing on boldrock, pid 1347
-command line: /home/ar4jc/gem5/build/RISCV/gem5.opt -d build/RISCV/tests/opt/quick/se/02.insttest/riscv/linux-rv64f/o3-timing --stats-file 'text://stats.txt?desc=False' -re /home/ar4jc/gem5/tests/testing/../run.py quick/se/02.insttest/riscv/linux-rv64f/o3-timing
+gem5 compiled Apr 12 2018 13:47:37
+gem5 started Apr 12 2018 13:56:15
+gem5 executing on localvm.commsolid.com, pid 4889
+command line: /home/rscheffel/projects/gem5_cc/build/RISCV/gem5.opt -d build/RISCV/tests/opt/quick/se/02.insttest/riscv/linux-rv64f/o3-timing --stats-file 'text://stats.txt?desc=False' -re /home/rscheffel/projects/gem5_cc/tests/testing/../run.py quick/se/02.insttest/riscv/linux-rv64f/o3-timing
 
 Global frequency set at 1000000000000 ticks per second
 clear fsflags: PASS
@@ -115,9 +115,9 @@ fcvt.w.s, truncate positive: PASS
 fcvt.w.s, truncate negative: PASS
 fcvt.w.s, 0.0: PASS
 fcvt.w.s, -0.0: PASS
-fcvt.w.s, overflow: [1;31mFAIL[0m (expected 2147483647; found -2147483648)
+fcvt.w.s, overflow: PASS
 fcvt.w.s, underflow: PASS
-fcvt.w.s, infinity: [1;31mFAIL[0m (expected 2147483647; found -2147483648)
+fcvt.w.s, infinity: PASS
 fcvt.w.s, -infinity: PASS
 fcvt.w.s, quiet NaN: PASS
 fcvt.w.s, quiet -NaN: PASS
@@ -126,12 +126,12 @@ fcvt.wu.s, truncate positive: PASS
 fcvt.wu.s, truncate negative: PASS
 fcvt.wu.s, 0.0: PASS
 fcvt.wu.s, -0.0: PASS
-fcvt.wu.s, overflow: [1;31mFAIL[0m (expected 18446744073709551615; found 0)
+fcvt.wu.s, overflow: PASS
 fcvt.wu.s, underflow: PASS
-fcvt.wu.s, infinity: [1;31mFAIL[0m (expected 18446744073709551615; found 0)
+fcvt.wu.s, infinity: PASS
 fcvt.wu.s, -infinity: PASS
-fcvt.wu.s, quiet NaN: [1;31mFAIL[0m (expected 18446744073709551615; found 0)
-fcvt.wu.s, quiet -NaN: [1;31mFAIL[0m (expected 18446744073709551615; found 0)
+fcvt.wu.s, quiet NaN: PASS
+fcvt.wu.s, quiet -NaN: PASS
 fcvt.wu.s, signaling NaN: PASS
 fmv.x.s, positive: PASS
 fmv.x.s, negative: PASS
@@ -192,9 +192,9 @@ fcvt.l.s, truncate negative: PASS
 fcvt.l.s, 0.0: PASS
 fcvt.l.s, -0.0: PASS
 fcvt.l.s, 32-bit overflow: PASS
-fcvt.l.s, overflow: [1;31mFAIL[0m (expected 9223372036854775807; found -9223372036854775808)
+fcvt.l.s, overflow: PASS
 fcvt.l.s, underflow: PASS
-fcvt.l.s, infinity: [1;31mFAIL[0m (expected 9223372036854775807; found -9223372036854775808)
+fcvt.l.s, infinity: PASS
 fcvt.l.s, -infinity: PASS
 fcvt.l.s, quiet NaN: PASS
 fcvt.l.s, quiet -NaN: PASS
@@ -204,12 +204,12 @@ fcvt.lu.s, truncate negative: PASS
 fcvt.lu.s, 0.0: PASS
 fcvt.lu.s, -0.0: PASS
 fcvt.lu.s, 32-bit overflow: PASS
-fcvt.lu.s, overflow: [1;31mFAIL[0m (expected 18446744073709551615; found 0)
+fcvt.lu.s, overflow: PASS
 fcvt.lu.s, underflow: PASS
-fcvt.lu.s, infinity: [1;31mFAIL[0m (expected 18446744073709551615; found 0)
+fcvt.lu.s, infinity: PASS
 fcvt.lu.s, -infinity: PASS
-fcvt.lu.s, quiet NaN: [1;31mFAIL[0m (expected 18446744073709551615; found 9223372036854775808)
-fcvt.lu.s, quiet -NaN: [1;31mFAIL[0m (expected 18446744073709551615; found 9223372036854775808)
+fcvt.lu.s, quiet NaN: PASS
+fcvt.lu.s, quiet -NaN: PASS
 fcvt.lu.s, signaling NaN: PASS
 fcvt.s.l, 0: PASS
 fcvt.s.l, negative: PASS
@@ -217,4 +217,4 @@ fcvt.s.l, 32-bit truncate: PASS
 fcvt.s.lu, 0: PASS
 fcvt.s.lu: PASS
 fcvt.s.lu, 32-bit truncate: PASS
-Exiting @ tick 334241000 because exiting with last active thread context
+Exiting @ tick 281322000 because exiting with last active thread context

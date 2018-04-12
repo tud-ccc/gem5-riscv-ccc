@@ -12,6 +12,7 @@
             "cxx_class": "CoherentXBar", 
             "forward_latency": 4, 
             "clk_domain": "system.clk_domain", 
+            "point_of_unification": true, 
             "width": 16, 
             "eventq_index": 0, 
             "default_p_state": "UNDEFINED", 
@@ -42,7 +43,7 @@
                 "type": "SnoopFilter", 
                 "lookup_latency": 1
             }, 
-            "power_model": null, 
+            "power_model": [], 
             "path": "system.membus", 
             "snoop_response_latency": 4, 
             "name": "membus", 
@@ -95,7 +96,7 @@
             "name": "voltage_domain", 
             "eventq_index": 0, 
             "voltage": [
-                "1.0"
+                1.0
             ], 
             "cxx_class": "VoltageDomain", 
             "path": "system.voltage_domain", 
@@ -117,7 +118,7 @@
             "default_p_state": "UNDEFINED", 
             "kvm_map": true, 
             "clk_domain": "system.clk_domain", 
-            "power_model": null, 
+            "power_model": [], 
             "latency_var": 0, 
             "bandwidth": "73.000000", 
             "conf_table_reported": true, 
@@ -132,7 +133,7 @@
             }, 
             "in_addr_map": true
         }, 
-        "power_model": null, 
+        "power_model": [], 
         "work_cpus_ckpt_count": 0, 
         "thermal_components": [], 
         "path": "system", 
@@ -154,7 +155,8 @@
         "name": "system", 
         "init_param": 0, 
         "p_state_clk_gate_bins": 20, 
-        "load_addr_mask": 1099511627775, 
+        "kernel_extras": [], 
+        "load_addr_mask": 18446744073709551615, 
         "cpu": [
             {
                 "do_statistics_insts": true, 
@@ -167,8 +169,15 @@
                     "type": "RiscvTLB", 
                     "size": 64
                 }, 
-                "system": "system", 
+                "power_gating_on_idle": false, 
                 "icache": {
+                    "replacement_policy": {
+                        "eventq_index": 0, 
+                        "path": "system.cpu.icache.replacement_policy", 
+                        "type": "LRURP", 
+                        "name": "replacement_policy", 
+                        "cxx_class": "LRURP"
+                    }, 
                     "cpu_side": {
                         "peer": "system.cpu.icache_port", 
                         "role": "SLAVE"
@@ -196,29 +205,32 @@
                     "tags": {
                         "size": 131072, 
                         "tag_latency": 2, 
+                        "replacement_policy": "system.cpu.icache.replacement_policy", 
                         "name": "tags", 
                         "p_state_clk_gate_min": 1000, 
                         "eventq_index": 0, 
                         "p_state_clk_gate_bins": 20, 
                         "default_p_state": "UNDEFINED", 
                         "clk_domain": "system.cpu_clk_domain", 
-                        "power_model": null, 
+                        "power_model": [], 
                         "sequential_access": false, 
                         "assoc": 2, 
-                        "cxx_class": "LRU", 
+                        "warmup_percentage": 0, 
+                        "cxx_class": "BaseSetAssoc", 
                         "p_state_clk_gate_max": 1000000000000, 
                         "path": "system.cpu.icache.tags", 
                         "block_size": 64, 
-                        "type": "LRU", 
+                        "type": "BaseSetAssoc", 
                         "data_latency": 2
                     }, 
                     "tgts_per_mshr": 20, 
                     "demand_mshr_reserve": 1, 
-                    "power_model": null, 
+                    "power_model": [], 
                     "addr_ranges": [
                         "0:18446744073709551615:0:0:0:0"
                     ], 
                     "is_read_only": true, 
+                    "warmup_percentage": 0, 
                     "prefetch_on_access": false, 
                     "path": "system.cpu.icache", 
                     "data_latency": 2, 
@@ -232,6 +244,7 @@
                 "do_checkpoint_insts": true, 
                 "cxx_class": "TimingSimpleCPU", 
                 "max_loads_all_threads": 0, 
+                "system": "system", 
                 "clk_domain": "system.cpu_clk_domain", 
                 "function_trace_start": 0, 
                 "cpu_id": 0, 
@@ -246,6 +259,7 @@
                     "cxx_class": "CoherentXBar", 
                     "forward_latency": 0, 
                     "clk_domain": "system.cpu_clk_domain", 
+                    "point_of_unification": true, 
                     "width": 32, 
                     "eventq_index": 0, 
                     "default_p_state": "UNDEFINED", 
@@ -276,7 +290,7 @@
                         "type": "SnoopFilter", 
                         "lookup_latency": 0
                     }, 
-                    "power_model": null, 
+                    "power_model": [], 
                     "path": "system.cpu.toL2Bus", 
                     "snoop_response_latency": 1, 
                     "name": "toL2Bus", 
@@ -307,9 +321,16 @@
                     "role": "MASTER"
                 }, 
                 "socket_id": 0, 
-                "power_model": null, 
+                "power_model": [], 
                 "max_insts_all_threads": 0, 
                 "l2cache": {
+                    "replacement_policy": {
+                        "eventq_index": 0, 
+                        "path": "system.cpu.l2cache.replacement_policy", 
+                        "type": "LRURP", 
+                        "name": "replacement_policy", 
+                        "cxx_class": "LRURP"
+                    }, 
                     "cpu_side": {
                         "peer": "system.cpu.toL2Bus.master[0]", 
                         "role": "SLAVE"
@@ -337,29 +358,32 @@
                     "tags": {
                         "size": 2097152, 
                         "tag_latency": 20, 
+                        "replacement_policy": "system.cpu.l2cache.replacement_policy", 
                         "name": "tags", 
                         "p_state_clk_gate_min": 1000, 
                         "eventq_index": 0, 
                         "p_state_clk_gate_bins": 20, 
                         "default_p_state": "UNDEFINED", 
                         "clk_domain": "system.cpu_clk_domain", 
-                        "power_model": null, 
+                        "power_model": [], 
                         "sequential_access": false, 
                         "assoc": 8, 
-                        "cxx_class": "LRU", 
+                        "warmup_percentage": 0, 
+                        "cxx_class": "BaseSetAssoc", 
                         "p_state_clk_gate_max": 1000000000000, 
                         "path": "system.cpu.l2cache.tags", 
                         "block_size": 64, 
-                        "type": "LRU", 
+                        "type": "BaseSetAssoc", 
                         "data_latency": 20
                     }, 
                     "tgts_per_mshr": 12, 
                     "demand_mshr_reserve": 1, 
-                    "power_model": null, 
+                    "power_model": [], 
                     "addr_ranges": [
                         "0:18446744073709551615:0:0:0:0"
                     ], 
                     "is_read_only": false, 
+                    "warmup_percentage": 0, 
                     "prefetch_on_access": false, 
                     "path": "system.cpu.l2cache", 
                     "data_latency": 20, 
@@ -370,6 +394,7 @@
                     "assoc": 8
                 }, 
                 "path": "system.cpu", 
+                "pwr_gating_latency": 300, 
                 "max_loads_any_thread": 0, 
                 "switched_out": false, 
                 "workload": [
@@ -378,7 +403,7 @@
                         "pid": 100, 
                         "kvmInSE": false, 
                         "cxx_class": "Process", 
-                        "executable": "/home/ar4jc/gem5/tests/testing/../test-progs/insttest/bin/riscv/linux-rv64c/insttest", 
+                        "executable": "/home/rscheffel/projects/gem5_cc/tests/testing/../test-progs/insttest/bin/riscv/linux-rv64c/insttest", 
                         "drivers": [], 
                         "system": "system", 
                         "gid": 100, 
@@ -418,6 +443,13 @@
                 "progress_interval": 0, 
                 "branchPred": null, 
                 "dcache": {
+                    "replacement_policy": {
+                        "eventq_index": 0, 
+                        "path": "system.cpu.dcache.replacement_policy", 
+                        "type": "LRURP", 
+                        "name": "replacement_policy", 
+                        "cxx_class": "LRURP"
+                    }, 
                     "cpu_side": {
                         "peer": "system.cpu.dcache_port", 
                         "role": "SLAVE"
@@ -445,29 +477,32 @@
                     "tags": {
                         "size": 262144, 
                         "tag_latency": 2, 
+                        "replacement_policy": "system.cpu.dcache.replacement_policy", 
                         "name": "tags", 
                         "p_state_clk_gate_min": 1000, 
                         "eventq_index": 0, 
                         "p_state_clk_gate_bins": 20, 
                         "default_p_state": "UNDEFINED", 
                         "clk_domain": "system.cpu_clk_domain", 
-                        "power_model": null, 
+                        "power_model": [], 
                         "sequential_access": false, 
                         "assoc": 2, 
-                        "cxx_class": "LRU", 
+                        "warmup_percentage": 0, 
+                        "cxx_class": "BaseSetAssoc", 
                         "p_state_clk_gate_max": 1000000000000, 
                         "path": "system.cpu.dcache.tags", 
                         "block_size": 64, 
-                        "type": "LRU", 
+                        "type": "BaseSetAssoc", 
                         "data_latency": 2
                     }, 
                     "tgts_per_mshr": 20, 
                     "demand_mshr_reserve": 1, 
-                    "power_model": null, 
+                    "power_model": [], 
                     "addr_ranges": [
                         "0:18446744073709551615:0:0:0:0"
                     ], 
                     "is_read_only": false, 
+                    "warmup_percentage": 0, 
                     "prefetch_on_access": false, 
                     "path": "system.cpu.dcache", 
                     "data_latency": 2, 

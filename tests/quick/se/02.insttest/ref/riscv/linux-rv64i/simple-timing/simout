@@ -3,15 +3,15 @@ Redirecting stderr to build/RISCV/tests/opt/quick/se/02.insttest/riscv/linux-rv6
 gem5 Simulator System.  http://gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
-gem5 compiled Jul 13 2017 17:09:45
-gem5 started Jul 13 2017 17:12:18
-gem5 executing on boldrock, pid 2089
-command line: /home/ar4jc/gem5/build/RISCV/gem5.opt -d build/RISCV/tests/opt/quick/se/02.insttest/riscv/linux-rv64i/simple-timing --stats-file 'text://stats.txt?desc=False' -re /home/ar4jc/gem5/tests/testing/../run.py quick/se/02.insttest/riscv/linux-rv64i/simple-timing
+gem5 compiled Apr 12 2018 13:47:37
+gem5 started Apr 12 2018 13:56:43
+gem5 executing on localvm.commsolid.com, pid 4915
+command line: /home/rscheffel/projects/gem5_cc/build/RISCV/gem5.opt -d build/RISCV/tests/opt/quick/se/02.insttest/riscv/linux-rv64i/simple-timing --stats-file 'text://stats.txt?desc=False' -re /home/rscheffel/projects/gem5_cc/tests/testing/../run.py quick/se/02.insttest/riscv/linux-rv64i/simple-timing
 
 Global frequency set at 1000000000000 ticks per second
 lui: PASS
 lui, negative: PASS
-auipc: 0x184D6
+auipc: 0x1856C
 auipc: PASS
 jal: PASS
 jalr: PASS
@@ -48,6 +48,7 @@ slti, true: PASS
 slti, false: PASS
 sltiu, false: PASS
 sltiu, true: PASS
+sltiu, sext: PASS
 xori (1): PASS
 xori (0): PASS
 ori (1): PASS
@@ -91,23 +92,23 @@ access R_OK: PASS
 access W_OK: PASS
 access X_OK: PASS
 stat:
-	st_dev =	2430
-	st_ino =	73671954
+	st_dev =	2049
+	st_ino =	1591725
 	st_mode =	33188
 	st_nlink =	1
-	st_uid =	1001
-	st_gid =	1001
+	st_uid =	853001201
+	st_gid =	853000513
 	st_rdev =	0
 	st_size =	15
 	st_blksize =	8192
 	st_blocks =	8
 fstat:
-	st_dev =	2430
-	st_ino =	73671954
+	st_dev =	2049
+	st_ino =	1591725
 	st_mode =	33188
 	st_nlink =	1
-	st_uid =	1001
-	st_gid =	1001
+	st_uid =	853001201
+	st_gid =	853000513
 	st_rdev =	0
 	st_size =	15
 	st_blksize =	8192
@@ -124,13 +125,13 @@ times:
 times: [1;31mFAIL[0m (expected 1; found 0)
 timeval:
 	tv_sec =	1000000000
-	tv_usec =	400
+	tv_usec =	415
 gettimeofday: PASS
-Cycles: 818147
+Cycles: 847427
 rdcycle: PASS
-Time: 1499980395
+Time: 1523534204
 rdtime: PASS
-Instructions Retired: 214447
+Instructions Retired: 216143
 rdinstret: PASS
 lwu: PASS
 ld: PASS
@@ -166,4 +167,4 @@ sraw, general: PASS
 sraw, erase: PASS
 sraw, negative: PASS
 sraw, truncate: PASS
-Exiting @ tick 508585500 because exiting with last active thread context
+Exiting @ tick 524161500 because exiting with last active thread context

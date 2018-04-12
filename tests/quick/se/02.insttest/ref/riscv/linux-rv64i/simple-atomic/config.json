@@ -12,6 +12,7 @@
             "cxx_class": "CoherentXBar", 
             "forward_latency": 4, 
             "clk_domain": "system.clk_domain", 
+            "point_of_unification": true, 
             "width": 16, 
             "eventq_index": 0, 
             "default_p_state": "UNDEFINED", 
@@ -43,7 +44,7 @@
                 "type": "SnoopFilter", 
                 "lookup_latency": 1
             }, 
-            "power_model": null, 
+            "power_model": [], 
             "path": "system.membus", 
             "snoop_response_latency": 4, 
             "name": "membus", 
@@ -96,7 +97,7 @@
             "name": "voltage_domain", 
             "eventq_index": 0, 
             "voltage": [
-                "1.0"
+                1.0
             ], 
             "cxx_class": "VoltageDomain", 
             "path": "system.voltage_domain", 
@@ -118,7 +119,7 @@
             "default_p_state": "UNDEFINED", 
             "kvm_map": true, 
             "clk_domain": "system.clk_domain", 
-            "power_model": null, 
+            "power_model": [], 
             "latency_var": 0, 
             "bandwidth": "73.000000", 
             "conf_table_reported": true, 
@@ -133,7 +134,7 @@
             }, 
             "in_addr_map": true
         }, 
-        "power_model": null, 
+        "power_model": [], 
         "work_cpus_ckpt_count": 0, 
         "thermal_components": [], 
         "path": "system", 
@@ -155,7 +156,8 @@
         "name": "system", 
         "init_param": 0, 
         "p_state_clk_gate_bins": 20, 
-        "load_addr_mask": 1099511627775, 
+        "kernel_extras": [], 
+        "load_addr_mask": 18446744073709551615, 
         "cpu": [
             {
                 "do_statistics_insts": true, 
@@ -168,7 +170,7 @@
                     "type": "RiscvTLB", 
                     "size": 64
                 }, 
-                "simulate_data_stalls": false, 
+                "power_gating_on_idle": false, 
                 "function_trace": false, 
                 "do_checkpoint_insts": true, 
                 "cxx_class": "AtomicSimpleCPU", 
@@ -207,9 +209,11 @@
                     "role": "MASTER"
                 }, 
                 "socket_id": 0, 
-                "power_model": null, 
+                "power_model": [], 
                 "max_insts_all_threads": 0, 
+                "simulate_data_stalls": false, 
                 "path": "system.cpu", 
+                "pwr_gating_latency": 300, 
                 "max_loads_any_thread": 0, 
                 "switched_out": false, 
                 "workload": [
@@ -218,7 +222,7 @@
                         "pid": 100, 
                         "kvmInSE": false, 
                         "cxx_class": "Process", 
-                        "executable": "/home/ar4jc/gem5/tests/testing/../test-progs/insttest/bin/riscv/linux-rv64i/insttest", 
+                        "executable": "/home/rscheffel/projects/gem5_cc/tests/testing/../test-progs/insttest/bin/riscv/linux-rv64i/insttest", 
                         "drivers": [], 
                         "system": "system", 
                         "gid": 100, 
