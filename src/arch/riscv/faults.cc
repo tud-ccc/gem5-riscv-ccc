@@ -121,32 +121,32 @@ SyscallFault::invoke_se(ThreadContext *tc, const StaticInstPtr &inst)
 void
 SyscallFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
 {
-    // just check the redirects and then set pc to trap
+    // fill the appropriate registers and set pc to trap handler
     MiscRegIndex cause = MISCREG_MCAUSE;
     MiscRegIndex epc = MISCREG_MEPC;
     MiscReg prv = 0x3;
     MiscReg pp = tc->readMiscRegNoEffect(MISCREG_PRV);
     MSTATUS status = tc->readMiscReg(MISCREG_MSTATUS);
 
-    // delegate traps that occur in s or u mode to s mode
-    if (bits(tc->readMiscReg(MISCREG_PRV), 1) == 0
-        && bits(tc->readMiscReg(MISCREG_MEDELEG), _code) != 0) {
-        cause = MISCREG_SCAUSE;
-        epc = MISCREG_SEPC;
-    }
-    // delegate traps that occur in u mode to u mode
-    if (tc->readMiscReg(MISCREG_PRV) == 0
-        && bits(tc->readMiscReg(MISCREG_SEDELEG), _code) != 0) {
-        cause = MISCREG_UCAUSE;
-        epc = MISCREG_UEPC;
-    }
+    // // delegate traps that occur in s or u mode to s mode
+    // if (bits(tc->readMiscReg(MISCREG_PRV), 1) == 0
+    //     && bits(tc->readMiscReg(MISCREG_MEDELEG), _code) != 0) {
+    //     cause = MISCREG_SCAUSE;
+    //     epc = MISCREG_SEPC;
+    // }
+    // // delegate traps that occur in u mode to u mode
+    // if (tc->readMiscReg(MISCREG_PRV) == 0
+    //     && bits(tc->readMiscReg(MISCREG_SEDELEG), _code) != 0) {
+    //     cause = MISCREG_UCAUSE;
+    //     epc = MISCREG_UEPC;
+    // }
 
     tc->setMiscReg(cause, _code);
     tc->setMiscReg(epc, tc->instAddr());
     tc->setMiscReg(MISCREG_PRV, prv);
 
     // disable interrupts
-    status.mpp = bits(pp, 1, 2);
+    status.mpp = bits(pp, 1, 0);
     status.mpie = status.mie;
     status.mie = 0;
     tc->setMiscReg(MISCREG_MSTATUS, status);
@@ -165,27 +165,27 @@ InterruptFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
     MiscReg pp = tc->readMiscRegNoEffect(MISCREG_PRV);
     MSTATUS status = tc->readMiscReg(MISCREG_MSTATUS);
 
-    // delegate traps that occur in s or u mode to s mode
-    if (bits(tc->readMiscReg(MISCREG_PRV), 1) == 0
-        && bits(tc->readMiscReg(MISCREG_MIDELEG), _code) != 0) {
-        cause = MISCREG_SCAUSE;
-        epc = MISCREG_SEPC;
-        prv = 0x1;
-    }
-    // delegate traps that occur in u mode to u mode
-    if (tc->readMiscReg(MISCREG_PRV) == 0
-        && bits(tc->readMiscReg(MISCREG_SIDELEG), _code) != 0) {
-        cause = MISCREG_UCAUSE;
-        epc = MISCREG_UEPC;
-        prv = 0x0;
-    }
+    // // delegate traps that occur in s or u mode to s mode
+    // if (bits(tc->readMiscReg(MISCREG_PRV), 1) == 0
+    //     && bits(tc->readMiscReg(MISCREG_MIDELEG), _code) != 0) {
+    //     cause = MISCREG_SCAUSE;
+    //     epc = MISCREG_SEPC;
+    //     prv = 0x1;
+    // }
+    // // delegate traps that occur in u mode to u mode
+    // if (tc->readMiscReg(MISCREG_PRV) == 0
+    //     && bits(tc->readMiscReg(MISCREG_SIDELEG), _code) != 0) {
+    //     cause = MISCREG_UCAUSE;
+    //     epc = MISCREG_UEPC;
+    //     prv = 0x0;
+    // }
 
     tc->setMiscReg(cause, (1UL << ((sizeof(MiscReg) * 8) - 1)) | _code);
     tc->setMiscReg(epc, tc->instAddr());
     tc->setMiscReg(MISCREG_PRV, prv);
 
     // disable interrupts
-    status.mpp = bits(pp, 1, 2);
+    status.mpp = bits(pp, 1, 0);
     status.mpie = status.mie;
     status.mie = 0;
     tc->setMiscReg(MISCREG_MSTATUS, status);
