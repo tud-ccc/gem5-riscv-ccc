@@ -47,6 +47,7 @@ void
 Interrupts::post(int int_num, int index)
 {
     DPRINTF(Interrupt, "Interrupt %d posted\n", int_num);
+
     if (int_num < 0 || int_num >= NumInterruptTypes)
         panic("int_num out of bounds\n");
     if (index < 0 || index >= (int)sizeof(uint64_t) * 8)
@@ -59,7 +60,7 @@ Interrupts::post(int int_num, int index)
 void
 Interrupts::clear(int int_num, int index)
 {
-    DPRINTF(Interrupt, "Interrupt %d cleared\n", int_num, index);
+    DPRINTF(Interrupt, "Interrupt %d cleared\n", int_num);
 
     if (int_num < 0 || int_num >= NumInterruptTypes)
         panic("int_num out of bounds\n");
