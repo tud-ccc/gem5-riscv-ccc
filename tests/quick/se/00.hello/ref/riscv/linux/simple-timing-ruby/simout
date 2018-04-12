@@ -3,11 +3,11 @@ Redirecting stderr to build/RISCV/tests/opt/quick/se/00.hello/riscv/linux/simple
 gem5 Simulator System.  http://gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
-gem5 compiled Jul 13 2017 17:37:52
-gem5 started Jul 13 2017 18:03:36
-gem5 executing on boldrock, pid 21569
-command line: /home/ar4jc/gem5/build/RISCV/gem5.opt -d build/RISCV/tests/opt/quick/se/00.hello/riscv/linux/simple-timing-ruby --stats-file 'text://stats.txt?desc=False' -re /home/ar4jc/gem5/tests/testing/../run.py quick/se/00.hello/riscv/linux/simple-timing-ruby
+gem5 compiled Apr 12 2018 13:47:37
+gem5 started Apr 12 2018 13:51:35
+gem5 executing on localvm.commsolid.com, pid 4480
+command line: /home/rscheffel/projects/gem5_cc/build/RISCV/gem5.opt -d build/RISCV/tests/opt/quick/se/00.hello/riscv/linux/simple-timing-ruby --stats-file 'text://stats.txt?desc=False' -re /home/rscheffel/projects/gem5_cc/tests/testing/../run.py quick/se/00.hello/riscv/linux/simple-timing-ruby
 
 Global frequency set at 1000000000 ticks per second
 Hello world!
-Exiting @ tick 96790 because exiting with last active thread context
+Exiting @ tick 97997 because exiting with last active thread context

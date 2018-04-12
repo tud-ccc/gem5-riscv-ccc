@@ -1,42 +1,42 @@
 
 ---------- Begin Simulation Statistics ----------
 sim_seconds                                  0.000003                      
-sim_ticks                                     3301500                      
-final_tick                                    3301500                      
+sim_ticks                                     3308500                      
+final_tick                                    3308500                      
 sim_freq                                 1000000000000                      
-host_inst_rate                                  10162                      
-host_op_rate                                    10178                      
-host_tick_rate                                6042080                      
-host_mem_usage                                 248192                      
-host_seconds                                     0.55                      
-sim_insts                                        5552                      
-sim_ops                                          5561                      
+host_inst_rate                                 325652                      
+host_op_rate                                   325749                      
+host_tick_rate                              193225176                      
+host_mem_usage                                 380120                      
+host_seconds                                     0.02                      
+sim_insts                                        5562                      
+sim_ops                                          5571                      
 system.voltage_domain.voltage                       1                      
 system.clk_domain.clock                          1000                      
-system.physmem.pwrStateResidencyTicks::UNDEFINED      3301500                      
-system.physmem.bytes_read::cpu.inst             26380                      
-system.physmem.bytes_read::cpu.data              7234                      
-system.physmem.bytes_read::total                33614                      
-system.physmem.bytes_inst_read::cpu.inst        26380                      
-system.physmem.bytes_inst_read::total           26380                      
-system.physmem.bytes_written::cpu.data           8248                      
-system.physmem.bytes_written::total              8248                      
-system.physmem.num_reads::cpu.inst               6595                      
-system.physmem.num_reads::cpu.data               1082                      
-system.physmem.num_reads::total                  7677                      
-system.physmem.num_writes::cpu.data              1080                      
-system.physmem.num_writes::total                 1080                      
-system.physmem.bw_read::cpu.inst           7990307436                      
-system.physmem.bw_read::cpu.data           2191125246                      
-system.physmem.bw_read::total             10181432682                      
-system.physmem.bw_inst_read::cpu.inst      7990307436                      
-system.physmem.bw_inst_read::total         7990307436                      
-system.physmem.bw_write::cpu.data          2498258367                      
-system.physmem.bw_write::total             2498258367                      
-system.physmem.bw_total::cpu.inst          7990307436                      
-system.physmem.bw_total::cpu.data          4689383614                      
-system.physmem.bw_total::total            12679691050                      
-system.pwrStateResidencyTicks::UNDEFINED      3301500                      
+system.physmem.pwrStateResidencyTicks::UNDEFINED      3308500                      
+system.physmem.bytes_read::cpu.inst             26436                      
+system.physmem.bytes_read::cpu.data              7250                      
+system.physmem.bytes_read::total                33686                      
+system.physmem.bytes_inst_read::cpu.inst        26436                      
+system.physmem.bytes_inst_read::total           26436                      
+system.physmem.bytes_written::cpu.data           8264                      
+system.physmem.bytes_written::total              8264                      
+system.physmem.num_reads::cpu.inst               6609                      
+system.physmem.num_reads::cpu.data               1084                      
+system.physmem.num_reads::total                  7693                      
+system.physmem.num_writes::cpu.data              1082                      
+system.physmem.num_writes::total                 1082                      
+system.physmem.bw_read::cpu.inst           7990327943                      
+system.physmem.bw_read::cpu.data           2191325374                      
+system.physmem.bw_read::total             10181653317                      
+system.physmem.bw_inst_read::cpu.inst      7990327943                      
+system.physmem.bw_inst_read::total         7990327943                      
+system.physmem.bw_write::cpu.data          2497808675                      
+system.physmem.bw_write::total             2497808675                      
+system.physmem.bw_total::cpu.inst          7990327943                      
+system.physmem.bw_total::cpu.data          4689134049                      
+system.physmem.bw_total::total            12679461992                      
+system.pwrStateResidencyTicks::UNDEFINED      3308500                      
 system.cpu_clk_domain.clock                       500                      
 system.cpu.dtb.read_hits                            0                      
 system.cpu.dtb.read_misses                          0                      
@@ -57,36 +57,36 @@ system.cpu.itb.hits                                 0
 system.cpu.itb.misses                               0                      
 system.cpu.itb.accesses                             0                      
 system.cpu.workload.numSyscalls                     9                      
-system.cpu.pwrStateResidencyTicks::ON         3301500                      
-system.cpu.numCycles                             6604                      
+system.cpu.pwrStateResidencyTicks::ON         3308500                      
+system.cpu.numCycles                             6618                      
 system.cpu.numWorkItemsStarted                      0                      
 system.cpu.numWorkItemsCompleted                    0                      
-system.cpu.committedInsts                        5552                      
-system.cpu.committedOps                          5561                      
-system.cpu.num_int_alu_accesses                  5498                      
+system.cpu.committedInsts                        5562                      
+system.cpu.committedOps                          5571                      
+system.cpu.num_int_alu_accesses                  5508                      
 system.cpu.num_fp_alu_accesses                     12                      
 system.cpu.num_vec_alu_accesses                     0                      
 system.cpu.num_func_calls                         282                      
-system.cpu.num_conditional_control_insts          914                      
-system.cpu.num_int_insts                         5498                      
+system.cpu.num_conditional_control_insts          916                      
+system.cpu.num_int_insts                         5508                      
 system.cpu.num_fp_insts                            12                      
 system.cpu.num_vec_insts                            0                      
-system.cpu.num_int_register_reads                7038                      
-system.cpu.num_int_register_writes               3414                      
+system.cpu.num_int_register_reads                7052                      
+system.cpu.num_int_register_writes               3420                      
 system.cpu.num_fp_register_reads                   12                      
 system.cpu.num_fp_register_writes                   0                      
 system.cpu.num_vec_register_reads                   0                      
 system.cpu.num_vec_register_writes                  0                      
-system.cpu.num_mem_refs                          2162                      
-system.cpu.num_load_insts                        1082                      
-system.cpu.num_store_insts                       1080                      
+system.cpu.num_mem_refs                          2166                      
+system.cpu.num_load_insts                        1084                      
+system.cpu.num_store_insts                       1082                      
 system.cpu.num_idle_cycles                          0                      
-system.cpu.num_busy_cycles                       6604                      
+system.cpu.num_busy_cycles                       6618                      
 system.cpu.not_idle_fraction                        1                      
 system.cpu.idle_fraction                            0                      
-system.cpu.Branches                              1196                      
+system.cpu.Branches                              1198                      
 system.cpu.op_class::No_OpClass                    10      0.18%      0.18%
-system.cpu.op_class::IntAlu                      3392     60.90%     61.08%
+system.cpu.op_class::IntAlu                      3398     60.90%     61.08%
 system.cpu.op_class::IntMult                        2      0.04%     61.11%
 system.cpu.op_class::IntDiv                         4      0.07%     61.18%
 system.cpu.op_class::FloatAdd                       0      0.00%     61.18%
@@ -117,44 +117,44 @@ system.cpu.op_class::SimdFloatMisc                  0      0.00%     61.18%
 system.cpu.op_class::SimdFloatMult                  0      0.00%     61.18%
 system.cpu.op_class::SimdFloatMultAcc               0      0.00%     61.18%
 system.cpu.op_class::SimdFloatSqrt                  0      0.00%     61.18%
-system.cpu.op_class::MemRead                     1082     19.43%     80.61%
-system.cpu.op_class::MemWrite                    1068     19.17%     99.78%
+system.cpu.op_class::MemRead                     1084     19.43%     80.61%
+system.cpu.op_class::MemWrite                    1070     19.18%     99.78%
 system.cpu.op_class::FloatMemRead                   0      0.00%     99.78%
 system.cpu.op_class::FloatMemWrite                 12      0.22%    100.00%
 system.cpu.op_class::IprAccess                      0      0.00%    100.00%
 system.cpu.op_class::InstPrefetch                   0      0.00%    100.00%
-system.cpu.op_class::total                       5570                      
+system.cpu.op_class::total                       5580                      
 system.membus.snoop_filter.tot_requests             0                      
 system.membus.snoop_filter.hit_single_requests            0                      
 system.membus.snoop_filter.hit_multi_requests            0                      
 system.membus.snoop_filter.tot_snoops               0                      
 system.membus.snoop_filter.hit_single_snoops            0                      
 system.membus.snoop_filter.hit_multi_snoops            0                      
-system.membus.pwrStateResidencyTicks::UNDEFINED      3301500                      
-system.membus.trans_dist::ReadReq                7669                      
-system.membus.trans_dist::ReadResp               7677                      
-system.membus.trans_dist::WriteReq               1072                      
-system.membus.trans_dist::WriteResp              1072                      
+system.membus.pwrStateResidencyTicks::UNDEFINED      3308500                      
+system.membus.trans_dist::ReadReq                7685                      
+system.membus.trans_dist::ReadResp               7693                      
+system.membus.trans_dist::WriteReq               1074                      
+system.membus.trans_dist::WriteResp              1074                      
 system.membus.trans_dist::LoadLockedReq             8                      
 system.membus.trans_dist::StoreCondReq              8                      
 system.membus.trans_dist::StoreCondResp             8                      
-system.membus.pkt_count_system.cpu.icache_port::system.physmem.port        13190                      
-system.membus.pkt_count_system.cpu.dcache_port::system.physmem.port         4324                      
-system.membus.pkt_count::total                  17514                      
-system.membus.pkt_size_system.cpu.icache_port::system.physmem.port        26380                      
-system.membus.pkt_size_system.cpu.dcache_port::system.physmem.port        15482                      
-system.membus.pkt_size::total                   41862                      
+system.membus.pkt_count_system.cpu.icache_port::system.physmem.port        13218                      
+system.membus.pkt_count_system.cpu.dcache_port::system.physmem.port         4332                      
+system.membus.pkt_count::total                  17550                      
+system.membus.pkt_size_system.cpu.icache_port::system.physmem.port        26436                      
+system.membus.pkt_size_system.cpu.dcache_port::system.physmem.port        15514                      
+system.membus.pkt_size::total                   41950                      
 system.membus.snoops                                0                      
 system.membus.snoopTraffic                          0                      
-system.membus.snoop_fanout::samples              8757                      
+system.membus.snoop_fanout::samples              8775                      
 system.membus.snoop_fanout::mean                    0                      
 system.membus.snoop_fanout::stdev                   0                      
 system.membus.snoop_fanout::underflows              0      0.00%      0.00%
-system.membus.snoop_fanout::0                    8757    100.00%    100.00%
+system.membus.snoop_fanout::0                    8775    100.00%    100.00%
 system.membus.snoop_fanout::1                       0      0.00%    100.00%
 system.membus.snoop_fanout::overflows               0      0.00%    100.00%
 system.membus.snoop_fanout::min_value               0                      
 system.membus.snoop_fanout::max_value               0                      
-system.membus.snoop_fanout::total                8757                      
+system.membus.snoop_fanout::total                8775                      
 
 ---------- End Simulation Statistics   ----------
