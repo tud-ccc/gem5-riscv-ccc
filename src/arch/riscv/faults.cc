@@ -121,6 +121,12 @@ SyscallFault::invoke_se(ThreadContext *tc, const StaticInstPtr &inst)
 void
 SyscallFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
 {
+    // redirect se mode syscall faults
+    if (!FullSystem) {
+        RiscvFault::invoke(tc, inst);
+        return;
+    }
+
     // fill the appropriate registers and set pc to trap handler
     MiscRegIndex cause = MISCREG_MCAUSE;
     MiscRegIndex epc = MISCREG_MEPC;
