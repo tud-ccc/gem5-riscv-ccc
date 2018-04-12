@@ -1,63 +1,63 @@
 
 ---------- Begin Simulation Statistics ----------
-sim_seconds                                  0.000357                      
-sim_ticks                                   357345500                      
-final_tick                                  357345500                      
+sim_seconds                                  0.000295                      
+sim_ticks                                   295550000                      
+final_tick                                  295550000                      
 sim_freq                                 1000000000000                      
-host_inst_rate                                   5089                      
-host_op_rate                                     5104                      
-host_tick_rate                                4183343                      
-host_mem_usage                                 272348                      
-host_seconds                                    85.42                      
-sim_insts                                      434729                      
-sim_ops                                        436032                      
+host_inst_rate                                  99292                      
+host_op_rate                                    99596                      
+host_tick_rate                               73285057                      
+host_mem_usage                                 409196                      
+host_seconds                                     4.03                      
+sim_insts                                      400425                      
+sim_ops                                        401656                      
 system.voltage_domain.voltage                       1                      
 system.clk_domain.clock                          1000                      
-system.physmem.pwrStateResidencyTicks::UNDEFINED    357345500                      
-system.physmem.bytes_read::cpu.inst             79680                      
-system.physmem.bytes_read::cpu.data             34816                      
-system.physmem.bytes_read::total               114496                      
-system.physmem.bytes_inst_read::cpu.inst        79680                      
-system.physmem.bytes_inst_read::total           79680                      
-system.physmem.num_reads::cpu.inst               1245                      
-system.physmem.num_reads::cpu.data                544                      
-system.physmem.num_reads::total                  1789                      
-system.physmem.bw_read::cpu.inst            222977482                      
-system.physmem.bw_read::cpu.data             97429518                      
-system.physmem.bw_read::total               320407001                      
-system.physmem.bw_inst_read::cpu.inst       222977482                      
-system.physmem.bw_inst_read::total          222977482                      
-system.physmem.bw_total::cpu.inst           222977482                      
-system.physmem.bw_total::cpu.data            97429518                      
-system.physmem.bw_total::total              320407001                      
-system.physmem.readReqs                          1789                      
+system.physmem.pwrStateResidencyTicks::UNDEFINED    295550000                      
+system.physmem.bytes_read::cpu.inst             74880                      
+system.physmem.bytes_read::cpu.data             34240                      
+system.physmem.bytes_read::total               109120                      
+system.physmem.bytes_inst_read::cpu.inst        74880                      
+system.physmem.bytes_inst_read::total           74880                      
+system.physmem.num_reads::cpu.inst               1170                      
+system.physmem.num_reads::cpu.data                535                      
+system.physmem.num_reads::total                  1705                      
+system.physmem.bw_read::cpu.inst            253358145                      
+system.physmem.bw_read::cpu.data            115851801                      
+system.physmem.bw_read::total               369209947                      
+system.physmem.bw_inst_read::cpu.inst       253358145                      
+system.physmem.bw_inst_read::total          253358145                      
+system.physmem.bw_total::cpu.inst           253358145                      
+system.physmem.bw_total::cpu.data           115851801                      
+system.physmem.bw_total::total              369209947                      
+system.physmem.readReqs                          1705                      
 system.physmem.writeReqs                            0                      
-system.physmem.readBursts                        1789                      
+system.physmem.readBursts                        1705                      
 system.physmem.writeBursts                          0                      
-system.physmem.bytesReadDRAM                   114496                      
+system.physmem.bytesReadDRAM                   109120                      
 system.physmem.bytesReadWrQ                         0                      
 system.physmem.bytesWritten                         0                      
-system.physmem.bytesReadSys                    114496                      
+system.physmem.bytesReadSys                    109120                      
 system.physmem.bytesWrittenSys                      0                      
 system.physmem.servicedByWrQ                        0                      
 system.physmem.mergedWrBursts                       0                      
 system.physmem.neitherReadNorWriteReqs              0                      
-system.physmem.perBankRdBursts::0                 257                      
-system.physmem.perBankRdBursts::1                 275                      
-system.physmem.perBankRdBursts::2                 173                      
-system.physmem.perBankRdBursts::3                 193                      
-system.physmem.perBankRdBursts::4                 150                      
-system.physmem.perBankRdBursts::5                  95                      
-system.physmem.perBankRdBursts::6                 117                      
-system.physmem.perBankRdBursts::7                  59                      
-system.physmem.perBankRdBursts::8                  47                      
+system.physmem.perBankRdBursts::0                 241                      
+system.physmem.perBankRdBursts::1                 273                      
+system.physmem.perBankRdBursts::2                 170                      
+system.physmem.perBankRdBursts::3                 190                      
+system.physmem.perBankRdBursts::4                 141                      
+system.physmem.perBankRdBursts::5                  82                      
+system.physmem.perBankRdBursts::6                 111                      
+system.physmem.perBankRdBursts::7                  44                      
+system.physmem.perBankRdBursts::8                  46                      
 system.physmem.perBankRdBursts::9                  59                      
-system.physmem.perBankRdBursts::10                 19                      
-system.physmem.perBankRdBursts::11                 34                      
-system.physmem.perBankRdBursts::12                 85                      
-system.physmem.perBankRdBursts::13                 69                      
-system.physmem.perBankRdBursts::14                 57                      
-system.physmem.perBankRdBursts::15                100                      
+system.physmem.perBankRdBursts::10                 20                      
+system.physmem.perBankRdBursts::11                 33                      
+system.physmem.perBankRdBursts::12                 81                      
+system.physmem.perBankRdBursts::13                 68                      
+system.physmem.perBankRdBursts::14                 55                      
+system.physmem.perBankRdBursts::15                 91                      
 system.physmem.perBankWrBursts::0                   0                      
 system.physmem.perBankWrBursts::1                   0                      
 system.physmem.perBankWrBursts::2                   0                      
@@ -76,14 +76,14 @@ system.physmem.perBankWrBursts::14                  0
 system.physmem.perBankWrBursts::15                  0                      
 system.physmem.numRdRetry                           0                      
 system.physmem.numWrRetry                           0                      
-system.physmem.totGap                       357180500                      
+system.physmem.totGap                       295472500                      
 system.physmem.readPktSize::0                       0                      
 system.physmem.readPktSize::1                       0                      
 system.physmem.readPktSize::2                       0                      
 system.physmem.readPktSize::3                       0                      
 system.physmem.readPktSize::4                       0                      
 system.physmem.readPktSize::5                       0                      
-system.physmem.readPktSize::6                    1789                      
+system.physmem.readPktSize::6                    1705                      
 system.physmem.writePktSize::0                      0                      
 system.physmem.writePktSize::1                      0                      
 system.physmem.writePktSize::2                      0                      
@@ -91,10 +91,10 @@ system.physmem.writePktSize::3                      0
 system.physmem.writePktSize::4                      0                      
 system.physmem.writePktSize::5                      0                      
 system.physmem.writePktSize::6                      0                      
-system.physmem.rdQLenPdf::0                      1144                      
-system.physmem.rdQLenPdf::1                       452                      
-system.physmem.rdQLenPdf::2                       140                      
-system.physmem.rdQLenPdf::3                        40                      
+system.physmem.rdQLenPdf::0                      1083                      
+system.physmem.rdQLenPdf::1                       425                      
+system.physmem.rdQLenPdf::2                       143                      
+system.physmem.rdQLenPdf::3                        41                      
 system.physmem.rdQLenPdf::4                        12                      
 system.physmem.rdQLenPdf::5                         1                      
 system.physmem.rdQLenPdf::6                         0                      
@@ -187,94 +187,94 @@ system.physmem.wrQLenPdf::60                        0
 system.physmem.wrQLenPdf::61                        0                      
 system.physmem.wrQLenPdf::62                        0                      
 system.physmem.wrQLenPdf::63                        0                      
-system.physmem.bytesPerActivate::samples          426                      
-system.physmem.bytesPerActivate::mean      261.258215                      
-system.physmem.bytesPerActivate::gmean     177.377467                      
-system.physmem.bytesPerActivate::stdev     241.871281                      
-system.physmem.bytesPerActivate::0-127            137     32.15%     32.15%
-system.physmem.bytesPerActivate::128-255          116     27.23%     59.38%
-system.physmem.bytesPerActivate::256-383           55     12.91%     72.30%
-system.physmem.bytesPerActivate::384-511           53     12.44%     84.74%
-system.physmem.bytesPerActivate::512-639           26      6.10%     90.84%
-system.physmem.bytesPerActivate::640-767           12      2.81%     93.66%
-system.physmem.bytesPerActivate::768-895            8      1.87%     95.53%
-system.physmem.bytesPerActivate::896-1023            6      1.40%     96.94%
-system.physmem.bytesPerActivate::1024-1151           13      3.05%     99.99%
-system.physmem.bytesPerActivate::total            426                      
-system.physmem.totQLat                       29198750                      
-system.physmem.totMemAccLat                  62742500                      
-system.physmem.totBusLat                      8945000                      
-system.physmem.avgQLat                       16321.26                      
+system.physmem.bytesPerActivate::samples          382                      
+system.physmem.bytesPerActivate::mean      277.947643                      
+system.physmem.bytesPerActivate::gmean     186.786502                      
+system.physmem.bytesPerActivate::stdev     254.020185                      
+system.physmem.bytesPerActivate::0-127            118     30.89%     30.89%
+system.physmem.bytesPerActivate::128-255          104     27.22%     58.11%
+system.physmem.bytesPerActivate::256-383           45     11.78%     69.89%
+system.physmem.bytesPerActivate::384-511           40     10.47%     80.36%
+system.physmem.bytesPerActivate::512-639           37      9.68%     90.05%
+system.physmem.bytesPerActivate::640-767           14      3.66%     93.71%
+system.physmem.bytesPerActivate::768-895            4      1.04%     94.76%
+system.physmem.bytesPerActivate::896-1023            2      0.52%     95.28%
+system.physmem.bytesPerActivate::1024-1151           18      4.71%     99.99%
+system.physmem.bytesPerActivate::total            382                      
+system.physmem.totQLat                       28087250                      
+system.physmem.totMemAccLat                  60056000                      
+system.physmem.totBusLat                      8525000                      
+system.physmem.avgQLat                       16473.46                      
 system.physmem.avgBusLat                      5000.00                      
-system.physmem.avgMemAccLat                  35071.26                      
-system.physmem.avgRdBW                         320.40                      
+system.physmem.avgMemAccLat                  35223.46                      
+system.physmem.avgRdBW                         369.20                      
 system.physmem.avgWrBW                           0.00                      
-system.physmem.avgRdBWSys                      320.40                      
+system.physmem.avgRdBWSys                      369.20                      
 system.physmem.avgWrBWSys                        0.00                      
 system.physmem.peakBW                        12800.00                      
-system.physmem.busUtil                           2.50                      
-system.physmem.busUtilRead                       2.50                      
+system.physmem.busUtil                           2.88                      
+system.physmem.busUtilRead                       2.88                      
 system.physmem.busUtilWrite                      0.00                      
-system.physmem.avgRdQLen                         1.36                      
+system.physmem.avgRdQLen                         1.40                      
 system.physmem.avgWrQLen                         0.00                      
-system.physmem.readRowHits                       1349                      
+system.physmem.readRowHits                       1309                      
 system.physmem.writeRowHits                         0                      
-system.physmem.readRowHitRate                   75.40                      
+system.physmem.readRowHitRate                   76.77                      
 system.physmem.writeRowHitRate                    nan                      
-system.physmem.avgGap                       199653.71                      
-system.physmem.pageHitRate                      75.40                      
-system.physmem_0.actEnergy                    2156280                      
-system.physmem_0.preEnergy                    1119525                      
-system.physmem_0.readEnergy                   9417660                      
+system.physmem.avgGap                       173297.65                      
+system.physmem.pageHitRate                      76.77                      
+system.physmem_0.actEnergy                    1899240                      
+system.physmem_0.preEnergy                     982905                      
+system.physmem_0.readEnergy                   8939280                      
 system.physmem_0.writeEnergy                        0                      
-system.physmem_0.refreshEnergy               27658800                      
-system.physmem_0.actBackEnergy               19175370                      
-system.physmem_0.preBackEnergy                 595200                      
-system.physmem_0.actPowerDownEnergy         135115080                      
-system.physmem_0.prePowerDownEnergy           6696960                      
+system.physmem_0.refreshEnergy               22741680                      
+system.physmem_0.actBackEnergy               17698500                      
+system.physmem_0.preBackEnergy                 479040                      
+system.physmem_0.actPowerDownEnergy         113701320                      
+system.physmem_0.prePowerDownEnergy           2359680                      
 system.physmem_0.selfRefreshEnergy                  0                      
-system.physmem_0.totalEnergy                201934875                      
-system.physmem_0.averagePower              565.095827                      
-system.physmem_0.totalIdleTime              313626500                      
-system.physmem_0.memoryStateTime::IDLE         257500                      
-system.physmem_0.memoryStateTime::REF        11700000                      
+system.physmem_0.totalEnergy                168801645                      
+system.physmem_0.averagePower              571.144121                      
+system.physmem_0.totalIdleTime              255296000                      
+system.physmem_0.memoryStateTime::IDLE         197500                      
+system.physmem_0.memoryStateTime::REF         9620000                      
 system.physmem_0.memoryStateTime::SREF              0                      
-system.physmem_0.memoryStateTime::PRE_PDN     17432500                      
-system.physmem_0.memoryStateTime::ACT        31632750                      
-system.physmem_0.memoryStateTime::ACT_PDN    296322750                      
-system.physmem_1.actEnergy                     985320                      
-system.physmem_1.preEnergy                     497145                      
-system.physmem_1.readEnergy                   3355800                      
+system.physmem_0.memoryStateTime::PRE_PDN      6139500                      
+system.physmem_0.memoryStateTime::ACT        30234250                      
+system.physmem_0.memoryStateTime::ACT_PDN    249358750                      
+system.physmem_1.actEnergy                     928200                      
+system.physmem_1.preEnergy                     466785                      
+system.physmem_1.readEnergy                   3234420                      
 system.physmem_1.writeEnergy                        0                      
-system.physmem_1.refreshEnergy               13522080                      
-system.physmem_1.actBackEnergy                8332260                      
-system.physmem_1.preBackEnergy                 718560                      
-system.physmem_1.actPowerDownEnergy          39862380                      
-system.physmem_1.prePowerDownEnergy          14924160                      
-system.physmem_1.selfRefreshEnergy           52829760                      
-system.physmem_1.totalEnergy                135027465                      
-system.physmem_1.averagePower              377.861709                      
-system.physmem_1.totalIdleTime              336590000                      
-system.physmem_1.memoryStateTime::IDLE        1334500                      
-system.physmem_1.memoryStateTime::REF         5744000                      
-system.physmem_1.memoryStateTime::SREF      210920500                      
-system.physmem_1.memoryStateTime::PRE_PDN     38865500                      
-system.physmem_1.memoryStateTime::ACT        13057250                      
-system.physmem_1.memoryStateTime::ACT_PDN     87423750                      
-system.pwrStateResidencyTicks::UNDEFINED    357345500                      
-system.cpu.branchPred.lookups                  137963                      
-system.cpu.branchPred.condPredicted             96949                      
-system.cpu.branchPred.condIncorrect             28208                      
-system.cpu.branchPred.BTBLookups                88594                      
-system.cpu.branchPred.BTBHits                   49630                      
+system.physmem_1.refreshEnergy               10448880                      
+system.physmem_1.actBackEnergy                7528560                      
+system.physmem_1.preBackEnergy                 473760                      
+system.physmem_1.actPowerDownEnergy          36582030                      
+system.physmem_1.prePowerDownEnergy           9234720                      
+system.physmem_1.selfRefreshEnergy           42752580                      
+system.physmem_1.totalEnergy                111649935                      
+system.physmem_1.averagePower              377.770038                      
+system.physmem_1.totalIdleTime              277795750                      
+system.physmem_1.memoryStateTime::IDLE         806500                      
+system.physmem_1.memoryStateTime::REF         4432000                      
+system.physmem_1.memoryStateTime::SREF      173534250                      
+system.physmem_1.memoryStateTime::PRE_PDN     24047500                      
+system.physmem_1.memoryStateTime::ACT        12496000                      
+system.physmem_1.memoryStateTime::ACT_PDN     80233750                      
+system.pwrStateResidencyTicks::UNDEFINED    295550000                      
+system.cpu.branchPred.lookups                  114747                      
+system.cpu.branchPred.condPredicted             80803                      
+system.cpu.branchPred.condIncorrect             15028                      
+system.cpu.branchPred.BTBLookups                74149                      
+system.cpu.branchPred.BTBHits                   42427                      
 system.cpu.branchPred.BTBCorrect                    0                      
-system.cpu.branchPred.BTBHitPct             56.019595                      
+system.cpu.branchPred.BTBHitPct             57.218573                      
 system.cpu.branchPred.usedRAS                       0                      
 system.cpu.branchPred.RASInCorrect                  0                      
-system.cpu.branchPred.indirectLookups           28658                      
-system.cpu.branchPred.indirectHits              15467                      
-system.cpu.branchPred.indirectMisses            13191                      
-system.cpu.branchPredindirectMispredicted         5179                      
+system.cpu.branchPred.indirectLookups           23933                      
+system.cpu.branchPred.indirectHits              13608                      
+system.cpu.branchPred.indirectMisses            10325                      
+system.cpu.branchPredindirectMispredicted         4750                      
 system.cpu_clk_domain.clock                       500                      
 system.cpu.dtb.read_hits                            0                      
 system.cpu.dtb.read_misses                          0                      
@@ -295,765 +295,768 @@ system.cpu.itb.hits                                 0
 system.cpu.itb.misses                               0                      
 system.cpu.itb.accesses                             0                      
 system.cpu.workload.numSyscalls                   220                      
-system.cpu.pwrStateResidencyTicks::ON       357345500                      
-system.cpu.numCycles                           714692                      
+system.cpu.pwrStateResidencyTicks::ON       295550000                      
+system.cpu.numCycles                           591101                      
 system.cpu.numWorkItemsStarted                      0                      
 system.cpu.numWorkItemsCompleted                    0                      
-system.cpu.fetch.icacheStallCycles             135613                      
-system.cpu.fetch.Insts                         614596                      
-system.cpu.fetch.Branches                      137963                      
-system.cpu.fetch.predictedBranches              65097                      
-system.cpu.fetch.Cycles                        444701                      
-system.cpu.fetch.SquashCycles                   57212                      
-system.cpu.fetch.MiscStallCycles                  165                      
-system.cpu.fetch.PendingTrapStallCycles          1046                      
+system.cpu.fetch.icacheStallCycles             102698                      
+system.cpu.fetch.Insts                         510388                      
+system.cpu.fetch.Branches                      114747                      
+system.cpu.fetch.predictedBranches              56035                      
+system.cpu.fetch.Cycles                        372574                      
+system.cpu.fetch.SquashCycles                   30528                      
+system.cpu.fetch.MiscStallCycles                    1                      
 system.cpu.fetch.IcacheWaitRetryStallCycles           11                      
-system.cpu.fetch.CacheLines                     93453                      
-system.cpu.fetch.IcacheSquashes                  2267                      
-system.cpu.fetch.rateDist::samples             610142                      
-system.cpu.fetch.rateDist::mean              1.009502                      
-system.cpu.fetch.rateDist::stdev             0.972916                      
+system.cpu.fetch.CacheLines                     72124                      
+system.cpu.fetch.IcacheSquashes                  1535                      
+system.cpu.fetch.rateDist::samples             490548                      
+system.cpu.fetch.rateDist::mean              1.043066                      
+system.cpu.fetch.rateDist::stdev             0.979461                      
 system.cpu.fetch.rateDist::underflows               0      0.00%      0.00%
-system.cpu.fetch.rateDist::0                   177437     29.08%     29.08%
-system.cpu.fetch.rateDist::1                   317234     51.99%     81.07%
-system.cpu.fetch.rateDist::2                    74911     12.27%     93.35%
-system.cpu.fetch.rateDist::3                    21754      3.56%     96.91%
-system.cpu.fetch.rateDist::4                    13865      2.27%     99.19%
-system.cpu.fetch.rateDist::5                     2714      0.44%     99.63%
-system.cpu.fetch.rateDist::6                     1405      0.23%     99.86%
-system.cpu.fetch.rateDist::7                      414      0.06%     99.93%
-system.cpu.fetch.rateDist::8                      408      0.06%     99.99%
+system.cpu.fetch.rateDist::0                   132777     27.06%     27.06%
+system.cpu.fetch.rateDist::1                   261310     53.26%     80.33%
+system.cpu.fetch.rateDist::2                    62402     12.72%     93.05%
+system.cpu.fetch.rateDist::3                    17620      3.59%     96.64%
+system.cpu.fetch.rateDist::4                    12601      2.56%     99.21%
+system.cpu.fetch.rateDist::5                     1871      0.38%     99.59%
+system.cpu.fetch.rateDist::6                     1231      0.25%     99.84%
+system.cpu.fetch.rateDist::7                      333      0.06%     99.91%
+system.cpu.fetch.rateDist::8                      403      0.08%     99.99%
 system.cpu.fetch.rateDist::overflows                0      0.00%     99.99%
 system.cpu.fetch.rateDist::min_value                0                      
 system.cpu.fetch.rateDist::max_value                8                      
-system.cpu.fetch.rateDist::total               610142                      
-system.cpu.fetch.branchRate                  0.193038                      
-system.cpu.fetch.rate                        0.859945                      
-system.cpu.decode.IdleCycles                   160289                      
-system.cpu.decode.BlockedCycles                 52081                      
-system.cpu.decode.RunCycles                    377160                      
-system.cpu.decode.UnblockCycles                  2852                      
-system.cpu.decode.SquashCycles                  17760                      
-system.cpu.decode.BranchResolved                47857                      
-system.cpu.decode.BranchMispred                 11488                      
-system.cpu.decode.DecodedInsts                 555576                      
-system.cpu.decode.SquashedInsts                 15205                      
-system.cpu.rename.SquashCycles                  17760                      
-system.cpu.rename.IdleCycles                   181774                      
-system.cpu.rename.BlockCycles                    4611                      
-system.cpu.rename.serializeStallCycles          40232                      
-system.cpu.rename.RunCycles                    358471                      
-system.cpu.rename.UnblockCycles                  7294                      
-system.cpu.rename.RenamedInsts                 534785                      
-system.cpu.rename.ROBFullEvents                     5                      
-system.cpu.rename.IQFullEvents                     67                      
-system.cpu.rename.LQFullEvents                   2993                      
-system.cpu.rename.SQFullEvents                   2264                      
-system.cpu.rename.RenamedOperands              359758                      
-system.cpu.rename.RenameLookups                658701                      
-system.cpu.rename.int_rename_lookups           656814                      
-system.cpu.rename.fp_rename_lookups              1887                      
-system.cpu.rename.CommittedMaps                288923                      
-system.cpu.rename.UndoneMaps                    70835                      
-system.cpu.rename.serializingInsts               2027                      
-system.cpu.rename.tempSerializingInsts           2027                      
-system.cpu.rename.skidInsts                      4057                      
-system.cpu.memDep0.insertedLoads               127704                      
-system.cpu.memDep0.insertedStores               71313                      
-system.cpu.memDep0.conflictingLoads               549                      
-system.cpu.memDep0.conflictingStores              161                      
-system.cpu.iq.iqInstsAdded                     493023                      
-system.cpu.iq.iqNonSpecInstsAdded                3683                      
-system.cpu.iq.iqInstsIssued                    486946                      
-system.cpu.iq.iqSquashedInstsIssued               177                      
-system.cpu.iq.iqSquashedInstsExamined           60668                      
-system.cpu.iq.iqSquashedOperandsExamined        25216                      
-system.cpu.iq.iqSquashedNonSpecRemoved            392                      
-system.cpu.iq.issued_per_cycle::samples        610142                      
-system.cpu.iq.issued_per_cycle::mean         0.798086                      
-system.cpu.iq.issued_per_cycle::stdev        0.911334                      
+system.cpu.fetch.rateDist::total               490548                      
+system.cpu.fetch.branchRate                  0.194124                      
+system.cpu.fetch.rate                        0.863453                      
+system.cpu.decode.IdleCycles                   112663                      
+system.cpu.decode.BlockedCycles                 54362                      
+system.cpu.decode.RunCycles                    310627                      
+system.cpu.decode.UnblockCycles                  2258                      
+system.cpu.decode.SquashCycles                  10638                      
+system.cpu.decode.BranchResolved                41556                      
+system.cpu.decode.BranchMispred                  4778                      
+system.cpu.decode.DecodedInsts                 478844                      
+system.cpu.decode.SquashedInsts                  5858                      
+system.cpu.rename.SquashCycles                  10638                      
+system.cpu.rename.IdleCycles                   126586                      
+system.cpu.rename.BlockCycles                    2501                      
+system.cpu.rename.serializeStallCycles          46579                      
+system.cpu.rename.RunCycles                    298940                      
+system.cpu.rename.UnblockCycles                  5304                      
+system.cpu.rename.RenamedInsts                 462892                      
+system.cpu.rename.ROBFullEvents                     6                      
+system.cpu.rename.IQFullEvents                      5                      
+system.cpu.rename.LQFullEvents                   1133                      
+system.cpu.rename.SQFullEvents                   2316                      
+system.cpu.rename.RenamedOperands              309596                      
+system.cpu.rename.RenameLookups                569362                      
+system.cpu.rename.int_rename_lookups           567748                      
+system.cpu.rename.fp_rename_lookups              1614                      
+system.cpu.rename.CommittedMaps                266473                      
+system.cpu.rename.UndoneMaps                    43123                      
+system.cpu.rename.serializingInsts               2018                      
+system.cpu.rename.tempSerializingInsts           2018                      
+system.cpu.rename.skidInsts                      3999                      
+system.cpu.memDep0.insertedLoads               109137                      
+system.cpu.memDep0.insertedStores               64741                      
+system.cpu.memDep0.conflictingLoads              1160                      
+system.cpu.memDep0.conflictingStores              163                      
+system.cpu.iq.iqInstsAdded                     435974                      
+system.cpu.iq.iqNonSpecInstsAdded                3262                      
+system.cpu.iq.iqInstsIssued                    433333                      
+system.cpu.iq.iqSquashedInstsIssued               126                      
+system.cpu.iq.iqSquashedInstsExamined           37579                      
+system.cpu.iq.iqSquashedOperandsExamined        14515                      
+system.cpu.iq.iqSquashedNonSpecRemoved            120                      
+system.cpu.iq.issued_per_cycle::samples        490548                      
+system.cpu.iq.issued_per_cycle::mean         0.883365                      
+system.cpu.iq.issued_per_cycle::stdev        0.997428                      
 system.cpu.iq.issued_per_cycle::underflows            0      0.00%      0.00%
-system.cpu.iq.issued_per_cycle::0              265362     43.49%     43.49%
-system.cpu.iq.issued_per_cycle::1              243763     39.95%     83.44%
-system.cpu.iq.issued_per_cycle::2               71533     11.72%     95.16%
-system.cpu.iq.issued_per_cycle::3               23180      3.79%     98.96%
-system.cpu.iq.issued_per_cycle::4                3637      0.59%     99.56%
-system.cpu.iq.issued_per_cycle::5                 952      0.15%     99.71%
-system.cpu.iq.issued_per_cycle::6                 932      0.15%     99.87%
-system.cpu.iq.issued_per_cycle::7                 587      0.09%     99.96%
-system.cpu.iq.issued_per_cycle::8                 196      0.03%     99.99%
+system.cpu.iq.issued_per_cycle::0              196704     40.09%     40.09%
+system.cpu.iq.issued_per_cycle::1              200327     40.83%     80.93%
+system.cpu.iq.issued_per_cycle::2               65295     13.31%     94.24%
+system.cpu.iq.issued_per_cycle::3               19518      3.97%     98.22%
+system.cpu.iq.issued_per_cycle::4                4132      0.84%     99.06%
+system.cpu.iq.issued_per_cycle::5                1909      0.38%     99.45%
+system.cpu.iq.issued_per_cycle::6                1053      0.21%     99.67%
+system.cpu.iq.issued_per_cycle::7                1409      0.28%     99.95%
+system.cpu.iq.issued_per_cycle::8                 201      0.04%     99.99%
 system.cpu.iq.issued_per_cycle::overflows            0      0.00%     99.99%
 system.cpu.iq.issued_per_cycle::min_value            0                      
 system.cpu.iq.issued_per_cycle::max_value            8                      
-system.cpu.iq.issued_per_cycle::total          610142                      
+system.cpu.iq.issued_per_cycle::total          490548                      
 system.cpu.iq.fu_full::No_OpClass                   0      0.00%      0.00%
-system.cpu.iq.fu_full::IntAlu                      33      2.75%      2.75%
-system.cpu.iq.fu_full::IntMult                      0      0.00%      2.75%
-system.cpu.iq.fu_full::IntDiv                       0      0.00%      2.75%
-system.cpu.iq.fu_full::FloatAdd                     0      0.00%      2.75%
-system.cpu.iq.fu_full::FloatCmp                     0      0.00%      2.75%
-system.cpu.iq.fu_full::FloatCvt                     0      0.00%      2.75%
-system.cpu.iq.fu_full::FloatMult                    0      0.00%      2.75%
-system.cpu.iq.fu_full::FloatMultAcc                 0      0.00%      2.75%
-system.cpu.iq.fu_full::FloatDiv                     0      0.00%      2.75%
-system.cpu.iq.fu_full::FloatMisc                    0      0.00%      2.75%
-system.cpu.iq.fu_full::FloatSqrt                    0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdAdd                      0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdAddAcc                   0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdAlu                      0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdCmp                      0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdCvt                      0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdMisc                     0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdMult                     0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdMultAcc                  0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdShift                    0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdShiftAcc                 0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdSqrt                     0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdFloatAdd                 0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdFloatAlu                 0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdFloatCmp                 0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdFloatCvt                 0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdFloatDiv                 0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdFloatMisc                0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdFloatMult                0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdFloatMultAcc             0      0.00%      2.75%
-system.cpu.iq.fu_full::SimdFloatSqrt                0      0.00%      2.75%
-system.cpu.iq.fu_full::MemRead                    633     52.88%     55.63%
-system.cpu.iq.fu_full::MemWrite                   527     44.02%     99.66%
-system.cpu.iq.fu_full::FloatMemRead                 0      0.00%     99.66%
-system.cpu.iq.fu_full::FloatMemWrite                4      0.33%     99.99%
+system.cpu.iq.fu_full::IntAlu                      27      1.48%      1.48%
+system.cpu.iq.fu_full::IntMult                      0      0.00%      1.48%
+system.cpu.iq.fu_full::IntDiv                       0      0.00%      1.48%
+system.cpu.iq.fu_full::FloatAdd                     0      0.00%      1.48%
+system.cpu.iq.fu_full::FloatCmp                     0      0.00%      1.48%
+system.cpu.iq.fu_full::FloatCvt                     0      0.00%      1.48%
+system.cpu.iq.fu_full::FloatMult                    0      0.00%      1.48%
+system.cpu.iq.fu_full::FloatMultAcc                 0      0.00%      1.48%
+system.cpu.iq.fu_full::FloatDiv                     0      0.00%      1.48%
+system.cpu.iq.fu_full::FloatMisc                    0      0.00%      1.48%
+system.cpu.iq.fu_full::FloatSqrt                    0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdAdd                      0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdAddAcc                   0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdAlu                      0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdCmp                      0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdCvt                      0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdMisc                     0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdMult                     0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdMultAcc                  0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdShift                    0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdShiftAcc                 0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdSqrt                     0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdFloatAdd                 0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdFloatAlu                 0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdFloatCmp                 0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdFloatCvt                 0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdFloatDiv                 0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdFloatMisc                0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdFloatMult                0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdFloatMultAcc             0      0.00%      1.48%
+system.cpu.iq.fu_full::SimdFloatSqrt                0      0.00%      1.48%
+system.cpu.iq.fu_full::MemRead                    634     34.79%     36.27%
+system.cpu.iq.fu_full::MemWrite                  1157     63.50%     99.78%
+system.cpu.iq.fu_full::FloatMemRead                 0      0.00%     99.78%
+system.cpu.iq.fu_full::FloatMemWrite                4      0.21%     99.99%
 system.cpu.iq.fu_full::IprAccess                    0      0.00%     99.99%
 system.cpu.iq.fu_full::InstPrefetch                 0      0.00%     99.99%
-system.cpu.iq.FU_type_0::No_OpClass               224      0.04%      0.04%
-system.cpu.iq.FU_type_0::IntAlu                287977     59.13%     59.18%
-system.cpu.iq.FU_type_0::IntMult                  711      0.14%     59.33%
-system.cpu.iq.FU_type_0::IntDiv                   993      0.20%     59.53%
-system.cpu.iq.FU_type_0::FloatAdd                 133      0.02%     59.56%
-system.cpu.iq.FU_type_0::FloatCmp                 170      0.03%     59.59%
-system.cpu.iq.FU_type_0::FloatCvt                 128      0.02%     59.62%
-system.cpu.iq.FU_type_0::FloatMult                 68      0.01%     59.63%
-system.cpu.iq.FU_type_0::FloatMultAcc               0      0.00%     59.63%
-system.cpu.iq.FU_type_0::FloatDiv                  11      0.00%     59.64%
-system.cpu.iq.FU_type_0::FloatMisc                  0      0.00%     59.64%
-system.cpu.iq.FU_type_0::FloatSqrt                  5      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdAdd                    0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdAddAcc                 0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdAlu                    0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdCmp                    0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdCvt                    0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdMisc                   0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdMult                   0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdMultAcc                0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdShift                  0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdShiftAcc               0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdSqrt                   0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdFloatAdd               0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdFloatAlu               0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdFloatCmp               0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdFloatCvt               0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdFloatDiv               0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdFloatMisc              0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdFloatMult              0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdFloatMultAcc            0      0.00%     59.64%
-system.cpu.iq.FU_type_0::SimdFloatSqrt              0      0.00%     59.64%
-system.cpu.iq.FU_type_0::MemRead               125707     25.81%     85.45%
-system.cpu.iq.FU_type_0::MemWrite               69753     14.32%     99.78%
-system.cpu.iq.FU_type_0::FloatMemRead             885      0.18%     99.96%
-system.cpu.iq.FU_type_0::FloatMemWrite            181      0.03%     99.99%
+system.cpu.iq.FU_type_0::No_OpClass               224      0.05%      0.05%
+system.cpu.iq.FU_type_0::IntAlu                260177     60.04%     60.09%
+system.cpu.iq.FU_type_0::IntMult                  640      0.14%     60.24%
+system.cpu.iq.FU_type_0::IntDiv                     5      0.00%     60.24%
+system.cpu.iq.FU_type_0::FloatAdd                  11      0.00%     60.24%
+system.cpu.iq.FU_type_0::FloatCmp                 172      0.03%     60.28%
+system.cpu.iq.FU_type_0::FloatCvt                 132      0.03%     60.31%
+system.cpu.iq.FU_type_0::FloatMult                  8      0.00%     60.31%
+system.cpu.iq.FU_type_0::FloatMultAcc              23      0.00%     60.32%
+system.cpu.iq.FU_type_0::FloatDiv                  11      0.00%     60.32%
+system.cpu.iq.FU_type_0::FloatMisc                129      0.02%     60.35%
+system.cpu.iq.FU_type_0::FloatSqrt                  5      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdAdd                    0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdAddAcc                 0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdAlu                    0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdCmp                    0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdCvt                    0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdMisc                   0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdMult                   0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdMultAcc                0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdShift                  0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdShiftAcc               0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdSqrt                   0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdFloatAdd               0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdFloatAlu               0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdFloatCmp               0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdFloatCvt               0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdFloatDiv               0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdFloatMisc              0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdFloatMult              0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdFloatMultAcc            0      0.00%     60.35%
+system.cpu.iq.FU_type_0::SimdFloatSqrt              0      0.00%     60.35%
+system.cpu.iq.FU_type_0::MemRead               107334     24.76%     85.12%
+system.cpu.iq.FU_type_0::MemWrite               63534     14.66%     99.78%
+system.cpu.iq.FU_type_0::FloatMemRead             743      0.17%     99.95%
+system.cpu.iq.FU_type_0::FloatMemWrite            185      0.04%     99.99%
 system.cpu.iq.FU_type_0::IprAccess                  0      0.00%     99.99%
 system.cpu.iq.FU_type_0::InstPrefetch               0      0.00%     99.99%
-system.cpu.iq.FU_type_0::total                 486946                      
-system.cpu.iq.rate                           0.681336                      
-system.cpu.iq.fu_busy_cnt                        1197                      
-system.cpu.iq.fu_busy_rate                   0.002458                      
-system.cpu.iq.int_inst_queue_reads            1582242                      
-system.cpu.iq.int_inst_queue_writes            555230                      
-system.cpu.iq.int_inst_queue_wakeup_accesses       464548                      
-system.cpu.iq.fp_inst_queue_reads                3166                      
-system.cpu.iq.fp_inst_queue_writes               2161                      
-system.cpu.iq.fp_inst_queue_wakeup_accesses         1232                      
-system.cpu.iq.int_alu_accesses                 486334                      
-system.cpu.iq.fp_alu_accesses                    1585                      
-system.cpu.iew.lsq.thread0.forwLoads             1193                      
+system.cpu.iq.FU_type_0::total                 433333                      
+system.cpu.iq.rate                           0.733094                      
+system.cpu.iq.fu_busy_cnt                        1822                      
+system.cpu.iq.fu_busy_rate                   0.004204                      
+system.cpu.iq.int_inst_queue_reads            1356320                      
+system.cpu.iq.int_inst_queue_writes            474990                      
+system.cpu.iq.int_inst_queue_wakeup_accesses       417388                      
+system.cpu.iq.fp_inst_queue_reads                2842                      
+system.cpu.iq.fp_inst_queue_writes               1841                      
+system.cpu.iq.fp_inst_queue_wakeup_accesses         1259                      
+system.cpu.iq.vec_inst_queue_reads                  0                      
+system.cpu.iq.vec_inst_queue_writes                 0                      
+system.cpu.iq.vec_inst_queue_wakeup_accesses            0                      
+system.cpu.iq.int_alu_accesses                 433508                      
+system.cpu.iq.fp_alu_accesses                    1423                      
+system.cpu.iq.vec_alu_accesses                      0                      
+system.cpu.iew.lsq.thread0.forwLoads             2156                      
 system.cpu.iew.lsq.thread0.invAddrLoads             0                      
-system.cpu.iew.lsq.thread0.squashedLoads        17559                      
-system.cpu.iew.lsq.thread0.ignoredResponses           23                      
+system.cpu.iew.lsq.thread0.squashedLoads         7457                      
+system.cpu.iew.lsq.thread0.ignoredResponses           30                      
 system.cpu.iew.lsq.thread0.memOrderViolation           16                      
-system.cpu.iew.lsq.thread0.squashedStores         4290                      
+system.cpu.iew.lsq.thread0.squashedStores         3061                      
 system.cpu.iew.lsq.thread0.invAddrSwpfs             0                      
 system.cpu.iew.lsq.thread0.blockedLoads             0                      
-system.cpu.iew.lsq.thread0.rescheduledLoads          567                      
-system.cpu.iew.lsq.thread0.cacheBlocked           108                      
+system.cpu.iew.lsq.thread0.rescheduledLoads            0                      
+system.cpu.iew.lsq.thread0.cacheBlocked            98                      
 system.cpu.iew.iewIdleCycles                        0                      
-system.cpu.iew.iewSquashCycles                  17760                      
-system.cpu.iew.iewBlockCycles                    3810                      
-system.cpu.iew.iewUnblockCycles                   593                      
-system.cpu.iew.iewDispatchedInsts              496701                      
-system.cpu.iew.iewDispSquashedInsts             16928                      
-system.cpu.iew.iewDispLoadInsts                127704                      
-system.cpu.iew.iewDispStoreInsts                71313                      
-system.cpu.iew.iewDispNonSpecInsts               3678                      
-system.cpu.iew.iewIQFullEvents                      9                      
-system.cpu.iew.iewLSQFullEvents                   565                      
+system.cpu.iew.iewSquashCycles                  10638                      
+system.cpu.iew.iewBlockCycles                    1516                      
+system.cpu.iew.iewUnblockCycles                   823                      
+system.cpu.iew.iewDispatchedInsts              439236                      
+system.cpu.iew.iewDispSquashedInsts              9797                      
+system.cpu.iew.iewDispLoadInsts                109137                      
+system.cpu.iew.iewDispStoreInsts                64741                      
+system.cpu.iew.iewDispNonSpecInsts               3257                      
+system.cpu.iew.iewIQFullEvents                      1                      
+system.cpu.iew.iewLSQFullEvents                   825                      
 system.cpu.iew.memOrderViolationEvents             16                      
-system.cpu.iew.predictedTakenIncorrect          11470                      
-system.cpu.iew.predictedNotTakenIncorrect         8171                      
-system.cpu.iew.branchMispredicts                19641                      
-system.cpu.iew.iewExecutedInsts                470413                      
-system.cpu.iew.iewExecLoadInsts                122170                      
-system.cpu.iew.iewExecSquashedInsts             16533                      
+system.cpu.iew.predictedTakenIncorrect           5037                      
+system.cpu.iew.predictedNotTakenIncorrect         5940                      
+system.cpu.iew.branchMispredicts                10977                      
+system.cpu.iew.iewExecutedInsts                421934                      
+system.cpu.iew.iewExecLoadInsts                106482                      
+system.cpu.iew.iewExecSquashedInsts             11399                      
 system.cpu.iew.exec_swp                             0                      
 system.cpu.iew.exec_nop                             0                      
-system.cpu.iew.exec_refs                       191232                      
-system.cpu.iew.exec_branches                   102376                      
-system.cpu.iew.exec_stores                      69062                      
-system.cpu.iew.exec_rate                     0.658203                      
-system.cpu.iew.wb_sent                         466516                      
-system.cpu.iew.wb_count                        465780                      
-system.cpu.iew.wb_producers                    147140                      
-system.cpu.iew.wb_consumers                    169497                      
-system.cpu.iew.wb_rate                       0.651721                      
-system.cpu.iew.wb_fanout                     0.868097                      
-system.cpu.commit.commitSquashedInsts           60679                      
-system.cpu.commit.commitNonSpecStalls            3286                      
-system.cpu.commit.branchMispredicts             17524                      
-system.cpu.commit.committed_per_cycle::samples       589239                      
-system.cpu.commit.committed_per_cycle::mean     0.739991                      
-system.cpu.commit.committed_per_cycle::stdev     1.220813                      
+system.cpu.iew.exec_refs                       169674                      
+system.cpu.iew.exec_branches                    92143                      
+system.cpu.iew.exec_stores                      63192                      
+system.cpu.iew.exec_rate                     0.713810                      
+system.cpu.iew.wb_sent                         419036                      
+system.cpu.iew.wb_count                        418647                      
+system.cpu.iew.wb_producers                    136830                      
+system.cpu.iew.wb_consumers                    163150                      
+system.cpu.iew.wb_rate                       0.708249                      
+system.cpu.iew.wb_fanout                     0.838676                      
+system.cpu.commit.commitSquashedInsts           37595                      
+system.cpu.commit.commitNonSpecStalls            3142                      
+system.cpu.commit.branchMispredicts             10402                      
+system.cpu.commit.committed_per_cycle::samples       478464                      
+system.cpu.commit.committed_per_cycle::mean     0.839469                      
+system.cpu.commit.committed_per_cycle::stdev     1.347191                      
 system.cpu.commit.committed_per_cycle::underflows            0      0.00%      0.00%
-system.cpu.commit.committed_per_cycle::0       343930     58.36%     58.36%
-system.cpu.commit.committed_per_cycle::1       154488     26.21%     84.58%
-system.cpu.commit.committed_per_cycle::2        37108      6.29%     90.88%
-system.cpu.commit.committed_per_cycle::3        31296      5.31%     96.19%
-system.cpu.commit.committed_per_cycle::4        11717      1.98%     98.18%
-system.cpu.commit.committed_per_cycle::5         3906      0.66%     98.84%
-system.cpu.commit.committed_per_cycle::6         2990      0.50%     99.35%
-system.cpu.commit.committed_per_cycle::7         1330      0.22%     99.58%
-system.cpu.commit.committed_per_cycle::8         2474      0.41%     99.99%
+system.cpu.commit.committed_per_cycle::0       261063     54.56%     54.56%
+system.cpu.commit.committed_per_cycle::1       134324     28.07%     82.63%
+system.cpu.commit.committed_per_cycle::2        33729      7.04%     89.68%
+system.cpu.commit.committed_per_cycle::3        27570      5.76%     95.44%
+system.cpu.commit.committed_per_cycle::4        10752      2.24%     97.69%
+system.cpu.commit.committed_per_cycle::5         2799      0.58%     98.28%
+system.cpu.commit.committed_per_cycle::6         2236      0.46%     98.74%
+system.cpu.commit.committed_per_cycle::7         1183      0.24%     98.99%
+system.cpu.commit.committed_per_cycle::8         4808      1.00%     99.99%
 system.cpu.commit.committed_per_cycle::overflows            0      0.00%     99.99%
 system.cpu.commit.committed_per_cycle::min_value            0                      
 system.cpu.commit.committed_per_cycle::max_value            8                      
-system.cpu.commit.committed_per_cycle::total       589239                      
-system.cpu.commit.committedInsts               434729                      
-system.cpu.commit.committedOps                 436032                      
+system.cpu.commit.committed_per_cycle::total       478464                      
+system.cpu.commit.committedInsts               400425                      
+system.cpu.commit.committedOps                 401656                      
 system.cpu.commit.swp_count                         0                      
-system.cpu.commit.refs                         177168                      
-system.cpu.commit.loads                        110145                      
+system.cpu.commit.refs                         163360                      
+system.cpu.commit.loads                        101680                      
 system.cpu.commit.membars                           4                      
-system.cpu.commit.branches                      94919                      
+system.cpu.commit.branches                      87544                      
 system.cpu.commit.vec_insts                         0                      
 system.cpu.commit.fp_insts                       1229                      
-system.cpu.commit.int_insts                    433908                      
-system.cpu.commit.function_calls                23870                      
+system.cpu.commit.int_insts                    399608                      
+system.cpu.commit.function_calls                22534                      
 system.cpu.commit.op_class_0::No_OpClass            4      0.00%      0.00%
-system.cpu.commit.op_class_0::IntAlu           256681     58.86%     58.86%
-system.cpu.commit.op_class_0::IntMult             710      0.16%     59.03%
-system.cpu.commit.op_class_0::IntDiv              992      0.22%     59.25%
-system.cpu.commit.op_class_0::FloatAdd            133      0.03%     59.28%
-system.cpu.commit.op_class_0::FloatCmp            170      0.03%     59.32%
-system.cpu.commit.op_class_0::FloatCvt            128      0.02%     59.35%
-system.cpu.commit.op_class_0::FloatMult            30      0.00%     59.36%
-system.cpu.commit.op_class_0::FloatMultAcc            0      0.00%     59.36%
-system.cpu.commit.op_class_0::FloatDiv             11      0.00%     59.36%
-system.cpu.commit.op_class_0::FloatMisc             0      0.00%     59.36%
-system.cpu.commit.op_class_0::FloatSqrt             5      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdAdd               0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdAddAcc            0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdAlu               0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdCmp               0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdCvt               0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdMisc              0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdMult              0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdMultAcc            0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdShift             0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdShiftAcc            0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdSqrt              0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdFloatAdd            0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdFloatAlu            0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdFloatCmp            0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdFloatCvt            0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdFloatDiv            0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdFloatMisc            0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdFloatMult            0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdFloatMultAcc            0      0.00%     59.36%
-system.cpu.commit.op_class_0::SimdFloatSqrt            0      0.00%     59.36%
-system.cpu.commit.op_class_0::MemRead          109574     25.12%     84.49%
-system.cpu.commit.op_class_0::MemWrite          66842     15.32%     99.82%
-system.cpu.commit.op_class_0::FloatMemRead          571      0.13%     99.95%
+system.cpu.commit.op_class_0::IntAlu           237173     59.04%     59.04%
+system.cpu.commit.op_class_0::IntMult             638      0.15%     59.20%
+system.cpu.commit.op_class_0::IntDiv                4      0.00%     59.20%
+system.cpu.commit.op_class_0::FloatAdd             11      0.00%     59.21%
+system.cpu.commit.op_class_0::FloatCmp            170      0.04%     59.25%
+system.cpu.commit.op_class_0::FloatCvt            128      0.03%     59.28%
+system.cpu.commit.op_class_0::FloatMult             8      0.00%     59.28%
+system.cpu.commit.op_class_0::FloatMultAcc           22      0.00%     59.29%
+system.cpu.commit.op_class_0::FloatDiv             11      0.00%     59.29%
+system.cpu.commit.op_class_0::FloatMisc           122      0.03%     59.32%
+system.cpu.commit.op_class_0::FloatSqrt             5      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdAdd               0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdAddAcc            0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdAlu               0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdCmp               0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdCvt               0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdMisc              0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdMult              0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdMultAcc            0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdShift             0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdShiftAcc            0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdSqrt              0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdFloatAdd            0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdFloatAlu            0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdFloatCmp            0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdFloatCvt            0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdFloatDiv            0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdFloatMisc            0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdFloatMult            0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdFloatMultAcc            0      0.00%     59.32%
+system.cpu.commit.op_class_0::SimdFloatSqrt            0      0.00%     59.32%
+system.cpu.commit.op_class_0::MemRead          101109     25.17%     84.50%
+system.cpu.commit.op_class_0::MemWrite          61499     15.31%     99.81%
+system.cpu.commit.op_class_0::FloatMemRead          571      0.14%     99.95%
 system.cpu.commit.op_class_0::FloatMemWrite          181      0.04%     99.99%
 system.cpu.commit.op_class_0::IprAccess             0      0.00%     99.99%
 system.cpu.commit.op_class_0::InstPrefetch            0      0.00%     99.99%
-system.cpu.commit.op_class_0::total            436032                      
-system.cpu.commit.bw_lim_events                  2474                      
-system.cpu.rob.rob_reads                      1080629                      
-system.cpu.rob.rob_writes                     1014352                      
-system.cpu.timesIdled                             834                      
-system.cpu.idleCycles                          104550                      
-system.cpu.committedInsts                      434729                      
-system.cpu.committedOps                        436032                      
-system.cpu.cpi                               1.643994                      
-system.cpu.cpi_total                         1.643994                      
-system.cpu.ipc                               0.608274                      
-system.cpu.ipc_total                         0.608274                      
-system.cpu.int_regfile_reads                   584682                      
-system.cpu.int_regfile_writes                  310286                      
-system.cpu.fp_regfile_reads                       988                      
-system.cpu.fp_regfile_writes                      803                      
-system.cpu.misc_regfile_reads                     595                      
+system.cpu.commit.op_class_0::total            401656                      
+system.cpu.commit.bw_lim_events                  4808                      
+system.cpu.rob.rob_reads                       910060                      
+system.cpu.rob.rob_writes                      890619                      
+system.cpu.timesIdled                             785                      
+system.cpu.idleCycles                          100553                      
+system.cpu.committedInsts                      400425                      
+system.cpu.committedOps                        401656                      
+system.cpu.cpi                               1.476184                      
+system.cpu.cpi_total                         1.476184                      
+system.cpu.ipc                               0.677422                      
+system.cpu.ipc_total                         0.677422                      
+system.cpu.int_regfile_reads                   525592                      
+system.cpu.int_regfile_writes                  277558                      
+system.cpu.fp_regfile_reads                      1014                      
+system.cpu.fp_regfile_writes                      822                      
+system.cpu.misc_regfile_reads                     612                      
 system.cpu.misc_regfile_writes                    477                      
-system.cpu.dcache.tags.pwrStateResidencyTicks::UNDEFINED    357345500                      
+system.cpu.dcache.tags.pwrStateResidencyTicks::UNDEFINED    295550000                      
 system.cpu.dcache.tags.replacements                 1                      
-system.cpu.dcache.tags.tagsinuse           436.920619                      
-system.cpu.dcache.tags.total_refs              185289                      
-system.cpu.dcache.tags.sampled_refs               545                      
-system.cpu.dcache.tags.avg_refs            339.979816                      
-system.cpu.dcache.tags.warmup_cycle                 0                      
-system.cpu.dcache.tags.occ_blocks::cpu.data   436.920619                      
-system.cpu.dcache.tags.occ_percent::cpu.data     0.106670                      
-system.cpu.dcache.tags.occ_percent::total     0.106670                      
-system.cpu.dcache.tags.occ_task_id_blocks::1024          544                      
-system.cpu.dcache.tags.age_task_id_blocks_1024::0           18                      
-system.cpu.dcache.tags.age_task_id_blocks_1024::1           25                      
-system.cpu.dcache.tags.age_task_id_blocks_1024::2          501                      
-system.cpu.dcache.tags.occ_task_id_percent::1024     0.132812                      
-system.cpu.dcache.tags.tag_accesses            374797                      
-system.cpu.dcache.tags.data_accesses           374797                      
-system.cpu.dcache.pwrStateResidencyTicks::UNDEFINED    357345500                      
-system.cpu.dcache.ReadReq_hits::cpu.data       117661                      
-system.cpu.dcache.ReadReq_hits::total          117661                      
-system.cpu.dcache.WriteReq_hits::cpu.data        64109                      
-system.cpu.dcache.WriteReq_hits::total          64109                      
-system.cpu.dcache.LoadLockedReq_hits::cpu.data         1760                      
-system.cpu.dcache.LoadLockedReq_hits::total         1760                      
-system.cpu.dcache.StoreCondReq_hits::cpu.data         1759                      
-system.cpu.dcache.StoreCondReq_hits::total         1759                      
-system.cpu.dcache.demand_hits::cpu.data        181770                      
-system.cpu.dcache.demand_hits::total           181770                      
-system.cpu.dcache.overall_hits::cpu.data       181770                      
-system.cpu.dcache.overall_hits::total          181770                      
-system.cpu.dcache.ReadReq_misses::cpu.data          679                      
-system.cpu.dcache.ReadReq_misses::total           679                      
-system.cpu.dcache.WriteReq_misses::cpu.data         1155                      
-system.cpu.dcache.WriteReq_misses::total         1155                      
+system.cpu.dcache.tags.tagsinuse           423.577559                      
+system.cpu.dcache.tags.total_refs              163951                      
+system.cpu.dcache.tags.sampled_refs               536                      
+system.cpu.dcache.tags.avg_refs            305.878731                      
+system.cpu.dcache.tags.warmup_cycle            283500                      
+system.cpu.dcache.tags.occ_blocks::cpu.data   423.577559                      
+system.cpu.dcache.tags.occ_percent::cpu.data     0.103412                      
+system.cpu.dcache.tags.occ_percent::total     0.103412                      
+system.cpu.dcache.tags.occ_task_id_blocks::1024          535                      
+system.cpu.dcache.tags.age_task_id_blocks_1024::0           17                      
+system.cpu.dcache.tags.age_task_id_blocks_1024::1           34                      
+system.cpu.dcache.tags.age_task_id_blocks_1024::2          484                      
+system.cpu.dcache.tags.occ_task_id_percent::1024     0.130615                      
+system.cpu.dcache.tags.tag_accesses            332156                      
+system.cpu.dcache.tags.data_accesses           332156                      
+system.cpu.dcache.pwrStateResidencyTicks::UNDEFINED    295550000                      
+system.cpu.dcache.ReadReq_hits::cpu.data       101724                      
+system.cpu.dcache.ReadReq_hits::total          101724                      
+system.cpu.dcache.WriteReq_hits::cpu.data        58790                      
+system.cpu.dcache.WriteReq_hits::total          58790                      
+system.cpu.dcache.LoadLockedReq_hits::cpu.data         1750                      
+system.cpu.dcache.LoadLockedReq_hits::total         1750                      
+system.cpu.dcache.StoreCondReq_hits::cpu.data         1687                      
+system.cpu.dcache.StoreCondReq_hits::total         1687                      
+system.cpu.dcache.demand_hits::cpu.data        160514                      
+system.cpu.dcache.demand_hits::total           160514                      
+system.cpu.dcache.overall_hits::cpu.data       160514                      
+system.cpu.dcache.overall_hits::total          160514                      
+system.cpu.dcache.ReadReq_misses::cpu.data          653                      
+system.cpu.dcache.ReadReq_misses::total           653                      
+system.cpu.dcache.WriteReq_misses::cpu.data         1203                      
+system.cpu.dcache.WriteReq_misses::total         1203                      
 system.cpu.dcache.LoadLockedReq_misses::cpu.data            3                      
 system.cpu.dcache.LoadLockedReq_misses::total            3                      
-system.cpu.dcache.demand_misses::cpu.data         1834                      
-system.cpu.dcache.demand_misses::total           1834                      
-system.cpu.dcache.overall_misses::cpu.data         1834                      
-system.cpu.dcache.overall_misses::total          1834                      
-system.cpu.dcache.ReadReq_miss_latency::cpu.data     57502000                      
-system.cpu.dcache.ReadReq_miss_latency::total     57502000                      
-system.cpu.dcache.WriteReq_miss_latency::cpu.data     81718465                      
-system.cpu.dcache.WriteReq_miss_latency::total     81718465                      
+system.cpu.dcache.demand_misses::cpu.data         1856                      
+system.cpu.dcache.demand_misses::total           1856                      
+system.cpu.dcache.overall_misses::cpu.data         1856                      
+system.cpu.dcache.overall_misses::total          1856                      
+system.cpu.dcache.ReadReq_miss_latency::cpu.data     54796000                      
+system.cpu.dcache.ReadReq_miss_latency::total     54796000                      
+system.cpu.dcache.WriteReq_miss_latency::cpu.data     88739464                      
+system.cpu.dcache.WriteReq_miss_latency::total     88739464                      
 system.cpu.dcache.LoadLockedReq_miss_latency::cpu.data       295500                      
 system.cpu.dcache.LoadLockedReq_miss_latency::total       295500                      
-system.cpu.dcache.demand_miss_latency::cpu.data    139220465                      
-system.cpu.dcache.demand_miss_latency::total    139220465                      
-system.cpu.dcache.overall_miss_latency::cpu.data    139220465                      
-system.cpu.dcache.overall_miss_latency::total    139220465                      
-system.cpu.dcache.ReadReq_accesses::cpu.data       118340                      
-system.cpu.dcache.ReadReq_accesses::total       118340                      
-system.cpu.dcache.WriteReq_accesses::cpu.data        65264                      
-system.cpu.dcache.WriteReq_accesses::total        65264                      
-system.cpu.dcache.LoadLockedReq_accesses::cpu.data         1763                      
-system.cpu.dcache.LoadLockedReq_accesses::total         1763                      
-system.cpu.dcache.StoreCondReq_accesses::cpu.data         1759                      
-system.cpu.dcache.StoreCondReq_accesses::total         1759                      
-system.cpu.dcache.demand_accesses::cpu.data       183604                      
-system.cpu.dcache.demand_accesses::total       183604                      
-system.cpu.dcache.overall_accesses::cpu.data       183604                      
-system.cpu.dcache.overall_accesses::total       183604                      
-system.cpu.dcache.ReadReq_miss_rate::cpu.data     0.005737                      
-system.cpu.dcache.ReadReq_miss_rate::total     0.005737                      
-system.cpu.dcache.WriteReq_miss_rate::cpu.data     0.017697                      
-system.cpu.dcache.WriteReq_miss_rate::total     0.017697                      
-system.cpu.dcache.LoadLockedReq_miss_rate::cpu.data     0.001701                      
-system.cpu.dcache.LoadLockedReq_miss_rate::total     0.001701                      
-system.cpu.dcache.demand_miss_rate::cpu.data     0.009988                      
-system.cpu.dcache.demand_miss_rate::total     0.009988                      
-system.cpu.dcache.overall_miss_rate::cpu.data     0.009988                      
-system.cpu.dcache.overall_miss_rate::total     0.009988                      
-system.cpu.dcache.ReadReq_avg_miss_latency::cpu.data 84686.303387                      
-system.cpu.dcache.ReadReq_avg_miss_latency::total 84686.303387                      
-system.cpu.dcache.WriteReq_avg_miss_latency::cpu.data 70751.917748                      
-system.cpu.dcache.WriteReq_avg_miss_latency::total 70751.917748                      
+system.cpu.dcache.demand_miss_latency::cpu.data    143535464                      
+system.cpu.dcache.demand_miss_latency::total    143535464                      
+system.cpu.dcache.overall_miss_latency::cpu.data    143535464                      
+system.cpu.dcache.overall_miss_latency::total    143535464                      
+system.cpu.dcache.ReadReq_accesses::cpu.data       102377                      
+system.cpu.dcache.ReadReq_accesses::total       102377                      
+system.cpu.dcache.WriteReq_accesses::cpu.data        59993                      
+system.cpu.dcache.WriteReq_accesses::total        59993                      
+system.cpu.dcache.LoadLockedReq_accesses::cpu.data         1753                      
+system.cpu.dcache.LoadLockedReq_accesses::total         1753                      
+system.cpu.dcache.StoreCondReq_accesses::cpu.data         1687                      
+system.cpu.dcache.StoreCondReq_accesses::total         1687                      
+system.cpu.dcache.demand_accesses::cpu.data       162370                      
+system.cpu.dcache.demand_accesses::total       162370                      
+system.cpu.dcache.overall_accesses::cpu.data       162370                      
+system.cpu.dcache.overall_accesses::total       162370                      
+system.cpu.dcache.ReadReq_miss_rate::cpu.data     0.006378                      
+system.cpu.dcache.ReadReq_miss_rate::total     0.006378                      
+system.cpu.dcache.WriteReq_miss_rate::cpu.data     0.020052                      
+system.cpu.dcache.WriteReq_miss_rate::total     0.020052                      
+system.cpu.dcache.LoadLockedReq_miss_rate::cpu.data     0.001711                      
+system.cpu.dcache.LoadLockedReq_miss_rate::total     0.001711                      
+system.cpu.dcache.demand_miss_rate::cpu.data     0.011430                      
+system.cpu.dcache.demand_miss_rate::total     0.011430                      
+system.cpu.dcache.overall_miss_rate::cpu.data     0.011430                      
+system.cpu.dcache.overall_miss_rate::total     0.011430                      
+system.cpu.dcache.ReadReq_avg_miss_latency::cpu.data 83914.241960                      
+system.cpu.dcache.ReadReq_avg_miss_latency::total 83914.241960                      
+system.cpu.dcache.WriteReq_avg_miss_latency::cpu.data 73765.140482                      
+system.cpu.dcache.WriteReq_avg_miss_latency::total 73765.140482                      
 system.cpu.dcache.LoadLockedReq_avg_miss_latency::cpu.data        98500                      
 system.cpu.dcache.LoadLockedReq_avg_miss_latency::total        98500                      
-system.cpu.dcache.demand_avg_miss_latency::cpu.data 75910.831515                      
-system.cpu.dcache.demand_avg_miss_latency::total 75910.831515                      
-system.cpu.dcache.overall_avg_miss_latency::cpu.data 75910.831515                      
-system.cpu.dcache.overall_avg_miss_latency::total 75910.831515                      
-system.cpu.dcache.blocked_cycles::no_mshrs         3160                      
+system.cpu.dcache.demand_avg_miss_latency::cpu.data 77335.918103                      
+system.cpu.dcache.demand_avg_miss_latency::total 77335.918103                      
+system.cpu.dcache.overall_avg_miss_latency::cpu.data 77335.918103                      
+system.cpu.dcache.overall_avg_miss_latency::total 77335.918103                      
+system.cpu.dcache.blocked_cycles::no_mshrs         3723                      
 system.cpu.dcache.blocked_cycles::no_targets            7                      
-system.cpu.dcache.blocked::no_mshrs                58                      
+system.cpu.dcache.blocked::no_mshrs                54                      
 system.cpu.dcache.blocked::no_targets               1                      
-system.cpu.dcache.avg_blocked_cycles::no_mshrs    54.482758                      
+system.cpu.dcache.avg_blocked_cycles::no_mshrs    68.944444                      
 system.cpu.dcache.avg_blocked_cycles::no_targets            7                      
 system.cpu.dcache.writebacks::writebacks            1                      
 system.cpu.dcache.writebacks::total                 1                      
-system.cpu.dcache.ReadReq_mshr_hits::cpu.data          357                      
-system.cpu.dcache.ReadReq_mshr_hits::total          357                      
-system.cpu.dcache.WriteReq_mshr_hits::cpu.data          933                      
-system.cpu.dcache.WriteReq_mshr_hits::total          933                      
+system.cpu.dcache.ReadReq_mshr_hits::cpu.data          342                      
+system.cpu.dcache.ReadReq_mshr_hits::total          342                      
+system.cpu.dcache.WriteReq_mshr_hits::cpu.data          979                      
+system.cpu.dcache.WriteReq_mshr_hits::total          979                      
 system.cpu.dcache.LoadLockedReq_mshr_hits::cpu.data            2                      
 system.cpu.dcache.LoadLockedReq_mshr_hits::total            2                      
-system.cpu.dcache.demand_mshr_hits::cpu.data         1290                      
-system.cpu.dcache.demand_mshr_hits::total         1290                      
-system.cpu.dcache.overall_mshr_hits::cpu.data         1290                      
-system.cpu.dcache.overall_mshr_hits::total         1290                      
-system.cpu.dcache.ReadReq_mshr_misses::cpu.data          322                      
-system.cpu.dcache.ReadReq_mshr_misses::total          322                      
-system.cpu.dcache.WriteReq_mshr_misses::cpu.data          222                      
-system.cpu.dcache.WriteReq_mshr_misses::total          222                      
+system.cpu.dcache.demand_mshr_hits::cpu.data         1321                      
+system.cpu.dcache.demand_mshr_hits::total         1321                      
+system.cpu.dcache.overall_mshr_hits::cpu.data         1321                      
+system.cpu.dcache.overall_mshr_hits::total         1321                      
+system.cpu.dcache.ReadReq_mshr_misses::cpu.data          311                      
+system.cpu.dcache.ReadReq_mshr_misses::total          311                      
+system.cpu.dcache.WriteReq_mshr_misses::cpu.data          224                      
+system.cpu.dcache.WriteReq_mshr_misses::total          224                      
 system.cpu.dcache.LoadLockedReq_mshr_misses::cpu.data            1                      
 system.cpu.dcache.LoadLockedReq_mshr_misses::total            1                      
-system.cpu.dcache.demand_mshr_misses::cpu.data          544                      
-system.cpu.dcache.demand_mshr_misses::total          544                      
-system.cpu.dcache.overall_mshr_misses::cpu.data          544                      
-system.cpu.dcache.overall_mshr_misses::total          544                      
-system.cpu.dcache.ReadReq_mshr_miss_latency::cpu.data     30234500                      
-system.cpu.dcache.ReadReq_mshr_miss_latency::total     30234500                      
-system.cpu.dcache.WriteReq_mshr_miss_latency::cpu.data     18901500                      
-system.cpu.dcache.WriteReq_mshr_miss_latency::total     18901500                      
+system.cpu.dcache.demand_mshr_misses::cpu.data          535                      
+system.cpu.dcache.demand_mshr_misses::total          535                      
+system.cpu.dcache.overall_mshr_misses::cpu.data          535                      
+system.cpu.dcache.overall_mshr_misses::total          535                      
+system.cpu.dcache.ReadReq_mshr_miss_latency::cpu.data     28379000                      
+system.cpu.dcache.ReadReq_mshr_miss_latency::total     28379000                      
+system.cpu.dcache.WriteReq_mshr_miss_latency::cpu.data     19627499                      
+system.cpu.dcache.WriteReq_mshr_miss_latency::total     19627499                      
 system.cpu.dcache.LoadLockedReq_mshr_miss_latency::cpu.data        82500                      
 system.cpu.dcache.LoadLockedReq_mshr_miss_latency::total        82500                      
-system.cpu.dcache.demand_mshr_miss_latency::cpu.data     49136000                      
-system.cpu.dcache.demand_mshr_miss_latency::total     49136000                      
-system.cpu.dcache.overall_mshr_miss_latency::cpu.data     49136000                      
-system.cpu.dcache.overall_mshr_miss_latency::total     49136000                      
-system.cpu.dcache.ReadReq_mshr_miss_rate::cpu.data     0.002720                      
-system.cpu.dcache.ReadReq_mshr_miss_rate::total     0.002720                      
-system.cpu.dcache.WriteReq_mshr_miss_rate::cpu.data     0.003401                      
-system.cpu.dcache.WriteReq_mshr_miss_rate::total     0.003401                      
-system.cpu.dcache.LoadLockedReq_mshr_miss_rate::cpu.data     0.000567                      
-system.cpu.dcache.LoadLockedReq_mshr_miss_rate::total     0.000567                      
-system.cpu.dcache.demand_mshr_miss_rate::cpu.data     0.002962                      
-system.cpu.dcache.demand_mshr_miss_rate::total     0.002962                      
-system.cpu.dcache.overall_mshr_miss_rate::cpu.data     0.002962                      
-system.cpu.dcache.overall_mshr_miss_rate::total     0.002962                      
-system.cpu.dcache.ReadReq_avg_mshr_miss_latency::cpu.data 93895.962732                      
-system.cpu.dcache.ReadReq_avg_mshr_miss_latency::total 93895.962732                      
-system.cpu.dcache.WriteReq_avg_mshr_miss_latency::cpu.data 85141.891891                      
-system.cpu.dcache.WriteReq_avg_mshr_miss_latency::total 85141.891891                      
+system.cpu.dcache.demand_mshr_miss_latency::cpu.data     48006499                      
+system.cpu.dcache.demand_mshr_miss_latency::total     48006499                      
+system.cpu.dcache.overall_mshr_miss_latency::cpu.data     48006499                      
+system.cpu.dcache.overall_mshr_miss_latency::total     48006499                      
+system.cpu.dcache.ReadReq_mshr_miss_rate::cpu.data     0.003037                      
+system.cpu.dcache.ReadReq_mshr_miss_rate::total     0.003037                      
+system.cpu.dcache.WriteReq_mshr_miss_rate::cpu.data     0.003733                      
+system.cpu.dcache.WriteReq_mshr_miss_rate::total     0.003733                      
+system.cpu.dcache.LoadLockedReq_mshr_miss_rate::cpu.data     0.000570                      
+system.cpu.dcache.LoadLockedReq_mshr_miss_rate::total     0.000570                      
+system.cpu.dcache.demand_mshr_miss_rate::cpu.data     0.003294                      
+system.cpu.dcache.demand_mshr_miss_rate::total     0.003294                      
+system.cpu.dcache.overall_mshr_miss_rate::cpu.data     0.003294                      
+system.cpu.dcache.overall_mshr_miss_rate::total     0.003294                      
+system.cpu.dcache.ReadReq_avg_mshr_miss_latency::cpu.data 91250.803858                      
+system.cpu.dcache.ReadReq_avg_mshr_miss_latency::total 91250.803858                      
+system.cpu.dcache.WriteReq_avg_mshr_miss_latency::cpu.data 87622.763392                      
+system.cpu.dcache.WriteReq_avg_mshr_miss_latency::total 87622.763392                      
 system.cpu.dcache.LoadLockedReq_avg_mshr_miss_latency::cpu.data        82500                      
 system.cpu.dcache.LoadLockedReq_avg_mshr_miss_latency::total        82500                      
-system.cpu.dcache.demand_avg_mshr_miss_latency::cpu.data 90323.529411                      
-system.cpu.dcache.demand_avg_mshr_miss_latency::total 90323.529411                      
-system.cpu.dcache.overall_avg_mshr_miss_latency::cpu.data 90323.529411                      
-system.cpu.dcache.overall_avg_mshr_miss_latency::total 90323.529411                      
-system.cpu.icache.tags.pwrStateResidencyTicks::UNDEFINED    357345500                      
-system.cpu.icache.tags.replacements               109                      
-system.cpu.icache.tags.tagsinuse           802.176596                      
-system.cpu.icache.tags.total_refs               91773                      
-system.cpu.icache.tags.sampled_refs              1260                      
-system.cpu.icache.tags.avg_refs             72.835714                      
-system.cpu.icache.tags.warmup_cycle                 0                      
-system.cpu.icache.tags.occ_blocks::cpu.inst   802.176596                      
-system.cpu.icache.tags.occ_percent::cpu.inst     0.391687                      
-system.cpu.icache.tags.occ_percent::total     0.391687                      
-system.cpu.icache.tags.occ_task_id_blocks::1024         1151                      
-system.cpu.icache.tags.age_task_id_blocks_1024::0           63                      
-system.cpu.icache.tags.age_task_id_blocks_1024::1          128                      
-system.cpu.icache.tags.age_task_id_blocks_1024::2          960                      
-system.cpu.icache.tags.occ_task_id_percent::1024     0.562011                      
-system.cpu.icache.tags.tag_accesses            188166                      
-system.cpu.icache.tags.data_accesses           188166                      
-system.cpu.icache.pwrStateResidencyTicks::UNDEFINED    357345500                      
-system.cpu.icache.ReadReq_hits::cpu.inst        91773                      
-system.cpu.icache.ReadReq_hits::total           91773                      
-system.cpu.icache.demand_hits::cpu.inst         91773                      
-system.cpu.icache.demand_hits::total            91773                      
-system.cpu.icache.overall_hits::cpu.inst        91773                      
-system.cpu.icache.overall_hits::total           91773                      
-system.cpu.icache.ReadReq_misses::cpu.inst         1680                      
-system.cpu.icache.ReadReq_misses::total          1680                      
-system.cpu.icache.demand_misses::cpu.inst         1680                      
-system.cpu.icache.demand_misses::total           1680                      
-system.cpu.icache.overall_misses::cpu.inst         1680                      
-system.cpu.icache.overall_misses::total          1680                      
-system.cpu.icache.ReadReq_miss_latency::cpu.inst    137188000                      
-system.cpu.icache.ReadReq_miss_latency::total    137188000                      
-system.cpu.icache.demand_miss_latency::cpu.inst    137188000                      
-system.cpu.icache.demand_miss_latency::total    137188000                      
-system.cpu.icache.overall_miss_latency::cpu.inst    137188000                      
-system.cpu.icache.overall_miss_latency::total    137188000                      
-system.cpu.icache.ReadReq_accesses::cpu.inst        93453                      
-system.cpu.icache.ReadReq_accesses::total        93453                      
-system.cpu.icache.demand_accesses::cpu.inst        93453                      
-system.cpu.icache.demand_accesses::total        93453                      
-system.cpu.icache.overall_accesses::cpu.inst        93453                      
-system.cpu.icache.overall_accesses::total        93453                      
-system.cpu.icache.ReadReq_miss_rate::cpu.inst     0.017976                      
-system.cpu.icache.ReadReq_miss_rate::total     0.017976                      
-system.cpu.icache.demand_miss_rate::cpu.inst     0.017976                      
-system.cpu.icache.demand_miss_rate::total     0.017976                      
-system.cpu.icache.overall_miss_rate::cpu.inst     0.017976                      
-system.cpu.icache.overall_miss_rate::total     0.017976                      
-system.cpu.icache.ReadReq_avg_miss_latency::cpu.inst 81659.523809                      
-system.cpu.icache.ReadReq_avg_miss_latency::total 81659.523809                      
-system.cpu.icache.demand_avg_miss_latency::cpu.inst 81659.523809                      
-system.cpu.icache.demand_avg_miss_latency::total 81659.523809                      
-system.cpu.icache.overall_avg_miss_latency::cpu.inst 81659.523809                      
-system.cpu.icache.overall_avg_miss_latency::total 81659.523809                      
-system.cpu.icache.blocked_cycles::no_mshrs          559                      
+system.cpu.dcache.demand_avg_mshr_miss_latency::cpu.data 89731.773831                      
+system.cpu.dcache.demand_avg_mshr_miss_latency::total 89731.773831                      
+system.cpu.dcache.overall_avg_mshr_miss_latency::cpu.data 89731.773831                      
+system.cpu.dcache.overall_avg_mshr_miss_latency::total 89731.773831                      
+system.cpu.icache.tags.pwrStateResidencyTicks::UNDEFINED    295550000                      
+system.cpu.icache.tags.replacements                91                      
+system.cpu.icache.tags.tagsinuse           740.014140                      
+system.cpu.icache.tags.total_refs               70550                      
+system.cpu.icache.tags.sampled_refs              1177                      
+system.cpu.icache.tags.avg_refs             59.940526                      
+system.cpu.icache.tags.warmup_cycle             87500                      
+system.cpu.icache.tags.occ_blocks::cpu.inst   740.014140                      
+system.cpu.icache.tags.occ_percent::cpu.inst     0.361335                      
+system.cpu.icache.tags.occ_percent::total     0.361335                      
+system.cpu.icache.tags.occ_task_id_blocks::1024         1086                      
+system.cpu.icache.tags.age_task_id_blocks_1024::0           55                      
+system.cpu.icache.tags.age_task_id_blocks_1024::1          168                      
+system.cpu.icache.tags.age_task_id_blocks_1024::2          863                      
+system.cpu.icache.tags.occ_task_id_percent::1024     0.530273                      
+system.cpu.icache.tags.tag_accesses            145425                      
+system.cpu.icache.tags.data_accesses           145425                      
+system.cpu.icache.pwrStateResidencyTicks::UNDEFINED    295550000                      
+system.cpu.icache.ReadReq_hits::cpu.inst        70550                      
+system.cpu.icache.ReadReq_hits::total           70550                      
+system.cpu.icache.demand_hits::cpu.inst         70550                      
+system.cpu.icache.demand_hits::total            70550                      
+system.cpu.icache.overall_hits::cpu.inst        70550                      
+system.cpu.icache.overall_hits::total           70550                      
+system.cpu.icache.ReadReq_misses::cpu.inst         1574                      
+system.cpu.icache.ReadReq_misses::total          1574                      
+system.cpu.icache.demand_misses::cpu.inst         1574                      
+system.cpu.icache.demand_misses::total           1574                      
+system.cpu.icache.overall_misses::cpu.inst         1574                      
+system.cpu.icache.overall_misses::total          1574                      
+system.cpu.icache.ReadReq_miss_latency::cpu.inst    129389000                      
+system.cpu.icache.ReadReq_miss_latency::total    129389000                      
+system.cpu.icache.demand_miss_latency::cpu.inst    129389000                      
+system.cpu.icache.demand_miss_latency::total    129389000                      
+system.cpu.icache.overall_miss_latency::cpu.inst    129389000                      
+system.cpu.icache.overall_miss_latency::total    129389000                      
+system.cpu.icache.ReadReq_accesses::cpu.inst        72124                      
+system.cpu.icache.ReadReq_accesses::total        72124                      
+system.cpu.icache.demand_accesses::cpu.inst        72124                      
+system.cpu.icache.demand_accesses::total        72124                      
+system.cpu.icache.overall_accesses::cpu.inst        72124                      
+system.cpu.icache.overall_accesses::total        72124                      
+system.cpu.icache.ReadReq_miss_rate::cpu.inst     0.021823                      
+system.cpu.icache.ReadReq_miss_rate::total     0.021823                      
+system.cpu.icache.demand_miss_rate::cpu.inst     0.021823                      
+system.cpu.icache.demand_miss_rate::total     0.021823                      
+system.cpu.icache.overall_miss_rate::cpu.inst     0.021823                      
+system.cpu.icache.overall_miss_rate::total     0.021823                      
+system.cpu.icache.ReadReq_avg_miss_latency::cpu.inst 82203.939008                      
+system.cpu.icache.ReadReq_avg_miss_latency::total 82203.939008                      
+system.cpu.icache.demand_avg_miss_latency::cpu.inst 82203.939008                      
+system.cpu.icache.demand_avg_miss_latency::total 82203.939008                      
+system.cpu.icache.overall_avg_miss_latency::cpu.inst 82203.939008                      
+system.cpu.icache.overall_avg_miss_latency::total 82203.939008                      
+system.cpu.icache.blocked_cycles::no_mshrs          759                      
 system.cpu.icache.blocked_cycles::no_targets            0                      
-system.cpu.icache.blocked::no_mshrs                 7                      
+system.cpu.icache.blocked::no_mshrs                 4                      
 system.cpu.icache.blocked::no_targets               0                      
-system.cpu.icache.avg_blocked_cycles::no_mshrs    79.857142                      
+system.cpu.icache.avg_blocked_cycles::no_mshrs   189.750000                      
 system.cpu.icache.avg_blocked_cycles::no_targets          nan                      
-system.cpu.icache.writebacks::writebacks          109                      
-system.cpu.icache.writebacks::total               109                      
-system.cpu.icache.ReadReq_mshr_hits::cpu.inst          419                      
-system.cpu.icache.ReadReq_mshr_hits::total          419                      
-system.cpu.icache.demand_mshr_hits::cpu.inst          419                      
-system.cpu.icache.demand_mshr_hits::total          419                      
-system.cpu.icache.overall_mshr_hits::cpu.inst          419                      
-system.cpu.icache.overall_mshr_hits::total          419                      
-system.cpu.icache.ReadReq_mshr_misses::cpu.inst         1261                      
-system.cpu.icache.ReadReq_mshr_misses::total         1261                      
-system.cpu.icache.demand_mshr_misses::cpu.inst         1261                      
-system.cpu.icache.demand_mshr_misses::total         1261                      
-system.cpu.icache.overall_mshr_misses::cpu.inst         1261                      
-system.cpu.icache.overall_mshr_misses::total         1261                      
-system.cpu.icache.ReadReq_mshr_miss_latency::cpu.inst    107942500                      
-system.cpu.icache.ReadReq_mshr_miss_latency::total    107942500                      
-system.cpu.icache.demand_mshr_miss_latency::cpu.inst    107942500                      
-system.cpu.icache.demand_mshr_miss_latency::total    107942500                      
-system.cpu.icache.overall_mshr_miss_latency::cpu.inst    107942500                      
-system.cpu.icache.overall_mshr_miss_latency::total    107942500                      
-system.cpu.icache.ReadReq_mshr_miss_rate::cpu.inst     0.013493                      
-system.cpu.icache.ReadReq_mshr_miss_rate::total     0.013493                      
-system.cpu.icache.demand_mshr_miss_rate::cpu.inst     0.013493                      
-system.cpu.icache.demand_mshr_miss_rate::total     0.013493                      
-system.cpu.icache.overall_mshr_miss_rate::cpu.inst     0.013493                      
-system.cpu.icache.overall_mshr_miss_rate::total     0.013493                      
-system.cpu.icache.ReadReq_avg_mshr_miss_latency::cpu.inst 85600.713719                      
-system.cpu.icache.ReadReq_avg_mshr_miss_latency::total 85600.713719                      
-system.cpu.icache.demand_avg_mshr_miss_latency::cpu.inst 85600.713719                      
-system.cpu.icache.demand_avg_mshr_miss_latency::total 85600.713719                      
-system.cpu.icache.overall_avg_mshr_miss_latency::cpu.inst 85600.713719                      
-system.cpu.icache.overall_avg_mshr_miss_latency::total 85600.713719                      
-system.cpu.l2cache.tags.pwrStateResidencyTicks::UNDEFINED    357345500                      
+system.cpu.icache.writebacks::writebacks           91                      
+system.cpu.icache.writebacks::total                91                      
+system.cpu.icache.ReadReq_mshr_hits::cpu.inst          396                      
+system.cpu.icache.ReadReq_mshr_hits::total          396                      
+system.cpu.icache.demand_mshr_hits::cpu.inst          396                      
+system.cpu.icache.demand_mshr_hits::total          396                      
+system.cpu.icache.overall_mshr_hits::cpu.inst          396                      
+system.cpu.icache.overall_mshr_hits::total          396                      
+system.cpu.icache.ReadReq_mshr_misses::cpu.inst         1178                      
+system.cpu.icache.ReadReq_mshr_misses::total         1178                      
+system.cpu.icache.demand_mshr_misses::cpu.inst         1178                      
+system.cpu.icache.demand_mshr_misses::total         1178                      
+system.cpu.icache.overall_mshr_misses::cpu.inst         1178                      
+system.cpu.icache.overall_mshr_misses::total         1178                      
+system.cpu.icache.ReadReq_mshr_miss_latency::cpu.inst    101782000                      
+system.cpu.icache.ReadReq_mshr_miss_latency::total    101782000                      
+system.cpu.icache.demand_mshr_miss_latency::cpu.inst    101782000                      
+system.cpu.icache.demand_mshr_miss_latency::total    101782000                      
+system.cpu.icache.overall_mshr_miss_latency::cpu.inst    101782000                      
+system.cpu.icache.overall_mshr_miss_latency::total    101782000                      
+system.cpu.icache.ReadReq_mshr_miss_rate::cpu.inst     0.016332                      
+system.cpu.icache.ReadReq_mshr_miss_rate::total     0.016332                      
+system.cpu.icache.demand_mshr_miss_rate::cpu.inst     0.016332                      
+system.cpu.icache.demand_mshr_miss_rate::total     0.016332                      
+system.cpu.icache.overall_mshr_miss_rate::cpu.inst     0.016332                      
+system.cpu.icache.overall_mshr_miss_rate::total     0.016332                      
+system.cpu.icache.ReadReq_avg_mshr_miss_latency::cpu.inst 86402.376910                      
+system.cpu.icache.ReadReq_avg_mshr_miss_latency::total 86402.376910                      
+system.cpu.icache.demand_avg_mshr_miss_latency::cpu.inst 86402.376910                      
+system.cpu.icache.demand_avg_mshr_miss_latency::total 86402.376910                      
+system.cpu.icache.overall_avg_mshr_miss_latency::cpu.inst 86402.376910                      
+system.cpu.icache.overall_avg_mshr_miss_latency::total 86402.376910                      
+system.cpu.l2cache.tags.pwrStateResidencyTicks::UNDEFINED    295550000                      
 system.cpu.l2cache.tags.replacements                0                      
-system.cpu.l2cache.tags.tagsinuse         1284.528317                      
-system.cpu.l2cache.tags.total_refs                125                      
-system.cpu.l2cache.tags.sampled_refs             1789                      
-system.cpu.l2cache.tags.avg_refs             0.069871                      
-system.cpu.l2cache.tags.warmup_cycle                0                      
-system.cpu.l2cache.tags.occ_blocks::cpu.inst   847.989760                      
-system.cpu.l2cache.tags.occ_blocks::cpu.data   436.538557                      
-system.cpu.l2cache.tags.occ_percent::cpu.inst     0.025878                      
-system.cpu.l2cache.tags.occ_percent::cpu.data     0.013322                      
-system.cpu.l2cache.tags.occ_percent::total     0.039200                      
-system.cpu.l2cache.tags.occ_task_id_blocks::1024         1789                      
-system.cpu.l2cache.tags.age_task_id_blocks_1024::0           75                      
-system.cpu.l2cache.tags.age_task_id_blocks_1024::1          153                      
-system.cpu.l2cache.tags.age_task_id_blocks_1024::2         1561                      
-system.cpu.l2cache.tags.occ_task_id_percent::1024     0.054595                      
-system.cpu.l2cache.tags.tag_accesses            17109                      
-system.cpu.l2cache.tags.data_accesses           17109                      
-system.cpu.l2cache.pwrStateResidencyTicks::UNDEFINED    357345500                      
+system.cpu.l2cache.tags.tagsinuse         1201.245483                      
+system.cpu.l2cache.tags.total_refs                100                      
+system.cpu.l2cache.tags.sampled_refs             1704                      
+system.cpu.l2cache.tags.avg_refs             0.058685                      
+system.cpu.l2cache.tags.warmup_cycle            77000                      
+system.cpu.l2cache.tags.occ_blocks::cpu.inst   778.076130                      
+system.cpu.l2cache.tags.occ_blocks::cpu.data   423.169352                      
+system.cpu.l2cache.tags.occ_percent::cpu.inst     0.023744                      
+system.cpu.l2cache.tags.occ_percent::cpu.data     0.012914                      
+system.cpu.l2cache.tags.occ_percent::total     0.036659                      
+system.cpu.l2cache.tags.occ_task_id_blocks::1024         1704                      
+system.cpu.l2cache.tags.age_task_id_blocks_1024::0           70                      
+system.cpu.l2cache.tags.age_task_id_blocks_1024::1          204                      
+system.cpu.l2cache.tags.age_task_id_blocks_1024::2         1430                      
+system.cpu.l2cache.tags.occ_task_id_percent::1024     0.052001                      
+system.cpu.l2cache.tags.tag_accesses            16144                      
+system.cpu.l2cache.tags.data_accesses           16144                      
+system.cpu.l2cache.pwrStateResidencyTicks::UNDEFINED    295550000                      
 system.cpu.l2cache.WritebackDirty_hits::writebacks            1                      
 system.cpu.l2cache.WritebackDirty_hits::total            1                      
-system.cpu.l2cache.WritebackClean_hits::writebacks          108                      
-system.cpu.l2cache.WritebackClean_hits::total          108                      
-system.cpu.l2cache.ReadCleanReq_hits::cpu.inst           15                      
-system.cpu.l2cache.ReadCleanReq_hits::total           15                      
+system.cpu.l2cache.WritebackClean_hits::writebacks           90                      
+system.cpu.l2cache.WritebackClean_hits::total           90                      
+system.cpu.l2cache.ReadCleanReq_hits::cpu.inst            8                      
+system.cpu.l2cache.ReadCleanReq_hits::total            8                      
 system.cpu.l2cache.ReadSharedReq_hits::cpu.data            1                      
 system.cpu.l2cache.ReadSharedReq_hits::total            1                      
-system.cpu.l2cache.demand_hits::cpu.inst           15                      
+system.cpu.l2cache.demand_hits::cpu.inst            8                      
 system.cpu.l2cache.demand_hits::cpu.data            1                      
-system.cpu.l2cache.demand_hits::total              16                      
-system.cpu.l2cache.overall_hits::cpu.inst           15                      
+system.cpu.l2cache.demand_hits::total               9                      
+system.cpu.l2cache.overall_hits::cpu.inst            8                      
 system.cpu.l2cache.overall_hits::cpu.data            1                      
-system.cpu.l2cache.overall_hits::total             16                      
-system.cpu.l2cache.ReadExReq_misses::cpu.data          222                      
-system.cpu.l2cache.ReadExReq_misses::total          222                      
-system.cpu.l2cache.ReadCleanReq_misses::cpu.inst         1246                      
-system.cpu.l2cache.ReadCleanReq_misses::total         1246                      
-system.cpu.l2cache.ReadSharedReq_misses::cpu.data          322                      
-system.cpu.l2cache.ReadSharedReq_misses::total          322                      
-system.cpu.l2cache.demand_misses::cpu.inst         1246                      
-system.cpu.l2cache.demand_misses::cpu.data          544                      
-system.cpu.l2cache.demand_misses::total          1790                      
-system.cpu.l2cache.overall_misses::cpu.inst         1246                      
-system.cpu.l2cache.overall_misses::cpu.data          544                      
-system.cpu.l2cache.overall_misses::total         1790                      
-system.cpu.l2cache.ReadExReq_miss_latency::cpu.data     18564500                      
-system.cpu.l2cache.ReadExReq_miss_latency::total     18564500                      
-system.cpu.l2cache.ReadCleanReq_miss_latency::cpu.inst    105886000                      
-system.cpu.l2cache.ReadCleanReq_miss_latency::total    105886000                      
-system.cpu.l2cache.ReadSharedReq_miss_latency::cpu.data     29817500                      
-system.cpu.l2cache.ReadSharedReq_miss_latency::total     29817500                      
-system.cpu.l2cache.demand_miss_latency::cpu.inst    105886000                      
-system.cpu.l2cache.demand_miss_latency::cpu.data     48382000                      
-system.cpu.l2cache.demand_miss_latency::total    154268000                      
-system.cpu.l2cache.overall_miss_latency::cpu.inst    105886000                      
-system.cpu.l2cache.overall_miss_latency::cpu.data     48382000                      
-system.cpu.l2cache.overall_miss_latency::total    154268000                      
+system.cpu.l2cache.overall_hits::total              9                      
+system.cpu.l2cache.ReadExReq_misses::cpu.data          224                      
+system.cpu.l2cache.ReadExReq_misses::total          224                      
+system.cpu.l2cache.ReadCleanReq_misses::cpu.inst         1170                      
+system.cpu.l2cache.ReadCleanReq_misses::total         1170                      
+system.cpu.l2cache.ReadSharedReq_misses::cpu.data          311                      
+system.cpu.l2cache.ReadSharedReq_misses::total          311                      
+system.cpu.l2cache.demand_misses::cpu.inst         1170                      
+system.cpu.l2cache.demand_misses::cpu.data          535                      
+system.cpu.l2cache.demand_misses::total          1705                      
+system.cpu.l2cache.overall_misses::cpu.inst         1170                      
+system.cpu.l2cache.overall_misses::cpu.data          535                      
+system.cpu.l2cache.overall_misses::total         1705                      
+system.cpu.l2cache.ReadExReq_miss_latency::cpu.data     19285500                      
+system.cpu.l2cache.ReadExReq_miss_latency::total     19285500                      
+system.cpu.l2cache.ReadCleanReq_miss_latency::cpu.inst     99927500                      
+system.cpu.l2cache.ReadCleanReq_miss_latency::total     99927500                      
+system.cpu.l2cache.ReadSharedReq_miss_latency::cpu.data     27978500                      
+system.cpu.l2cache.ReadSharedReq_miss_latency::total     27978500                      
+system.cpu.l2cache.demand_miss_latency::cpu.inst     99927500                      
+system.cpu.l2cache.demand_miss_latency::cpu.data     47264000                      
+system.cpu.l2cache.demand_miss_latency::total    147191500                      
+system.cpu.l2cache.overall_miss_latency::cpu.inst     99927500                      
+system.cpu.l2cache.overall_miss_latency::cpu.data     47264000                      
+system.cpu.l2cache.overall_miss_latency::total    147191500                      
 system.cpu.l2cache.WritebackDirty_accesses::writebacks            1                      
 system.cpu.l2cache.WritebackDirty_accesses::total            1                      
-system.cpu.l2cache.WritebackClean_accesses::writebacks          108                      
-system.cpu.l2cache.WritebackClean_accesses::total          108                      
-system.cpu.l2cache.ReadExReq_accesses::cpu.data          222                      
-system.cpu.l2cache.ReadExReq_accesses::total          222                      
-system.cpu.l2cache.ReadCleanReq_accesses::cpu.inst         1261                      
-system.cpu.l2cache.ReadCleanReq_accesses::total         1261                      
-system.cpu.l2cache.ReadSharedReq_accesses::cpu.data          323                      
-system.cpu.l2cache.ReadSharedReq_accesses::total          323                      
-system.cpu.l2cache.demand_accesses::cpu.inst         1261                      
-system.cpu.l2cache.demand_accesses::cpu.data          545                      
-system.cpu.l2cache.demand_accesses::total         1806                      
-system.cpu.l2cache.overall_accesses::cpu.inst         1261                      
-system.cpu.l2cache.overall_accesses::cpu.data          545                      
-system.cpu.l2cache.overall_accesses::total         1806                      
+system.cpu.l2cache.WritebackClean_accesses::writebacks           90                      
+system.cpu.l2cache.WritebackClean_accesses::total           90                      
+system.cpu.l2cache.ReadExReq_accesses::cpu.data          224                      
+system.cpu.l2cache.ReadExReq_accesses::total          224                      
+system.cpu.l2cache.ReadCleanReq_accesses::cpu.inst         1178                      
+system.cpu.l2cache.ReadCleanReq_accesses::total         1178                      
+system.cpu.l2cache.ReadSharedReq_accesses::cpu.data          312                      
+system.cpu.l2cache.ReadSharedReq_accesses::total          312                      
+system.cpu.l2cache.demand_accesses::cpu.inst         1178                      
+system.cpu.l2cache.demand_accesses::cpu.data          536                      
+system.cpu.l2cache.demand_accesses::total         1714                      
+system.cpu.l2cache.overall_accesses::cpu.inst         1178                      
+system.cpu.l2cache.overall_accesses::cpu.data          536                      
+system.cpu.l2cache.overall_accesses::total         1714                      
 system.cpu.l2cache.ReadExReq_miss_rate::cpu.data            1                      
 system.cpu.l2cache.ReadExReq_miss_rate::total            1                      
-system.cpu.l2cache.ReadCleanReq_miss_rate::cpu.inst     0.988104                      
-system.cpu.l2cache.ReadCleanReq_miss_rate::total     0.988104                      
-system.cpu.l2cache.ReadSharedReq_miss_rate::cpu.data     0.996904                      
-system.cpu.l2cache.ReadSharedReq_miss_rate::total     0.996904                      
-system.cpu.l2cache.demand_miss_rate::cpu.inst     0.988104                      
-system.cpu.l2cache.demand_miss_rate::cpu.data     0.998165                      
-system.cpu.l2cache.demand_miss_rate::total     0.991140                      
-system.cpu.l2cache.overall_miss_rate::cpu.inst     0.988104                      
-system.cpu.l2cache.overall_miss_rate::cpu.data     0.998165                      
-system.cpu.l2cache.overall_miss_rate::total     0.991140                      
-system.cpu.l2cache.ReadExReq_avg_miss_latency::cpu.data 83623.873873                      
-system.cpu.l2cache.ReadExReq_avg_miss_latency::total 83623.873873                      
-system.cpu.l2cache.ReadCleanReq_avg_miss_latency::cpu.inst 84980.738362                      
-system.cpu.l2cache.ReadCleanReq_avg_miss_latency::total 84980.738362                      
-system.cpu.l2cache.ReadSharedReq_avg_miss_latency::cpu.data 92600.931677                      
-system.cpu.l2cache.ReadSharedReq_avg_miss_latency::total 92600.931677                      
-system.cpu.l2cache.demand_avg_miss_latency::cpu.inst 84980.738362                      
-system.cpu.l2cache.demand_avg_miss_latency::cpu.data 88937.500000                      
-system.cpu.l2cache.demand_avg_miss_latency::total 86183.240223                      
-system.cpu.l2cache.overall_avg_miss_latency::cpu.inst 84980.738362                      
-system.cpu.l2cache.overall_avg_miss_latency::cpu.data 88937.500000                      
-system.cpu.l2cache.overall_avg_miss_latency::total 86183.240223                      
+system.cpu.l2cache.ReadCleanReq_miss_rate::cpu.inst     0.993208                      
+system.cpu.l2cache.ReadCleanReq_miss_rate::total     0.993208                      
+system.cpu.l2cache.ReadSharedReq_miss_rate::cpu.data     0.996794                      
+system.cpu.l2cache.ReadSharedReq_miss_rate::total     0.996794                      
+system.cpu.l2cache.demand_miss_rate::cpu.inst     0.993208                      
+system.cpu.l2cache.demand_miss_rate::cpu.data     0.998134                      
+system.cpu.l2cache.demand_miss_rate::total     0.994749                      
+system.cpu.l2cache.overall_miss_rate::cpu.inst     0.993208                      
+system.cpu.l2cache.overall_miss_rate::cpu.data     0.998134                      
+system.cpu.l2cache.overall_miss_rate::total     0.994749                      
+system.cpu.l2cache.ReadExReq_avg_miss_latency::cpu.data 86095.982142                      
+system.cpu.l2cache.ReadExReq_avg_miss_latency::total 86095.982142                      
+system.cpu.l2cache.ReadCleanReq_avg_miss_latency::cpu.inst 85408.119658                      
+system.cpu.l2cache.ReadCleanReq_avg_miss_latency::total 85408.119658                      
+system.cpu.l2cache.ReadSharedReq_avg_miss_latency::cpu.data 89963.022508                      
+system.cpu.l2cache.ReadSharedReq_avg_miss_latency::total 89963.022508                      
+system.cpu.l2cache.demand_avg_miss_latency::cpu.inst 85408.119658                      
+system.cpu.l2cache.demand_avg_miss_latency::cpu.data 88343.925233                      
+system.cpu.l2cache.demand_avg_miss_latency::total 86329.325513                      
+system.cpu.l2cache.overall_avg_miss_latency::cpu.inst 85408.119658                      
+system.cpu.l2cache.overall_avg_miss_latency::cpu.data 88343.925233                      
+system.cpu.l2cache.overall_avg_miss_latency::total 86329.325513                      
 system.cpu.l2cache.blocked_cycles::no_mshrs            0                      
 system.cpu.l2cache.blocked_cycles::no_targets            0                      
 system.cpu.l2cache.blocked::no_mshrs                0                      
 system.cpu.l2cache.blocked::no_targets              0                      
 system.cpu.l2cache.avg_blocked_cycles::no_mshrs          nan                      
 system.cpu.l2cache.avg_blocked_cycles::no_targets          nan                      
-system.cpu.l2cache.ReadExReq_mshr_misses::cpu.data          222                      
-system.cpu.l2cache.ReadExReq_mshr_misses::total          222                      
-system.cpu.l2cache.ReadCleanReq_mshr_misses::cpu.inst         1246                      
-system.cpu.l2cache.ReadCleanReq_mshr_misses::total         1246                      
-system.cpu.l2cache.ReadSharedReq_mshr_misses::cpu.data          322                      
-system.cpu.l2cache.ReadSharedReq_mshr_misses::total          322                      
-system.cpu.l2cache.demand_mshr_misses::cpu.inst         1246                      
-system.cpu.l2cache.demand_mshr_misses::cpu.data          544                      
-system.cpu.l2cache.demand_mshr_misses::total         1790                      
-system.cpu.l2cache.overall_mshr_misses::cpu.inst         1246                      
-system.cpu.l2cache.overall_mshr_misses::cpu.data          544                      
-system.cpu.l2cache.overall_mshr_misses::total         1790                      
-system.cpu.l2cache.ReadExReq_mshr_miss_latency::cpu.data     16344500                      
-system.cpu.l2cache.ReadExReq_mshr_miss_latency::total     16344500                      
-system.cpu.l2cache.ReadCleanReq_mshr_miss_latency::cpu.inst     93436000                      
-system.cpu.l2cache.ReadCleanReq_mshr_miss_latency::total     93436000                      
-system.cpu.l2cache.ReadSharedReq_mshr_miss_latency::cpu.data     26597500                      
-system.cpu.l2cache.ReadSharedReq_mshr_miss_latency::total     26597500                      
-system.cpu.l2cache.demand_mshr_miss_latency::cpu.inst     93436000                      
-system.cpu.l2cache.demand_mshr_miss_latency::cpu.data     42942000                      
-system.cpu.l2cache.demand_mshr_miss_latency::total    136378000                      
-system.cpu.l2cache.overall_mshr_miss_latency::cpu.inst     93436000                      
-system.cpu.l2cache.overall_mshr_miss_latency::cpu.data     42942000                      
-system.cpu.l2cache.overall_mshr_miss_latency::total    136378000                      
+system.cpu.l2cache.ReadExReq_mshr_misses::cpu.data          224                      
+system.cpu.l2cache.ReadExReq_mshr_misses::total          224                      
+system.cpu.l2cache.ReadCleanReq_mshr_misses::cpu.inst         1170                      
+system.cpu.l2cache.ReadCleanReq_mshr_misses::total         1170                      
+system.cpu.l2cache.ReadSharedReq_mshr_misses::cpu.data          311                      
+system.cpu.l2cache.ReadSharedReq_mshr_misses::total          311                      
+system.cpu.l2cache.demand_mshr_misses::cpu.inst         1170                      
+system.cpu.l2cache.demand_mshr_misses::cpu.data          535                      
+system.cpu.l2cache.demand_mshr_misses::total         1705                      
+system.cpu.l2cache.overall_mshr_misses::cpu.inst         1170                      
+system.cpu.l2cache.overall_mshr_misses::cpu.data          535                      
+system.cpu.l2cache.overall_mshr_misses::total         1705                      
+system.cpu.l2cache.ReadExReq_mshr_miss_latency::cpu.data     17045500                      
+system.cpu.l2cache.ReadExReq_mshr_miss_latency::total     17045500                      
+system.cpu.l2cache.ReadCleanReq_mshr_miss_latency::cpu.inst     88237500                      
+system.cpu.l2cache.ReadCleanReq_mshr_miss_latency::total     88237500                      
+system.cpu.l2cache.ReadSharedReq_mshr_miss_latency::cpu.data     24868500                      
+system.cpu.l2cache.ReadSharedReq_mshr_miss_latency::total     24868500                      
+system.cpu.l2cache.demand_mshr_miss_latency::cpu.inst     88237500                      
+system.cpu.l2cache.demand_mshr_miss_latency::cpu.data     41914000                      
+system.cpu.l2cache.demand_mshr_miss_latency::total    130151500                      
+system.cpu.l2cache.overall_mshr_miss_latency::cpu.inst     88237500                      
+system.cpu.l2cache.overall_mshr_miss_latency::cpu.data     41914000                      
+system.cpu.l2cache.overall_mshr_miss_latency::total    130151500                      
 system.cpu.l2cache.ReadExReq_mshr_miss_rate::cpu.data            1                      
 system.cpu.l2cache.ReadExReq_mshr_miss_rate::total            1                      
-system.cpu.l2cache.ReadCleanReq_mshr_miss_rate::cpu.inst     0.988104                      
-system.cpu.l2cache.ReadCleanReq_mshr_miss_rate::total     0.988104                      
-system.cpu.l2cache.ReadSharedReq_mshr_miss_rate::cpu.data     0.996904                      
-system.cpu.l2cache.ReadSharedReq_mshr_miss_rate::total     0.996904                      
-system.cpu.l2cache.demand_mshr_miss_rate::cpu.inst     0.988104                      
-system.cpu.l2cache.demand_mshr_miss_rate::cpu.data     0.998165                      
-system.cpu.l2cache.demand_mshr_miss_rate::total     0.991140                      
-system.cpu.l2cache.overall_mshr_miss_rate::cpu.inst     0.988104                      
-system.cpu.l2cache.overall_mshr_miss_rate::cpu.data     0.998165                      
-system.cpu.l2cache.overall_mshr_miss_rate::total     0.991140                      
-system.cpu.l2cache.ReadExReq_avg_mshr_miss_latency::cpu.data 73623.873873                      
-system.cpu.l2cache.ReadExReq_avg_mshr_miss_latency::total 73623.873873                      
-system.cpu.l2cache.ReadCleanReq_avg_mshr_miss_latency::cpu.inst 74988.764044                      
-system.cpu.l2cache.ReadCleanReq_avg_mshr_miss_latency::total 74988.764044                      
-system.cpu.l2cache.ReadSharedReq_avg_mshr_miss_latency::cpu.data 82600.931677                      
-system.cpu.l2cache.ReadSharedReq_avg_mshr_miss_latency::total 82600.931677                      
-system.cpu.l2cache.demand_avg_mshr_miss_latency::cpu.inst 74988.764044                      
-system.cpu.l2cache.demand_avg_mshr_miss_latency::cpu.data 78937.500000                      
-system.cpu.l2cache.demand_avg_mshr_miss_latency::total 76188.826815                      
-system.cpu.l2cache.overall_avg_mshr_miss_latency::cpu.inst 74988.764044                      
-system.cpu.l2cache.overall_avg_mshr_miss_latency::cpu.data 78937.500000                      
-system.cpu.l2cache.overall_avg_mshr_miss_latency::total 76188.826815                      
-system.cpu.toL2Bus.snoop_filter.tot_requests         1916                      
-system.cpu.toL2Bus.snoop_filter.hit_single_requests          113                      
+system.cpu.l2cache.ReadCleanReq_mshr_miss_rate::cpu.inst     0.993208                      
+system.cpu.l2cache.ReadCleanReq_mshr_miss_rate::total     0.993208                      
+system.cpu.l2cache.ReadSharedReq_mshr_miss_rate::cpu.data     0.996794                      
+system.cpu.l2cache.ReadSharedReq_mshr_miss_rate::total     0.996794                      
+system.cpu.l2cache.demand_mshr_miss_rate::cpu.inst     0.993208                      
+system.cpu.l2cache.demand_mshr_miss_rate::cpu.data     0.998134                      
+system.cpu.l2cache.demand_mshr_miss_rate::total     0.994749                      
+system.cpu.l2cache.overall_mshr_miss_rate::cpu.inst     0.993208                      
+system.cpu.l2cache.overall_mshr_miss_rate::cpu.data     0.998134                      
+system.cpu.l2cache.overall_mshr_miss_rate::total     0.994749                      
+system.cpu.l2cache.ReadExReq_avg_mshr_miss_latency::cpu.data 76095.982142                      
+system.cpu.l2cache.ReadExReq_avg_mshr_miss_latency::total 76095.982142                      
+system.cpu.l2cache.ReadCleanReq_avg_mshr_miss_latency::cpu.inst 75416.666666                      
+system.cpu.l2cache.ReadCleanReq_avg_mshr_miss_latency::total 75416.666666                      
+system.cpu.l2cache.ReadSharedReq_avg_mshr_miss_latency::cpu.data 79963.022508                      
+system.cpu.l2cache.ReadSharedReq_avg_mshr_miss_latency::total 79963.022508                      
+system.cpu.l2cache.demand_avg_mshr_miss_latency::cpu.inst 75416.666666                      
+system.cpu.l2cache.demand_avg_mshr_miss_latency::cpu.data 78343.925233                      
+system.cpu.l2cache.demand_avg_mshr_miss_latency::total 76335.190615                      
+system.cpu.l2cache.overall_avg_mshr_miss_latency::cpu.inst 75416.666666                      
+system.cpu.l2cache.overall_avg_mshr_miss_latency::cpu.data 78343.925233                      
+system.cpu.l2cache.overall_avg_mshr_miss_latency::total 76335.190615                      
+system.cpu.toL2Bus.snoop_filter.tot_requests         1806                      
+system.cpu.toL2Bus.snoop_filter.hit_single_requests           92                      
 system.cpu.toL2Bus.snoop_filter.hit_multi_requests            1                      
 system.cpu.toL2Bus.snoop_filter.tot_snoops            0                      
 system.cpu.toL2Bus.snoop_filter.hit_single_snoops            0                      
 system.cpu.toL2Bus.snoop_filter.hit_multi_snoops            0                      
-system.cpu.toL2Bus.pwrStateResidencyTicks::UNDEFINED    357345500                      
-system.cpu.toL2Bus.trans_dist::ReadResp          1583                      
+system.cpu.toL2Bus.pwrStateResidencyTicks::UNDEFINED    295550000                      
+system.cpu.toL2Bus.trans_dist::ReadResp          1489                      
 system.cpu.toL2Bus.trans_dist::WritebackDirty            1                      
-system.cpu.toL2Bus.trans_dist::WritebackClean          109                      
-system.cpu.toL2Bus.trans_dist::ReadExReq          222                      
-system.cpu.toL2Bus.trans_dist::ReadExResp          222                      
-system.cpu.toL2Bus.trans_dist::ReadCleanReq         1261                      
-system.cpu.toL2Bus.trans_dist::ReadSharedReq          323                      
-system.cpu.toL2Bus.pkt_count_system.cpu.icache.mem_side::system.cpu.l2cache.cpu_side         2630                      
-system.cpu.toL2Bus.pkt_count_system.cpu.dcache.mem_side::system.cpu.l2cache.cpu_side         1091                      
-system.cpu.toL2Bus.pkt_count::total              3721                      
-system.cpu.toL2Bus.pkt_size_system.cpu.icache.mem_side::system.cpu.l2cache.cpu_side        87616                      
-system.cpu.toL2Bus.pkt_size_system.cpu.dcache.mem_side::system.cpu.l2cache.cpu_side        34944                      
-system.cpu.toL2Bus.pkt_size::total             122560                      
+system.cpu.toL2Bus.trans_dist::WritebackClean           91                      
+system.cpu.toL2Bus.trans_dist::ReadExReq          224                      
+system.cpu.toL2Bus.trans_dist::ReadExResp          224                      
+system.cpu.toL2Bus.trans_dist::ReadCleanReq         1178                      
+system.cpu.toL2Bus.trans_dist::ReadSharedReq          312                      
+system.cpu.toL2Bus.pkt_count_system.cpu.icache.mem_side::system.cpu.l2cache.cpu_side         2446                      
+system.cpu.toL2Bus.pkt_count_system.cpu.dcache.mem_side::system.cpu.l2cache.cpu_side         1073                      
+system.cpu.toL2Bus.pkt_count::total              3519                      
+system.cpu.toL2Bus.pkt_size_system.cpu.icache.mem_side::system.cpu.l2cache.cpu_side        81152                      
+system.cpu.toL2Bus.pkt_size_system.cpu.dcache.mem_side::system.cpu.l2cache.cpu_side        34368                      
+system.cpu.toL2Bus.pkt_size::total             115520                      
 system.cpu.toL2Bus.snoops                           0                      
 system.cpu.toL2Bus.snoopTraffic                     0                      
-system.cpu.toL2Bus.snoop_fanout::samples         1806                      
-system.cpu.toL2Bus.snoop_fanout::mean        0.002214                      
-system.cpu.toL2Bus.snoop_fanout::stdev       0.047022                      
+system.cpu.toL2Bus.snoop_fanout::samples         1714                      
+system.cpu.toL2Bus.snoop_fanout::mean        0.000583                      
+system.cpu.toL2Bus.snoop_fanout::stdev       0.024154                      
 system.cpu.toL2Bus.snoop_fanout::underflows            0      0.00%      0.00%
-system.cpu.toL2Bus.snoop_fanout::0               1802     99.77%     99.77%
-system.cpu.toL2Bus.snoop_fanout::1                  4      0.22%     99.99%
+system.cpu.toL2Bus.snoop_fanout::0               1713     99.94%     99.94%
+system.cpu.toL2Bus.snoop_fanout::1                  1      0.05%     99.99%
 system.cpu.toL2Bus.snoop_fanout::2                  0      0.00%     99.99%
 system.cpu.toL2Bus.snoop_fanout::overflows            0      0.00%     99.99%
 system.cpu.toL2Bus.snoop_fanout::min_value            0                      
 system.cpu.toL2Bus.snoop_fanout::max_value            1                      
-system.cpu.toL2Bus.snoop_fanout::total           1806                      
-system.cpu.toL2Bus.reqLayer0.occupancy        1068000                      
-system.cpu.toL2Bus.reqLayer0.utilization          0.2                      
-system.cpu.toL2Bus.respLayer0.occupancy       1890000                      
+system.cpu.toL2Bus.snoop_fanout::total           1714                      
+system.cpu.toL2Bus.reqLayer0.occupancy         995000                      
+system.cpu.toL2Bus.reqLayer0.utilization          0.3                      
+system.cpu.toL2Bus.respLayer0.occupancy       1765500                      
 system.cpu.toL2Bus.respLayer0.utilization          0.5                      
-system.cpu.toL2Bus.respLayer1.occupancy        817500                      
+system.cpu.toL2Bus.respLayer1.occupancy        804000                      
 system.cpu.toL2Bus.respLayer1.utilization          0.2                      
-system.membus.snoop_filter.tot_requests          1789                      
+system.membus.snoop_filter.tot_requests          1705                      
 system.membus.snoop_filter.hit_single_requests            0                      
 system.membus.snoop_filter.hit_multi_requests            0                      
 system.membus.snoop_filter.tot_snoops               0                      
 system.membus.snoop_filter.hit_single_snoops            0                      
 system.membus.snoop_filter.hit_multi_snoops            0                      
-system.membus.pwrStateResidencyTicks::UNDEFINED    357345500                      
-system.membus.trans_dist::ReadResp               1567                      
-system.membus.trans_dist::ReadExReq               222                      
-system.membus.trans_dist::ReadExResp              222                      
-system.membus.trans_dist::ReadSharedReq          1567                      
-system.membus.pkt_count_system.cpu.l2cache.mem_side::system.physmem.port         3578                      
-system.membus.pkt_count::total                   3578                      
-system.membus.pkt_size_system.cpu.l2cache.mem_side::system.physmem.port       114496                      
-system.membus.pkt_size::total                  114496                      
+system.membus.pwrStateResidencyTicks::UNDEFINED    295550000                      
+system.membus.trans_dist::ReadResp               1480                      
+system.membus.trans_dist::ReadExReq               224                      
+system.membus.trans_dist::ReadExResp              224                      
+system.membus.trans_dist::ReadSharedReq          1481                      
+system.membus.pkt_count_system.cpu.l2cache.mem_side::system.physmem.port         3409                      
+system.membus.pkt_count::total                   3409                      
+system.membus.pkt_size_system.cpu.l2cache.mem_side::system.physmem.port       109056                      
+system.membus.pkt_size::total                  109056                      
 system.membus.snoops                                0                      
 system.membus.snoopTraffic                          0                      
-system.membus.snoop_fanout::samples              1789                      
+system.membus.snoop_fanout::samples              1705                      
 system.membus.snoop_fanout::mean                    0                      
 system.membus.snoop_fanout::stdev                  -0                      
 system.membus.snoop_fanout::underflows              0      0.00%      0.00%
-system.membus.snoop_fanout::0                    1789    100.00%    100.00%
+system.membus.snoop_fanout::0                    1705    100.00%    100.00%
 system.membus.snoop_fanout::1                       0      0.00%    100.00%
 system.membus.snoop_fanout::overflows               0      0.00%    100.00%
 system.membus.snoop_fanout::min_value               0                      
 system.membus.snoop_fanout::max_value               0                      
-system.membus.snoop_fanout::total                1789                      
-system.membus.reqLayer0.occupancy             2212500                      
-system.membus.reqLayer0.utilization               0.6                      
-system.membus.respLayer1.occupancy            9488750                      
-system.membus.respLayer1.utilization              2.6                      
+system.membus.snoop_fanout::total                1705                      
+system.membus.reqLayer0.occupancy             2098500                      
+system.membus.reqLayer0.utilization               0.7                      
+system.membus.respLayer1.occupancy            9030250                      
+system.membus.respLayer1.utilization              3.0                      
 
 ---------- End Simulation Statistics   ----------

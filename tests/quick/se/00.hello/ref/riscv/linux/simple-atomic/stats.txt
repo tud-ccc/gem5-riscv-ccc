@@ -3,11 +3,11 @@
 sim_seconds                                  0.000003                      
 sim_ticks                                     3308500                      
 final_tick                                    3308500                      
-sim_freq                                 1000000000000                      
-host_inst_rate                                 266778                      
-host_op_rate                                   266699                      
-host_tick_rate                              158204567                      
-host_mem_usage                                 380508                      
+sim_freq                                 1000000000000                     
+host_inst_rate                                 325652                      
+host_op_rate                                   325749                      
+host_tick_rate                              193225176                      
+host_mem_usage                                 380120                      
 host_seconds                                     0.02                      
 sim_insts                                        5562                      
 sim_ops                                          5571                      

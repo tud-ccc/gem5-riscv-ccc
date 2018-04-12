@@ -3,10 +3,10 @@ Redirecting stderr to build/RISCV/tests/opt/quick/se/02.insttest/riscv/linux-rv6
 gem5 Simulator System.  http://gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
-gem5 compiled Jul 13 2017 17:09:45
-gem5 started Jul 13 2017 17:12:17
-gem5 executing on boldrock, pid 2077
-command line: /home/ar4jc/gem5/build/RISCV/gem5.opt -d build/RISCV/tests/opt/quick/se/02.insttest/riscv/linux-rv64m/simple-timing --stats-file 'text://stats.txt?desc=False' -re /home/ar4jc/gem5/tests/testing/../run.py quick/se/02.insttest/riscv/linux-rv64m/simple-timing
+gem5 compiled Apr 12 2018 13:47:37
+gem5 started Apr 12 2018 13:56:55
+gem5 executing on localvm.commsolid.com, pid 4930
+command line: /home/rscheffel/projects/gem5_cc/build/RISCV/gem5.opt -d build/RISCV/tests/opt/quick/se/02.insttest/riscv/linux-rv64m/simple-timing --stats-file 'text://stats.txt?desc=False' -re /home/rscheffel/projects/gem5_cc/tests/testing/../run.py quick/se/02.insttest/riscv/linux-rv64m/simple-timing
 
 Global frequency set at 1000000000000 ticks per second
 mul: PASS
@@ -46,4 +46,4 @@ remuw, truncate: PASS
 remuw/0: PASS
 remuw, "overflow": PASS
 remuw, sign extend: PASS
-Exiting @ tick 246972500 because exiting with last active thread context
+Exiting @ tick 246894500 because exiting with last active thread context

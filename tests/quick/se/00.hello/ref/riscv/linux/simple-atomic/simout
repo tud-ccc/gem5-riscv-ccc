@@ -3,9 +3,9 @@ Redirecting stderr to build/RISCV/tests/opt/quick/se/00.hello/riscv/linux/simple
 gem5 Simulator System.  http://gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
-gem5 compiled Apr 12 2018 13:22:10
-gem5 started Apr 12 2018 13:22:44
-gem5 executing on localvm.commsolid.com, pid 1303
+gem5 compiled Apr 12 2018 13:47:37
+gem5 started Apr 12 2018 13:51:34
+gem5 executing on localvm.commsolid.com, pid 4476
 command line: /home/rscheffel/projects/gem5_cc/build/RISCV/gem5.opt -d build/RISCV/tests/opt/quick/se/00.hello/riscv/linux/simple-atomic --stats-file 'text://stats.txt?desc=False' -re /home/rscheffel/projects/gem5_cc/tests/testing/../run.py quick/se/00.hello/riscv/linux/simple-atomic
 
 Global frequency set at 1000000000000 ticks per second
