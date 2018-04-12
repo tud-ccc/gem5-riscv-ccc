@@ -27,6 +27,7 @@
 # Authors: Robert Scheffel
 
 TARGET=bare_metal
+
 SRC=$(wildcard *.c)
 ASM=$(wildcard *.S)
 OBJ=$(ASM:.S=.o) $(SRC:.c=.o)
