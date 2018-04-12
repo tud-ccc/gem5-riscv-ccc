@@ -30,11 +30,6 @@
 
     .section    .resetVect.text , "ax"
 reset_vect:
-
-    /* set stack pointer */
-    lui     sp, %hi(__stack)
-    addi    sp, sp, %lo(__stack)
-
     j       startup
 
 

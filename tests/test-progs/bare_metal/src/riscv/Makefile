@@ -40,10 +40,12 @@ LDFLAGS=-T link.ld
 
 PREFIX=../../bin/riscv
 
-all : $(TARGET) #; $(info $$OBJ is [${OBJ}])echo hello
+all : pre-build $(TARGET)
+
+pre-build :
+	-mkdir -p $(PREFIX)
 
 $(TARGET) : $(OBJ)
-	-mkdir -p $(PREFIX)
 	$(CC) $(LDFLAGS) $^ -o $(PREFIX)/$@
 
 %.o : %.S

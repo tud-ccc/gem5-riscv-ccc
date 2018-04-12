@@ -29,9 +29,9 @@
  */
 
 MEMORY {
-    resetVect : ORIGIN = 0x200f8000, LENGTH = 0x00000010
-    irqVect :   ORIGIN = 0x200f8010, LENGTH = 0x000000f0
-    mem :       ORIGIN = 0x200f8100, LENGTH = 0x00017f00
+    resetVect : ORIGIN = 0x00000000, LENGTH = 0x00000010
+    irqVect :   ORIGIN = 0x00000010, LENGTH = 0x000000f0
+    mem :       ORIGIN = 0x00000100, LENGTH = 0x00017f00
 }
 
 ENTRY(_resetVect);
