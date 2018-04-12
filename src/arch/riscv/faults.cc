@@ -170,9 +170,7 @@ InterruptFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
         prv = 0x0;
     }
 
-    //_code = (1 << ((sizeof(MiscReg) * 8) - 1)) | _code;
-    tc->setMiscReg(cause, _code);
-    inform("size = %d\n",  (sizeof(_code)));
+    tc->setMiscReg(cause, (1UL << ((sizeof(MiscReg) * 8) - 1)) | _code);
     tc->setMiscReg(epc, tc->instAddr());
     tc->setMiscReg(MISCREG_PRV, prv);
 
