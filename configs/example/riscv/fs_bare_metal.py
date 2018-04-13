@@ -31,7 +31,7 @@ Full system script
 '''
 
 import argparse
-import fssystem
+from simple_system import SimpleSystem
 
 import m5
 from m5.objects import *
@@ -51,10 +51,10 @@ def create(args):
     cpu_class = cpu_types[args.cpu]
     mem_mode = cpu_class.memory_mode()
 
-    system = fssystem.SimpleSystem(cpu_class=cpu_class,
-                                   wfgdb=args.wait_for_gdb,
-                                   mem_mode=mem_mode,
-                                   bootloader=args.binary)
+    system = SimpleSystem(cpu_class=cpu_class,
+                          wfgdb=args.wait_for_gdb,
+                          mem_mode=mem_mode,
+                          bootloader=args.binary)
 
     # some required stuff
     mem_type = 'DDR3_1600_8x8'
