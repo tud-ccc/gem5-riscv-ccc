@@ -32,10 +32,7 @@
 
 int main()
 {
-    while (1)
-    {
-        // printf("hello world!\n");
-    }
+    while (1);
 
     return 0;
 }

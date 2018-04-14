@@ -55,6 +55,9 @@ $(TARGET) : $(OBJ)
 %.o : %.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-.PHONY: clean
+.PHONY: clean clean_objects
 clean:
 	$(RM) -rf $(PREFIX) $(OBJ)
+
+clean_objects:
+	$(RM) -rf $(OBJ)
