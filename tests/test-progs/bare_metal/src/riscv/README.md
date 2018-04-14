@@ -11,7 +11,7 @@ Assuming riscv64-unknown-elf-gcc and riscv64-unknown-elf-as are available in you
 ```
 make
 ```
-This will build an application called 'bare_metal' int the folder tests/test-progs/bare_metal/bin/riscv
+This will build an application called 'bare_metal' in the folder tests/test-progs/bare_metal/bin/riscv
 
 
 Source Code
