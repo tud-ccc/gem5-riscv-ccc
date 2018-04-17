@@ -111,6 +111,9 @@ ElfObject::tryFile(const std::string &fname, size_t len, uint8_t *data,
     } else if (ehdr.e_machine == EM_AARCH64 &&
                ehdr.e_ident[EI_CLASS] == ELFCLASS64) {
         arch = Arm64;
+    } else if (ehdr.e_machine == EM_RISCV &&
+               ehdr.e_ident[EI_CLASS] == ELFCLASS32) {
+        arch = Riscv32;
     } else if (ehdr.e_machine == EM_RISCV) {
         arch = Riscv;
     } else if (ehdr.e_machine == EM_PPC &&
