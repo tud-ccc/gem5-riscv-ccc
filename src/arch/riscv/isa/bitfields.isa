@@ -35,6 +35,8 @@
 // Bitfield definitions.
 //
 
+def bitfield ARCH <63>;
+
 def bitfield QUADRANT <1:0>;
 def bitfield OPCODE <6:2>;
 
