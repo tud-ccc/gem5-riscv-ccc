@@ -1,7 +1,7 @@
 // -*- mode:c++ -*-
 
 // Copyright (c) 2015 RISC-V Foundation
-// Copyright (c) 2016 The University of Virginia
+// Copyright (c) 2016-2017 The University of Virginia
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -27,34 +27,17 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
-// Authors: Maxwell Walter
-//          Alec Roelke
+// Authors: Robert Scheffel
 
 ////////////////////////////////////////////////////////////////////
 //
-// RISCV ISA description file.
-//
-////////////////////////////////////////////////////////////////////
-
-//Include the C++ include directives
-##include "includes.isa"
-
-////////////////////////////////////////////////////////////////////
-//
-// Namespace statement.  Everything below this line will be in the
-// RiscvISAInst namespace.
+// Integer instructions
 //
 
-namespace RiscvISA;
-
-//Include the bitfield definitions
-##include "bitfields.isa"
-
-//Include the operand_types and operand definitions
-##include "operands.isa"
-
-//Include the definitions for the instruction formats
-##include "formats/formats.isa"
-
-//Include the decoder definition
-##include "decoder/decoder.isa"
+def format R32Op(code, *opt_flags) {{
+    iop = InstObjParams(name, Name, 'RegOp', code, opt_flags)
+    header_output = Basic32Declare.subst(iop)
+    decoder_output = Basic32Constructor.subst(iop)
+    decode_block = Basic32Decode.subst(iop)
+    exec_output = Basic32Execute.subst(iop)
+}};

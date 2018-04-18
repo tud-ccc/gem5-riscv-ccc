@@ -32,9 +32,11 @@
 
 // Include the basic format
 ##include "basic.isa"
+##include "basic32.isa"
 
 // Include the type formats
 ##include "standard.isa"
+##include "standard32.isa"
 ##include "mem.isa"
 ##include "fp.isa"
 ##include "amo.isa"

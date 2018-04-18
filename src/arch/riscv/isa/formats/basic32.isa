@@ -30,31 +30,65 @@
 // Authors: Maxwell Walter
 //          Alec Roelke
 
-////////////////////////////////////////////////////////////////////
+// Basic instruction class declaration template.
+def template Basic32Declare {{
+namespace Rv32
+{
 //
-// RISCV ISA description file.
+// Static instruction class for "%(mnemonic)s".
 //
-////////////////////////////////////////////////////////////////////
+class %(class_name)s : public %(base_class)s
+{
+  public:
+    /// Constructor.
+    %(class_name)s(MachInst machInst);
+    Fault execute(ExecContext *, Trace::InstRecord *) const override;
+    using %(base_class)s::generateDisassembly;
+};
 
-//Include the C++ include directives
-##include "includes.isa"
+} // namespace Rv32
+}};
 
-////////////////////////////////////////////////////////////////////
-//
-// Namespace statement.  Everything below this line will be in the
-// RiscvISAInst namespace.
-//
+// Basic instruction class constructor template.
+def template Basic32Constructor {{
+Rv32::%(class_name)s::%(class_name)s(MachInst machInst)
+    : %(base_class)s("%(mnemonic)s", machInst, %(op_class)s)
+{
+    %(constructor)s;
+}
+}};
 
-namespace RiscvISA;
 
-//Include the bitfield definitions
-##include "bitfields.isa"
+// Basic instruction class execute method template.
+def template Basic32Execute {{
+Fault
+Rv32::%(class_name)s::execute(ExecContext *xc,
+    Trace::InstRecord *traceData) const
+{
+    Fault fault = NoFault;
 
-//Include the operand_types and operand definitions
-##include "operands.isa"
+    %(op_decl)s;
+    %(op_rd)s;
+    if (fault == NoFault) {
+        %(code)s;
+        if (fault == NoFault) {
+            %(op_wb)s;
+        }
+    }
+    return fault;
+}
+}};
 
-//Include the definitions for the instruction formats
-##include "formats/formats.isa"
+// Basic decode template.
+def template Basic32Decode {{
+    return new Rv32::%(class_name)s(machInst);
+}};
 
-//Include the decoder definition
-##include "decoder/decoder.isa"
+// The most basic instruction format...
+def format Basic32Op(code, *flags) {{
+    iop = InstObjParams(name, Name, 'RiscvStaticInst', code, flags)
+    header_output = Basic32Declare.subst(iop)
+    decoder_output = Basic32Constructor.subst(iop)
+    decode_block = Basic32Decode.subst(iop)
+    exec_output = Basic32Execute.subst(iop)
+}};
