@@ -57,20 +57,20 @@ Decoder::moreBytes(const PCState &pc, Addr fetchPC, MachInst inst)
 
     bool aligned = pc.pc() % sizeof(MachInst) == 0;
     if (aligned) {
-        emi = inst;
+        emi.all = inst;
         if (compressed(emi))
-            emi &= LowerBitMask;
+            emi.all = emi.all & LowerBitMask;
         more = !compressed(emi);
         instDone = true;
     } else {
         if (mid) {
             assert((emi & UpperBitMask) == 0);
-            emi |= (inst & LowerBitMask) << sizeof(MachInst)*4;
+            emi.all = emi.all | ((inst & LowerBitMask) << sizeof(MachInst)*4);
             mid = false;
             more = false;
             instDone = true;
         } else {
-            emi = (inst & UpperBitMask) >> sizeof(MachInst)*4;
+            emi.all = (inst & UpperBitMask) >> sizeof(MachInst)*4;
             mid = !compressed(emi);
             more = true;
             instDone = compressed(emi);

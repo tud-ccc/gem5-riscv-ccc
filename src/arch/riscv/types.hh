@@ -52,19 +52,104 @@ namespace RiscvISA
 {
 
 typedef uint32_t MachInst;
-typedef uint64_t ExtMachInst;
+//typedef uint64_t ExtMachInst;
+
+BitUnion64(ExtMachInst)
+    // extended information
+    Bitfield<63>    arch;
+    // base
+    Bitfield<1,0>   quadrant;
+    Bitfield<6,2>   opcode;
+
+    // R-Type
+    Bitfield<31,0>  all;
+    Bitfield<11,7>  rd;
+    Bitfield<14,12> funct3;
+    Bitfield<19,15> rs1;
+    Bitfield<24,20> rs2;
+    Bitfield<31,25> funct7;
+
+    // Bit shifts
+    Bitfield<30>    srtype;
+    Bitfield<24,20> shamt5;
+    Bitfield<25,20> shamt6;
+
+    // I-Type
+    Bitfield<31,20> imm12;
+
+    // S-Type
+    Bitfield<11,7>  imm5;
+    Bitfield<31,25> imm7;
+
+    // U-Type
+    Bitfield<31,12> imm20;
+
+    // SB-Type
+    Bitfield<7>     bimm12bit11;
+    Bitfield<11,8>  bimm12bits4to1;
+    Bitfield<30,25> bimm12bits10to5;
+    Bitfield<31>    immsign;
+
+    // UJ-Type
+    Bitfield<30,21> ujimmbits10to1;
+    Bitfield<20>    ujimmbit11;
+    Bitfield<19,12> ujimmbits19to12;
+
+    // System
+    Bitfield<31,20> funct12;
+    Bitfield<19,15> csrimm;
+
+    // Floating point
+    Bitfield<11,7>  fd;
+    Bitfield<19,15> fs1;
+    Bitfield<24,20> fs2;
+    Bitfield<31,27> fs3;
+
+    Bitfield<14,12> round_mode;
+    Bitfield<24,20> conv_sgn;
+    Bitfield<26,25> funct2;
+
+    // AMO
+    Bitfield<31,27> amofunct;
+    Bitfield<26>    aq;
+    Bitfield<25>    rl;
+
+    // Compressed
+    Bitfield<15,13> copcode;
+    Bitfield<12>    cfunct1;
+    Bitfield<11,10> cfunct2high;
+    Bitfield<6,5>   cfunct2low;
+    Bitfield<11,7>  rc1;
+    Bitfield<6,2>   rc2;
+    Bitfield<9,7>   rp1;
+    Bitfield<4,2>   rp2;
+    Bitfield<11,7>  fc1;
+    Bitfield<6,2>   fc2;
+    Bitfield<4,2>   fp2;
+    Bitfield<12,2>  cjumpimm;
+    Bitfield<12,5>  cimm8;
+    Bitfield<12,7>  cimm6;
+    Bitfield<6,2>   cimm5;
+    Bitfield<12,10> cimm3;
+    Bitfield<6,5>   cimm2;
+    Bitfield<12>    cimm1;
+EndBitUnion(ExtMachInst)
 
 class PCState : public GenericISA::UPCState<MachInst>
 {
   private:
     bool _compressed;
+    bool _rv32;
 
   public:
-    PCState() : UPCState() { _compressed = false; }
-    PCState(Addr val) : UPCState(val) { _compressed = false; }
+    PCState() : UPCState(), _compressed(false), _rv32(false) {}
+    PCState(Addr val) : UPCState(val), _compressed(false), _rv32(false) {}
 
     void compressed(bool c) { _compressed = c; }
     bool compressed() { return _compressed; }
+
+    void rv32(bool val) { _rv32 = val; }
+    bool rv32() { return _rv32; }
 
     bool
     branching() const
