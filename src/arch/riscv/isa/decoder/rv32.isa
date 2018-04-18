@@ -49,6 +49,44 @@ decode QUADRANT default Unknown::unknown() {
                         Rd_sw = Rs1_sw - Rs2_sw;
                     }});
                 }
+                0x1: decode FUNCT7 {
+                    0x0: sll({{
+                        Rd_uw = Rs1_uw << Rs2<5:0>;
+                    }});
+                }
+                0x2: decode FUNCT7 {
+                    0x0: slt({{
+                        Rd = (Rs1_sw < Rs2_sw) ? 1 : 0;
+                    }});
+                }
+                0x3: decode FUNCT7 {
+                    0x0: sltu({{
+                        Rd = (Rs1_uw < Rs2_uw) ? 1 : 0;
+                    }});
+                }
+                0x4: decode FUNCT7 {
+                    0x0: xor({{
+                        Rd_uw = Rs1_uw ^ Rs2_uw;
+                    }});
+                }
+                0x5: decode FUNCT7 {
+                    0x0: srl({{
+                        Rd_uw = Rs1_uw >> Rs2<5:0>;
+                    }});
+                    0x20: sra({{
+                        Rd_sw = Rs1_sw >> Rs2<5:0>;
+                    }});
+                }
+                0x6: decode FUNCT7 {
+                    0x0: or({{
+                        Rd_uw = Rs1_uw | Rs2_uw;
+                    }});
+                }
+                0x7: decode FUNCT7 {
+                    0x0: and({{
+                        Rd_uw = Rs1_uw & Rs2_uw;
+                    }});
+                }
             }
         }
     }
