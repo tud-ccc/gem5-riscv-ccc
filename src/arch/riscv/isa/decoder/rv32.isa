@@ -155,7 +155,42 @@ decode QUADRANT default Unknown::unknown() {
                     } else {
                         NPC_uw = NPC_uw;
                     }
-                }});
+                }}, IsDirectControl, IsCondControl);
+                0x1: bne({{
+                    if (Rs1_uw != Rs2_uw) {
+                        NPC_uw = PC_uw + imm;
+                    } else {
+                        NPC_uw = NPC_uw;
+                    }
+                }}, IsDirectControl, IsCondControl);
+                0x4: blt({{
+                    if (Rs1_sw < Rs2_sw) {
+                        NPC_uw = PC_uw + imm;
+                    } else {
+                        NPC_uw = NPC_uw;
+                    }
+                }}, IsDirectControl, IsCondControl);
+                0x5: bge({{
+                    if (Rs1_sw >= Rs2_sw) {
+                        NPC_uw = PC_uw + imm;
+                    } else {
+                        NPC_uw = NPC_uw;
+                    }
+                }}, IsDirectControl, IsCondControl);
+                0x6: bltu({{
+                    if (Rs1_uw < Rs2_uw) {
+                        NPC_uw = PC_uw + imm;
+                    } else {
+                        NPC_uw = NPC_uw;
+                    }
+                }}, IsDirectControl, IsCondControl);
+                0x7: bgeu({{
+                    if (Rs1_uw >= Rs2_uw) {
+                        NPC_uw = PC_uw + imm;
+                    } else {
+                        NPC_uw = NPC_uw;
+                    }
+                }}, IsDirectControl, IsCondControl);
             }
         }
     }
