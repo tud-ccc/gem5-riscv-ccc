@@ -53,6 +53,8 @@ class RiscvSystem : public System
     bool _isBareMetal;
     // entry point for simulation
     Addr _resetVect;
+    // checker, if architecture is 32 bit wide
+    bool _rv32;
 
   public:
     typedef RiscvSystemParams Params;
@@ -61,15 +63,17 @@ class RiscvSystem : public System
 
     // return reset vector
     Addr resetVect() const { return _resetVect; }
-
     // return bare metal checker
     bool isBareMetal() const { return _isBareMetal; }
+    // return architecture type
+    bool rv32() const { return _rv32; }
 
     // return reset address of thread context
     static Addr resetVect(ThreadContext* tc);
-
     // return bare metal checker of thread context
     static bool isBareMetal(ThreadContext* tc);
+    // return architecture type of thread context
+    static bool rv32(ThreadContext* tc);
 
     virtual bool breakpoint();
 

@@ -55,6 +55,8 @@ Decoder::moreBytes(const PCState &pc, Addr fetchPC, MachInst inst)
     DPRINTF(Decode, "Requesting bytes 0x%08x from address %#x\n", inst,
             fetchPC);
 
+    emi.arch = pc.rv32();
+
     bool aligned = pc.pc() % sizeof(MachInst) == 0;
     if (aligned) {
         emi.all = inst;

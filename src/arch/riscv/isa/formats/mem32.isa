@@ -239,7 +239,8 @@ def LoadStore32Base(name, Name, offset_code, ea_code, memacc_code, mem_flags,
         completeAccTemplate.subst(iop))
 }};
 
-def format Load32(memacc_code, ea_code = {{EA = Rs1_uw + offset;}},
+def format Load32(memacc_code,
+        ea_code = {{EA = Rs1_uw + offset;}},
         offset_code={{offset = sext<12>(IMM12);}},
         mem_flags=[], inst_flags=[]) {{
     (header_output, decoder_output, decode_block, exec_output) = \
@@ -247,7 +248,8 @@ def format Load32(memacc_code, ea_code = {{EA = Rs1_uw + offset;}},
         mem_flags, inst_flags, 'Load', exec_template_base='Load32')
 }};
 
-def format Store32(memacc_code, ea_code={{EA = Rs1_uw + offset;}},
+def format Store32(memacc_code,
+        ea_code={{EA = mbits<uint32_t>(Rs1_uw + offset, 31, 0);}},
         offset_code={{offset = sext<12>(IMM5 | (IMM7 << 5));}},
         mem_flags=[], inst_flags=[]) {{
     (header_output, decoder_output, decode_block, exec_output) = \

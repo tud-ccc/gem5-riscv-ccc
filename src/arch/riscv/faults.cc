@@ -73,6 +73,8 @@ void Reset::invoke(ThreadContext *tc, const StaticInstPtr &inst)
 
     // Advance the PC to the implementation-defined reset vector
     PCState pc = RiscvSystem::resetVect(tc);
+    if (RiscvSystem::rv32(tc))
+        pc.rv32(true);
     tc->pcState(pc);
 }
 

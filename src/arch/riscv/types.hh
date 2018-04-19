@@ -149,7 +149,7 @@ class PCState : public GenericISA::UPCState<MachInst>
     bool compressed() { return _compressed; }
 
     void rv32(bool val) { _rv32 = val; }
-    bool rv32() { return _rv32; }
+    bool rv32() const { return _rv32; }
 
     bool
     branching() const

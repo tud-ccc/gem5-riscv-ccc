@@ -48,7 +48,8 @@ using namespace LittleEndianGuest;
 RiscvSystem::RiscvSystem(Params *p)
     : System(p),
       _isBareMetal(p->bare_metal),
-      _resetVect(p->resetVect)
+      _resetVect(p->resetVect),
+      _rv32(false)
 {
 }
 
@@ -72,6 +73,15 @@ bool
 RiscvSystem::isBareMetal(ThreadContext* tc)
 {
     return dynamic_cast<RiscvSystem *>(tc->getSystemPtr())->isBareMetal();
+}
+
+/**
+ * Return true, if the architecture uses 32 bit address space
+ */
+bool
+RiscvSystem::rv32(ThreadContext* tc)
+{
+    return dynamic_cast<RiscvSystem *>(tc->getSystemPtr())->rv32();
 }
 
 Addr

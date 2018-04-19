@@ -52,6 +52,10 @@ BareMetalRiscvSystem::BareMetalRiscvSystem(Params *p)
         panic("Could not load bootloader symbols\n");
     }
 
+    // check architecture
+    if (bootloader->getArch() == ObjectFile::Riscv32)
+        _rv32 = true;
+
     _resetVect = bootloader->entryPoint();
 }
 

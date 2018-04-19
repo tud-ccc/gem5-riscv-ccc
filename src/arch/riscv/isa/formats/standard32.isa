@@ -198,8 +198,8 @@ def format B32Op(code, *opt_flags) {{
 
 def format U32Op(code, *opt_flags) {{
     regs = ['_destRegIdx[0]']
-    iop = InstObjParams(name, Name, 'ImmOp<int32_t>',
-        {'code': code, 'imm_code': 'imm = sext<20>(IMM20) << 12;',
+    iop = InstObjParams(name, Name, 'ImmOp<uint32_t>',
+        {'code': code, 'imm_code': 'imm = IMM20 << 12;',
          'regs': ','.join(regs)}, opt_flags)
     header_output = Imm32Declare.subst(iop)
     decoder_output = Imm32Constructor.subst(iop)
@@ -217,7 +217,7 @@ def format J32Op(code, *opt_flags) {{
                """
     pc = 'pc.set(pc.pc() + imm);'
     regs = ['_destRegIdx[0]']
-    iop = InstObjParams(name, Name, 'ImmOp<int32_t>',
+    iop = InstObjParams(name, Name, 'ImmOp<uint32_t>',
         {'code': code, 'imm_code': imm_code,
          'regs': ','.join(regs)}, opt_flags)
     header_output = Branch32Declare.subst(iop)
