@@ -58,81 +58,81 @@ class %(class_name)s : public %(base_class)s
 
 
 def template LoadStore32Constructor {{
-    Rv32::%(class_name)s::%(class_name)s(ExtMachInst machInst):
-        %(base_class)s("%(mnemonic)s", machInst, %(op_class)s)
-    {
-        %(constructor)s;
-        %(offset_code)s;
-    }
+Rv32::%(class_name)s::%(class_name)s(ExtMachInst machInst):
+    %(base_class)s("%(mnemonic)s", machInst, %(op_class)s)
+{
+    %(constructor)s;
+    %(offset_code)s;
+}
 }};
 
 def template Load32Execute {{
-    Fault
-    Rv32::%(class_name)s::execute(
-        ExecContext *xc, Trace::InstRecord *traceData) const
-    {
-        Addr EA;
-        Fault fault = NoFault;
+Fault
+Rv32::%(class_name)s::execute(
+    ExecContext *xc, Trace::InstRecord *traceData) const
+{
+    Addr EA;
+    Fault fault = NoFault;
 
-        %(op_decl)s;
-        %(op_rd)s;
-        %(ea_code)s;
+    %(op_decl)s;
+    %(op_rd)s;
+    %(ea_code)s;
 
-        if (fault == NoFault) {
-            fault = readMemAtomic(xc, traceData, EA, Mem, memAccessFlags);
-            %(memacc_code)s;
-        }
-
-        if (fault == NoFault) {
-            %(op_wb)s;
-        }
-
-        return fault;
+    if (fault == NoFault) {
+        fault = readMemAtomic(xc, traceData, EA, Mem, memAccessFlags);
+        %(memacc_code)s;
     }
+
+    if (fault == NoFault) {
+        %(op_wb)s;
+    }
+
+    return fault;
+}
 }};
 
 def template Load32InitiateAcc {{
-    Fault
-    Rv32::%(class_name)s::initiateAcc(ExecContext *xc,
-        Trace::InstRecord *traceData) const
-    {
-        Addr EA;
-        Fault fault = NoFault;
+Fault
+Rv32::%(class_name)s::initiateAcc(ExecContext *xc,
+    Trace::InstRecord *traceData) const
+{
+    Addr EA;
+    Fault fault = NoFault;
 
-        %(op_src_decl)s;
-        %(op_rd)s;
-        %(ea_code)s;
+    %(op_src_decl)s;
+    %(op_rd)s;
+    %(ea_code)s;
 
-        if (fault == NoFault) {
-            fault = initiateMemRead(xc, traceData, EA, Mem, memAccessFlags);
-        }
-
-        return fault;
+    if (fault == NoFault) {
+        fault = initiateMemRead(xc, traceData, EA, Mem, memAccessFlags);
     }
+
+    return fault;
+}
 }};
 
 def template Load32CompleteAcc {{
-    Fault
-    Rv32::%(class_name)s::completeAcc(PacketPtr pkt, ExecContext *xc,
-        Trace::InstRecord *traceData) const
-    {
-        Fault fault = NoFault;
+Fault
+Rv32::%(class_name)s::completeAcc(PacketPtr pkt, ExecContext *xc,
+    Trace::InstRecord *traceData) const
+{
+    Fault fault = NoFault;
 
-        %(op_decl)s;
-        %(op_rd)s;
+    %(op_decl)s;
+    %(op_rd)s;
 
-        getMem(pkt, Mem, traceData);
+    getMem(pkt, Mem, traceData);
 
-        if (fault == NoFault) {
-            %(memacc_code)s;
-        }
-
-        if (fault == NoFault) {
-            %(op_wb)s;
-        }
-
-        return fault;
+    if (fault == NoFault) {
+        %(memacc_code)s;
     }
+
+    if (fault == NoFault) {
+        %(op_wb)s;
+    }
+
+    return fault;
+}
 }};
 
 let {{

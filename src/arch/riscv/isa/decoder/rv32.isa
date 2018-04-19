@@ -144,5 +144,19 @@ decode QUADRANT default Unknown::unknown() {
                 }
             }
         }
+        0x0d: U32Op::lui({{
+            Rd_uw = (uint32_t)imm;
+        }});
+        0x18: decode FUNCT3 {
+            format B32Op {
+                0x0: beq({{
+                    if (Rs1_uw == Rs2_uw) {
+                        NPC_uw = PC_uw + imm;
+                    } else {
+                        NPC_uw = NPC_uw;
+                    }
+                }});
+            }
+        }
     }
 }
