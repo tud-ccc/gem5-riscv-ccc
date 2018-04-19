@@ -206,3 +206,38 @@ def format U32Op(code, *opt_flags) {{
     decode_block = Basic32Decode.subst(iop)
     exec_output = Imm32Execute.subst(iop)
 }};
+
+def format J32Op(code, *opt_flags) {{
+    imm_code = """
+                imm = UJIMMBITS10TO1 << 1   |
+                      UJIMMBIT11 << 11      |
+                      UJIMMBITS19TO12 << 12 |
+                      IMMSIGN << 20;
+                imm = sext<21>(imm);
+               """
+    pc = 'pc.set(pc.pc() + imm);'
+    regs = ['_destRegIdx[0]']
+    iop = InstObjParams(name, Name, 'ImmOp<int32_t>',
+        {'code': code, 'imm_code': imm_code,
+         'regs': ','.join(regs)}, opt_flags)
+    header_output = Branch32Declare.subst(iop)
+    decoder_output = Imm32Constructor.subst(iop)
+    decode_block = Basic32Decode.subst(iop)
+    exec_output = Branch32Execute.subst(iop)
+}};
+
+def format System32Op(code, *opt_flags) {{
+    iop = InstObjParams(name, Name, 'SystemOp', code, opt_flags)
+    header_output = Basic32Declare.subst(iop)
+    decoder_output = Basic32Constructor.subst(iop)
+    decode_block = Basic32Decode.subst(iop)
+    exec_output = Basic32Execute.subst(iop)
+}};
+
+def format CSR32Op(code, *opt_flags) {{
+    iop = InstObjParams(name, Name, 'CSROp', code, opt_flags)
+    header_output = Basic32Declare.subst(iop)
+    decoder_output = Basic32Constructor.subst(iop)
+    decode_block = Basic32Decode.subst(iop)
+    exec_output = Basic32Execute.subst(iop)
+}};

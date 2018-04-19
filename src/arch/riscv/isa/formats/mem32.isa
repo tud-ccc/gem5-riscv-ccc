@@ -135,6 +135,77 @@ Rv32::%(class_name)s::completeAcc(PacketPtr pkt, ExecContext *xc,
 }
 }};
 
+def template Store32Execute {{
+Fault
+Rv32::%(class_name)s::execute(ExecContext *xc,
+    Trace::InstRecord *traceData) const
+{
+    Addr EA;
+    Fault fault = NoFault;
+
+    %(op_decl)s;
+    %(op_rd)s;
+    %(ea_code)s;
+
+    if (fault == NoFault) {
+        %(memacc_code)s;
+    }
+
+    if (fault == NoFault) {
+        fault = writeMemAtomic(xc, traceData, Mem, EA, memAccessFlags,
+            nullptr);
+    }
+
+    if (fault == NoFault) {
+        %(postacc_code)s;
+    }
+
+    if (fault == NoFault) {
+        %(op_wb)s;
+    }
+
+    return fault;
+}
+}};
+
+def template Store32InitiateAcc {{
+Fault
+Rv32::%(class_name)s::initiateAcc(ExecContext *xc,
+    Trace::InstRecord *traceData) const
+{
+    Addr EA;
+    Fault fault = NoFault;
+
+    %(op_decl)s;
+    %(op_rd)s;
+    %(ea_code)s;
+
+    if (fault == NoFault) {
+        %(memacc_code)s;
+    }
+
+    if (fault == NoFault) {
+        fault = writeMemTiming(xc, traceData, Mem, EA,
+            memAccessFlags, nullptr);
+    }
+
+    if (fault == NoFault) {
+        %(op_wb)s;
+    }
+
+    return fault;
+}
+}};
+
+def template Store32CompleteAcc {{
+Fault
+Rv32::%(class_name)s::completeAcc(PacketPtr pkt, ExecContext *xc,
+    Trace::InstRecord *traceData) const
+{
+    return NoFault;
+}
+}};
+
 let {{
 def LoadStore32Base(name, Name, offset_code, ea_code, memacc_code, mem_flags,
         inst_flags, base_class, postacc_code='', decode_template=Basic32Decode,
@@ -168,10 +239,18 @@ def LoadStore32Base(name, Name, offset_code, ea_code, memacc_code, mem_flags,
         completeAccTemplate.subst(iop))
 }};
 
-def format Load32(memacc_code, ea_code = {{EA = Rs1 + offset;}},
+def format Load32(memacc_code, ea_code = {{EA = Rs1_uw + offset;}},
         offset_code={{offset = sext<12>(IMM12);}},
         mem_flags=[], inst_flags=[]) {{
     (header_output, decoder_output, decode_block, exec_output) = \
         LoadStore32Base(name, Name, offset_code, ea_code, memacc_code,
         mem_flags, inst_flags, 'Load', exec_template_base='Load32')
+}};
+
+def format Store32(memacc_code, ea_code={{EA = Rs1_uw + offset;}},
+        offset_code={{offset = sext<12>(IMM5 | (IMM7 << 5));}},
+        mem_flags=[], inst_flags=[]) {{
+    (header_output, decoder_output, decode_block, exec_output) = \
+        LoadStore32Base(name, Name, offset_code, ea_code, memacc_code,
+        mem_flags, inst_flags, 'Store', exec_template_base='Store32')
 }};

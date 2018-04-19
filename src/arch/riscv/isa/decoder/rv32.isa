@@ -35,7 +35,9 @@
 //
 
 decode QUADRANT default Unknown::unknown() {
+
     0x3: decode OPCODE {
+
         0x00: decode FUNCT3 {
             format Load32 {
                 0x0: lb({{
@@ -55,6 +57,16 @@ decode QUADRANT default Unknown::unknown() {
                 }});
             }
         }
+
+        0x03: decode FUNCT3 {
+            format I32Op {
+                0x0: fence({{
+                }}, uint32_t, IsNonSpeculative, IsMemBarrier, No_OpClass);
+                0x1: fence_i({{
+                }}, uint32_t, IsNonSpeculative, IsSerializeAfter, No_OpClass);
+            }
+        }
+
         0x04: decode FUNCT3 {
             format I32Op {
                 0x0: addi({{
@@ -88,9 +100,25 @@ decode QUADRANT default Unknown::unknown() {
                 }}, uint32_t);
             }
         }
+
         0x05: U32Op::auipc({{
             Rd_uw = PC_uw + imm;
         }});
+
+        0x08: decode FUNCT3 {
+            format Store32 {
+                0x0: sb({{
+                    Mem_ub = Rs2_ub;
+                }});
+                0x1: sh({{
+                    Mem_uh = Rs2_uh;
+                }});
+                0x2: sw({{
+                    Mem_uw = Rs2_uw;
+                }});
+            }
+        }
+
         0x0c: decode FUNCT3 {
             format R32Op {
                 0x0: decode FUNCT7 {
@@ -144,9 +172,11 @@ decode QUADRANT default Unknown::unknown() {
                 }
             }
         }
+
         0x0d: U32Op::lui({{
             Rd_uw = (uint32_t)imm;
         }});
+
         0x18: decode FUNCT3 {
             format B32Op {
                 0x0: beq({{
@@ -191,6 +221,99 @@ decode QUADRANT default Unknown::unknown() {
                         NPC_uw = NPC_uw;
                     }
                 }}, IsDirectControl, IsCondControl);
+            }
+        }
+
+        0x1b: J32Op::jal({{
+            Rd_uw = NPC_uw;
+            NPC_uw = PC_uw + imm;
+        }}, IsDirectControl, IsUncondControl, IsCall);
+
+        0x1c: decode FUNCT3 {
+            format System32Op {
+                0x0: decode FUNCT12 {
+                    0x0: ecall({{
+                        fault = make_shared<SyscallFault>();
+                    }}, IsSerializeAfter, IsNonSpeculative, IsSyscall,
+                        No_OpClass);
+                    0x1: ebreak({{
+                        fault = make_shared<BreakpointFault>();
+                    }}, IsSerializeAfter, IsNonSpeculative, No_OpClass);
+                    0x2: uret({{
+                        USTATUS status = xc->readMiscReg(MISCREG_USTATUS);
+                        // xie -> xpie
+                        status.uie = status.upie;
+                        // xpie -> 1
+                        status.upie = 1;
+                        xc->setMiscReg(MISCREG_USTATUS, status);
+                        // restore process counter
+                        PCState pc = xc->readMiscReg(MISCREG_UEPC);
+                        xc->pcState(pc)
+                    }}, IsReturn);
+                    0x102: sret({{
+                        SSTATUS status = xc->readMiscReg(MISCREG_SSTATUS);
+                        // change priv lvl to xpp
+                        xc->setMiscReg(MISCREG_PRV, status.spp);
+                        // xie -> xpie
+                        status.sie = status.spie;
+                        // xpie -> 1
+                        status.spie = 1;
+                        // xpp -> U (0)
+                        status.spp = 0;
+                        xc->setMiscReg(MISCREG_SSTATUS, status);
+                        // restore process counter
+                        PCState pc = xc->readMiscReg(MISCREG_SEPC);
+                        xc->pcState(pc)
+                    }}, IsReturn);
+                    0x302: mret({{
+                        MSTATUS status = xc->readMiscReg(MISCREG_MSTATUS);
+                        // change priv lvl to xpp
+                        xc->setMiscReg(MISCREG_PRV, status.mpp);
+                        // xie -> xpie
+                        status.mie = status.mpie;
+                        // xpie -> 1
+                        status.mpie = 1;
+                        // xpp -> U (0)
+                        status.mpp = 0;
+                        xc->setMiscReg(MISCREG_MSTATUS, status);
+                        // restore process counter
+                        NPC = xc->readMiscReg(MISCREG_MEPC);
+                    }}, IsReturn);
+                }
+            }
+            format CSR32Op {
+                0x1: csrrw({{
+                    Rd_uw = xc->readMiscReg(csr);
+                    xc->setMiscReg(csr, Rs1_uw);
+                }}, IsNonSpeculative, No_OpClass);
+                0x2: csrrs({{
+                    Rd_uw = xc->readMiscReg(csr);
+                    if (Rs1_uw != 0) {
+                        xc->setMiscReg(csr, Rd_uw | Rs1_uw);
+                    }
+                }}, IsNonSpeculative, No_OpClass);
+                0x3: csrrc({{
+                    Rd_uw = xc->readMiscReg(csr);
+                    if (Rs1_uw != 0) {
+                        xc->setMiscReg(csr, Rd_uw & ~Rs1_uw);
+                    }
+                }}, IsNonSpeculative, No_OpClass);
+                0x5: csrrwi({{
+                    Rd_uw = xc->readMiscReg(csr);
+                    xc->setMiscReg(csr, uimm);
+                }}, IsNonSpeculative, No_OpClass);
+                0x6: csrrsi({{
+                    Rd_uw = xc->readMiscReg(csr);
+                    if (uimm != 0) {
+                        xc->setMiscReg(csr, Rd_uw | uimm);
+                    }
+                }}, IsNonSpeculative, No_OpClass);
+                0x7: csrrci({{
+                    Rd_uw = xc->readMiscReg(csr);
+                    if (uimm != 0) {
+                        xc->setMiscReg(csr, Rd_uw & ~uimm);
+                    }
+                }}, IsNonSpeculative, No_OpClass);
             }
         }
     }
