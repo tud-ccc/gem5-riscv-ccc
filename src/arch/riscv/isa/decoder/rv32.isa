@@ -36,6 +36,61 @@
 
 decode QUADRANT default Unknown::unknown() {
     0x3: decode OPCODE {
+        0x00: decode FUNCT3 {
+            format Load32 {
+                0x0: lb({{
+                    Rd_sw = Mem_sb;
+                }});
+                0x1: lh({{
+                    Rd_sw = Mem_sh;
+                }});
+                0x2: lw({{
+                    Rd_sw = Mem_sw;
+                }});
+                0x4: lbu({{
+                    Rd_sw = Mem_ub;
+                }});
+                0x5: lhu({{
+                    Rd_sw = Mem_uh;
+                }});
+            }
+        }
+        0x04: decode FUNCT3 {
+            format I32Op {
+                0x0: addi({{
+                    Rd_sw = Rs1_sw + imm;
+                }});
+                0x1: slli({{
+                    Rd_uw = Rs1_uw << SHAMT5;
+                }});
+                0x2: slti({{
+                    Rd_uw = (Rs1_sw < imm) ? 1 : 0;
+                }});
+                0x3: sltiu({{
+                    Rd_uw = (Rs1_uw < imm) ? 1 : 0;
+                }}, uint32_t);
+                0x4: xori({{
+                    Rd_uw = Rs1_uw ^ imm;
+                }}, uint32_t);
+                0x5: decode SRTYPE {
+                    0x0: srli({{
+                        Rd_uw = Rs1 >> SHAMT5;
+                    }});
+                    0x1: srai({{
+                        Rd_sw = Rs1_sw >> SHAMT5;
+                    }});
+                }
+                0x6: ori({{
+                    Rd_uw = Rs1_uw | imm;
+                }}, uint32_t);
+                0x7: andi({{
+                    Rd_uw = Rs1_uw & imm;
+                }}, uint32_t);
+            }
+        }
+        0x05: U32Op::auipc({{
+            Rd_uw = PC_uw + imm;
+        }});
         0x0c: decode FUNCT3 {
             format R32Op {
                 0x0: decode FUNCT7 {
@@ -56,7 +111,7 @@ decode QUADRANT default Unknown::unknown() {
                 }
                 0x2: decode FUNCT7 {
                     0x0: slt({{
-                        Rd = (Rs1_sw < Rs2_sw) ? 1 : 0;
+                        Rd_uw = (Rs1_sw < Rs2_sw) ? 1 : 0;
                     }});
                 }
                 0x3: decode FUNCT7 {

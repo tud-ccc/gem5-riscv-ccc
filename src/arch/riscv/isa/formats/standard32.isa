@@ -113,3 +113,14 @@ def format I32Op(code, imm_type='int32_t', *opt_flags) {{
     decode_block = Basic32Decode.subst(iop)
     exec_output = Imm32Execute.subst(iop)
 }};
+
+def format U32Op(code, *opt_flags) {{
+    regs = ['_destRegIdx[0]']
+    iop = InstObjParams(name, Name, 'ImmOp<int32_t>',
+        {'code': code, 'imm_code': 'imm = sext<20>(IMM20) << 12;',
+         'regs': ','.join(regs)}, opt_flags)
+    header_output = Imm32Declare.subst(iop)
+    decoder_output = Imm32Constructor.subst(iop)
+    decode_block = Basic32Decode.subst(iop)
+    exec_output = Imm32Execute.subst(iop)
+}};

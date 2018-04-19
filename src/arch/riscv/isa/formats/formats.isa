@@ -38,6 +38,7 @@
 ##include "standard.isa"
 ##include "standard32.isa"
 ##include "mem.isa"
+##include "mem32.isa"
 ##include "fp.isa"
 ##include "amo.isa"
 
