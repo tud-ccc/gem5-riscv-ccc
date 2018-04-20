@@ -35,8 +35,8 @@
 //
 
 decode ARCH default Unknown::unknown() {
-    0:
-    ##include "rv64.isa"
+//    0:
+//    ##include "rv64.isa"
     1:
     ##include "rv32.isa"
 }

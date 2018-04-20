@@ -71,7 +71,7 @@ decode QUADRANT default Unknown::unknown() {
             format I32Op {
                 0x0: addi({{
                     Rd_sw = Rs1_sw + imm;
-                }});
+                }}, uint32_t);
                 0x1: slli({{
                     Rd_uw = Rs1_uw << SHAMT5;
                 }});
@@ -224,6 +224,13 @@ decode QUADRANT default Unknown::unknown() {
             }
         }
 
+        0x19: decode FUNCT3 {
+            0x0: Jump32::jalr({{
+                Rd_uw = NPC_uw;
+                NPC_uw = (imm + Rs1_uw) & (~0x1);
+            }}, IsIndirectControl, IsUncondControl, IsCall);
+        }
+
         0x1b: J32Op::jal({{
             Rd_uw = NPC_uw;
             NPC_uw = PC_uw + imm;
@@ -247,8 +254,7 @@ decode QUADRANT default Unknown::unknown() {
                         status.upie = 1;
                         xc->setMiscReg(MISCREG_USTATUS, status);
                         // restore process counter
-                        PCState pc = xc->readMiscReg(MISCREG_UEPC);
-                        xc->pcState(pc)
+                        NPC_uw = xc->readMiscReg(MISCREG_UEPC);
                     }}, IsReturn);
                     0x102: sret({{
                         SSTATUS status = xc->readMiscReg(MISCREG_SSTATUS);
@@ -262,8 +268,7 @@ decode QUADRANT default Unknown::unknown() {
                         status.spp = 0;
                         xc->setMiscReg(MISCREG_SSTATUS, status);
                         // restore process counter
-                        PCState pc = xc->readMiscReg(MISCREG_SEPC);
-                        xc->pcState(pc)
+                        NPC_uw = xc->readMiscReg(MISCREG_SEPC)
                     }}, IsReturn);
                     0x302: mret({{
                         MSTATUS status = xc->readMiscReg(MISCREG_MSTATUS);
@@ -277,7 +282,7 @@ decode QUADRANT default Unknown::unknown() {
                         status.mpp = 0;
                         xc->setMiscReg(MISCREG_MSTATUS, status);
                         // restore process counter
-                        NPC = xc->readMiscReg(MISCREG_MEPC);
+                        NPC_uw = xc->readMiscReg(MISCREG_MEPC);
                     }}, IsReturn);
                 }
             }

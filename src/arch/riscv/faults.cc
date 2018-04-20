@@ -136,19 +136,6 @@ SyscallFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
     MiscReg pp = tc->readMiscRegNoEffect(MISCREG_PRV);
     MSTATUS status = tc->readMiscReg(MISCREG_MSTATUS);
 
-    // // delegate traps that occur in s or u mode to s mode
-    // if (bits(tc->readMiscReg(MISCREG_PRV), 1) == 0
-    //     && bits(tc->readMiscReg(MISCREG_MEDELEG), _code) != 0) {
-    //     cause = MISCREG_SCAUSE;
-    //     epc = MISCREG_SEPC;
-    // }
-    // // delegate traps that occur in u mode to u mode
-    // if (tc->readMiscReg(MISCREG_PRV) == 0
-    //     && bits(tc->readMiscReg(MISCREG_SEDELEG), _code) != 0) {
-    //     cause = MISCREG_UCAUSE;
-    //     epc = MISCREG_UEPC;
-    // }
-
     tc->setMiscReg(cause, _code);
     tc->setMiscReg(epc, tc->instAddr());
     tc->setMiscReg(MISCREG_PRV, prv);
@@ -159,8 +146,8 @@ SyscallFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
     status.mie = 0;
     tc->setMiscReg(MISCREG_MSTATUS, status);
 
-    PCState pc;
-    pc = tc->readMiscReg(MISCREG_MTVEC);
+    PCState pc = tc->pcState();
+    pc.set(tc->readMiscReg(MISCREG_MTVEC));
     tc->pcState(pc);
 }
 
@@ -173,21 +160,6 @@ InterruptFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
     MiscReg pp = tc->readMiscRegNoEffect(MISCREG_PRV);
     MSTATUS status = tc->readMiscReg(MISCREG_MSTATUS);
 
-    // // delegate traps that occur in s or u mode to s mode
-    // if (bits(tc->readMiscReg(MISCREG_PRV), 1) == 0
-    //     && bits(tc->readMiscReg(MISCREG_MIDELEG), _code) != 0) {
-    //     cause = MISCREG_SCAUSE;
-    //     epc = MISCREG_SEPC;
-    //     prv = 0x1;
-    // }
-    // // delegate traps that occur in u mode to u mode
-    // if (tc->readMiscReg(MISCREG_PRV) == 0
-    //     && bits(tc->readMiscReg(MISCREG_SIDELEG), _code) != 0) {
-    //     cause = MISCREG_UCAUSE;
-    //     epc = MISCREG_UEPC;
-    //     prv = 0x0;
-    // }
-
     tc->setMiscReg(cause, (1UL << ((sizeof(MiscReg) * 8) - 1)) | _code);
     tc->setMiscReg(epc, tc->instAddr());
     tc->setMiscReg(MISCREG_PRV, prv);
@@ -198,7 +170,7 @@ InterruptFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
     status.mie = 0;
     tc->setMiscReg(MISCREG_MSTATUS, status);
 
-    PCState pc;
-    pc = tc->readMiscReg(MISCREG_MTVEC);
+    PCState pc = tc->pcState();
+    pc.set(tc->readMiscReg(MISCREG_MTVEC));
     tc->pcState(pc);
 }

@@ -72,23 +72,46 @@ Tick
 TimerCpu::write(PacketPtr pkt)
 {
     assert(pkt->getAddr() >= pioAddr && pkt->getAddr() < pioAddr + pioSize);
-    assert(pkt->getSize() == 8);
 
     Addr addr = pkt->getAddr() - pioAddr;
-    switch (addr) {
-        case Time:
-            /** TODO: should not be writable, right? */
-            DPRINTF(Timer, "Ignore write on TimerCpu r-o time register.\n");
+    switch (pkt->getSize()) {
+        case 4:
+            switch (addr) {
+                case Time:
+                    break;
+                case (Time + 4):
+                    break;
+                case TimeCmp:
+                    break;
+                case (TimeCmp + 4):
+                    break;
+                default:
+                    panic("Tried to read TimerCpu at offset %#x\n", addr);
+                    break;
+            }
             break;
-        case TimeCmp:
-            timecmp = pkt->get<uint64_t>();
-            // clear mtip bit
-            cpu->clearInterrupt(0, 7, 0);
-            startTimer(timecmp);
-            break;
+        case 8:
+            switch (addr) {
+                case Time:
+                    /** TODO: should not be writable, right? */
+                    DPRINTF(Timer,
+                        "Ignore write on TimerCpu r-o time register.\n");
+                    break;
+                case TimeCmp:
+                    timecmp = pkt->get<uint64_t>();
+                    // clear mtip bit
+                    cpu->clearInterrupt(0, 7, 0);
+                    startTimer(timecmp);
+                    break;
+                default:
+                    panic("Tried to read TimerCpu at offset %#x\n", addr);
+                    break;
+            }
         default:
-            panic("Tried to read TimerCpu at offset %#x\n", addr);
+            panic("Unsupported size for write access on TimerCpu");
+            break;
     }
+}
 
     pkt->makeAtomicResponse();
     return pioDelay;
