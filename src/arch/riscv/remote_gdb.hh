@@ -82,7 +82,29 @@ class RemoteGDB : public BaseRemoteGDB
         }
     };
 
+    class Riscv32GdbRegCache : public BaseGdbRegCache
+    {
+        using BaseGdbRegCache::BaseGdbRegCache;
+      private:
+        struct {
+            uint32_t gpr[NumIntArchRegs];
+            uint32_t pc;
+        } __attribute__((__packed__)) r;
+      public:
+        char *data() const { return (char *)&r; }
+        size_t size() const { return sizeof(r); }
+        void getRegs(ThreadContext*);
+        void setRegs(ThreadContext*) const;
+
+        const std::string
+        name() const
+        {
+            return gdb->name() + ".Riscv32GdbRegCache";
+        }
+    };
+
     RiscvGdbRegCache regCache;
+    Riscv32GdbRegCache regCache32;
 
   public:
     RemoteGDB(System *_system, ThreadContext *tc, int _port);

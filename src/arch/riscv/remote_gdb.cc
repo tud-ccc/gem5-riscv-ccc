@@ -140,6 +140,7 @@
 #include <string>
 
 #include "arch/riscv/registers.hh"
+#include "arch/riscv/utility.hh"
 #include "cpu/thread_state.hh"
 #include "debug/GDBAcc.hh"
 #include "mem/page_table.hh"
@@ -149,7 +150,7 @@ using namespace std;
 using namespace RiscvISA;
 
 RemoteGDB::RemoteGDB(System *_system, ThreadContext *tc, int _port)
-    : BaseRemoteGDB(_system, tc, _port), regCache(this)
+    : BaseRemoteGDB(_system, tc, _port), regCache(this), regCache32(this)
 {
 }
 
@@ -208,8 +209,48 @@ RemoteGDB::RiscvGdbRegCache::setRegs(ThreadContext *context) const
         context->setMiscReg(i, r.csr[i - ExplicitCSRs]);
 }
 
+void
+RemoteGDB::Riscv32GdbRegCache::getRegs(ThreadContext *context)
+{
+    DPRINTF(GDBAcc, "getregs in remotegdb, size %lu\n", size());
+    for (int i = 0; i < NumIntArchRegs; i++)
+        r.gpr[i] = context->readIntReg(i);
+    r.pc = context->pcState().pc();
+
+    // r.csr_misa = context->readMiscReg(MISCREG_MISA);
+    // r.csr_mstatus = context->readMiscReg(MISCREG_MSTATUS);
+    // r.csr_mtvec = context->readMiscReg(MISCREG_MTVEC);
+    // r.csr_mip = context->readMiscReg(MISCREG_MIP);
+    // r.csr_mie = context->readMiscReg(MISCREG_MIE);
+    // r.csr_mscratch = context->readMiscReg(MISCREG_MSCRATCH);
+    // r.csr_mepc = context->readMiscReg(MISCREG_MEPC);
+    // r.csr_mcause = context->readMiscReg(MISCREG_MCAUSE);
+}
+
+void
+RemoteGDB::Riscv32GdbRegCache::setRegs(ThreadContext *context) const
+{
+    DPRINTF(GDBAcc, "setregs in remotegdb \n");
+    for (int i = 0; i < NumIntArchRegs; i++)
+        context->setIntReg(i, r.gpr[i]);
+    context->pcState(r.pc);
+
+    // context->setMiscReg(MISCREG_MISA, r.csr_misa);
+    // context->setMiscReg(MISCREG_MSTATUS, r.csr_mstatus);
+    // context->setMiscReg(MISCREG_MTVEC, r.csr_mtvec);
+    // context->setMiscReg(MISCREG_MIP, r.csr_mip);
+    // context->setMiscReg(MISCREG_MIE, r.csr_mie);
+    // context->setMiscReg(MISCREG_MSCRATCH, r.csr_mscratch);
+    // context->setMiscReg(MISCREG_MEPC, r.csr_mepc);
+    // context->setMiscReg(MISCREG_MCAUSE, r.csr_mcause);
+}
+
 BaseGdbRegCache*
 RemoteGDB::gdbRegs()
 {
-    return &regCache;
+    if (isRv32(context())) {
+        return &regCache32;
+    } else {
+        return &regCache;
+    }
 }

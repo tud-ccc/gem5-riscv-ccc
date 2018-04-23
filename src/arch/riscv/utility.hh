@@ -190,6 +190,11 @@ getExecutingAsid(ThreadContext *tc)
  */
 void initCPU(ThreadContext *tc, int cpuId);
 
+/**
+ * check, whether the architecture is in 32 bit or 64 bit mode
+ */
+bool isRv32(ThreadContext *tc);
+
 } // namespace RiscvISA
 
 #endif // __ARCH_RISCV_UTILITY_HH__

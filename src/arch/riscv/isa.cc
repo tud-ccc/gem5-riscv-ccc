@@ -54,10 +54,11 @@ ISA::ISA(Params *p)
 
     system = dynamic_cast<RiscvSystem *>(p->system);
 
-    if (system)
+    if (system) {
         _rv32 = system->rv32();
-    else
+    } else {
         _rv32 = false;
+    }
 
     clear();
 }
@@ -86,6 +87,8 @@ void ISA::clear()
         misa.mxl = 0x2;
         misa.extensions = 0x10112D;
     }
+
+    miscRegFile[MISCREG_MISA] = misa;
 
     if (FullSystem)
     {

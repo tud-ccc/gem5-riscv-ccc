@@ -30,7 +30,6 @@
 System definition.
 '''
 
-import m5
 from m5.objects import *
 
 
@@ -77,7 +76,7 @@ class SimpleSystem(BareMetalRiscvSystem):
         self.mem_ranges = [AddrRange(start=mem_start, size=mem_size)]
 
         # define bit mode
-        self.rv32 = True
+        # self.rv32 = True
 
     def connect(self):
         # connect cache ports of cpu to membus
