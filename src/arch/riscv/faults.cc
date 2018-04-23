@@ -160,7 +160,11 @@ InterruptFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
     MiscReg pp = tc->readMiscRegNoEffect(MISCREG_PRV);
     MSTATUS status = tc->readMiscReg(MISCREG_MSTATUS);
 
-    tc->setMiscReg(cause, (1UL << ((sizeof(MiscReg) * 8) - 1)) | _code);
+    if (tc->pcState().rv32())
+        tc->setMiscReg(cause, (1UL << ((sizeof(uint32_t) * 8) - 1)) | _code);
+    else
+        tc->setMiscReg(cause, (1UL << ((sizeof(MiscReg) * 8) - 1)) | _code);
+
     tc->setMiscReg(epc, tc->instAddr());
     tc->setMiscReg(MISCREG_PRV, prv);
 

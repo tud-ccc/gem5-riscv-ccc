@@ -46,22 +46,27 @@ Tick
 TimerCpu::read(PacketPtr pkt)
 {
     assert(pkt->getAddr() >= pioAddr && pkt->getAddr() < pioAddr + pioSize);
-    assert(pkt->getSize() == 8);
 
-    /** which register do we want to read? */
     Addr addr = pkt->getAddr() - pioAddr;
-    switch (addr) {
-        case Time:
-            /**
-             * this register does not exist explicitly in code
-             * instead calculate value
-             */
-            break;
-        case TimeCmp:
-            pkt->set<uint64_t>(timecmp);
+    switch (pkt->getSize()) {
+        case 8:
+            switch (addr) {
+                case Time:
+                    /**
+                     * this register does not exist explicitly in code
+                     * instead calculate value
+                     */
+                    break;
+                case TimeCmp:
+                    pkt->set<uint64_t>(timecmp);
+                    break;
+                default:
+                    panic("Tried to read TimerCpu at offset %#x\n", addr);
+            }
             break;
         default:
-            panic("Tried to read TimerCpu at offset %#x\n", addr);
+            panic("Unsupported packet size for write access on TimerCpu");
+            break;
     }
 
     pkt->makeAtomicResponse();
@@ -78,12 +83,24 @@ TimerCpu::write(PacketPtr pkt)
         case 4:
             switch (addr) {
                 case Time:
+                    DPRINTF(Timer,
+                        "Ignore write on TimerCpu r-o time register.\n");
                     break;
                 case (Time + 4):
+                    DPRINTF(Timer,
+                        "Ignore write on TimerCpu r-o time register.\n");
                     break;
                 case TimeCmp:
+                    timecmp = pkt->get<uint32_t>();
+                    // clear mtip bit
+                    cpu->clearInterrupt(0, 7, 0);
+                    startTimer(timecmp);
                     break;
                 case (TimeCmp + 4):
+                    timecmp = (uint64_t)pkt->get<uint32_t>() << 32;
+                    // clear mtip bit
+                    cpu->clearInterrupt(0, 7, 0);
+                    startTimer(timecmp);
                     break;
                 default:
                     panic("Tried to read TimerCpu at offset %#x\n", addr);
@@ -107,11 +124,11 @@ TimerCpu::write(PacketPtr pkt)
                     panic("Tried to read TimerCpu at offset %#x\n", addr);
                     break;
             }
+            break;
         default:
-            panic("Unsupported size for write access on TimerCpu");
+            panic("Unsupported packet size for write access on TimerCpu");
             break;
     }
-}
 
     pkt->makeAtomicResponse();
     return pioDelay;
