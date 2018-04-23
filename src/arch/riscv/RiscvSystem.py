@@ -38,7 +38,8 @@ class RiscvSystem(System):
     type = 'RiscvSystem'
     cxx_header = 'arch/riscv/system.hh'
     bare_metal = Param.Bool(False, "Using Bare Metal Application?")
-    resetVect = Param.Addr(0x0, 'Reset vector')
+    resetVect = Param.Addr(0x0, "Reset vector")
+    rv32 = Param.Bool(False, "Does the system use rv32?")
     load_addr_mask = 0xFFFFFFFFFFFFFFFF
 
 

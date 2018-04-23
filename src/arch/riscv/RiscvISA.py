@@ -42,9 +42,14 @@
 #          Sven Karlsson
 #          Alec Roelke
 
+from m5.params import *
+from m5.proxy import *
 from m5.SimObject import SimObject
+
 
 class RiscvISA(SimObject):
     type = 'RiscvISA'
     cxx_class = 'RiscvISA::ISA'
     cxx_header = "arch/riscv/isa.hh"
+
+    system = Param.System(Parent.any, "System this ISA object belongs to")

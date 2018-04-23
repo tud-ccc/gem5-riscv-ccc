@@ -35,6 +35,7 @@
 #include <sstream>
 
 #include "arch/riscv/registers.hh"
+#include "arch/riscv/system.hh"
 #include "base/bitfield.hh"
 #include "cpu/base.hh"
 #include "debug/RiscvMisc.hh"
@@ -45,9 +46,19 @@
 namespace RiscvISA
 {
 
-ISA::ISA(Params *p) : SimObject(p)
+ISA::ISA(Params *p)
+    : SimObject(p),
+      system(NULL)
 {
     miscRegFile.resize(NumMiscRegs);
+
+    system = dynamic_cast<RiscvSystem *>(p->system);
+
+    if (system)
+        _rv32 = system->rv32();
+    else
+        _rv32 = false;
+
     clear();
 }
 
@@ -64,7 +75,17 @@ void ISA::clear()
     miscRegFile[MISCREG_MVENDORID] = 0;
     miscRegFile[MISCREG_MARCHID] = 0;
     miscRegFile[MISCREG_MIMPID] = 0;
-    miscRegFile[MISCREG_MISA] = 0x8000000000101129ULL;
+
+    MISA misa = miscRegFile[MISCREG_MISA];
+
+    if (_rv32) {
+        misa.mxl32 = 0x1;
+        misa.extensions = 0x1104; // IMC
+    }
+    else {
+        misa.mxl = 0x2;
+        misa.extensions = 0x10112D;
+    }
 
     if (FullSystem)
     {

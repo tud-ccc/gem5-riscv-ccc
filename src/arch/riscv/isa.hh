@@ -42,7 +42,9 @@
 #include <string>
 
 #include "arch/riscv/registers.hh"
+#include "arch/riscv/system.hh"
 #include "arch/riscv/types.hh"
+#include "base/bitunion.hh"
 #include "base/logging.hh"
 #include "cpu/reg_class.hh"
 #include "sim/sim_object.hh"
@@ -59,6 +61,12 @@ class ISA : public SimObject
 {
   protected:
     std::vector<MiscReg> miscRegFile;
+
+    // corresponding system
+    RiscvSystem *system;
+
+    // system properties
+    bool _rv32;
 
   public:
     typedef RiscvISAParams Params;

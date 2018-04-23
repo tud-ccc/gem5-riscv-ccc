@@ -403,6 +403,12 @@ const std::map<int, std::string> MiscRegNames = {
     {MISCREG_DSCRATCH, "dscratch"}
 };
 
+BitUnion64(MISA)
+    Bitfield<63, 62>    mxl;
+    Bitfield<31, 30>    mxl32;
+    Bitfield<25, 0>     extensions;
+EndBitUnion(MISA)
+
 BitUnion64(MSTATUS)
     Bitfield<63>        sd;
     Bitfield<35, 34>    sxl;

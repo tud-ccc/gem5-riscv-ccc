@@ -76,6 +76,9 @@ class SimpleSystem(BareMetalRiscvSystem):
         mem_size = '2GB'
         self.mem_ranges = [AddrRange(start=mem_start, size=mem_size)]
 
+        # define bit mode
+        self.rv32 = True
+
     def connect(self):
         # connect cache ports of cpu to membus
         # no caches -> connect directly to mem bus

@@ -49,7 +49,7 @@ RiscvSystem::RiscvSystem(Params *p)
     : System(p),
       _isBareMetal(p->bare_metal),
       _resetVect(p->resetVect),
-      _rv32(false)
+      _rv32(p->rv32)
 {
 }
 
