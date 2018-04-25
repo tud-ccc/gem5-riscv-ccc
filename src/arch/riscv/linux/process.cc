@@ -69,7 +69,7 @@ unameFunc(SyscallDesc *desc, int callnum, Process *process,
     return 0;
 }
 
-std::map<int, SyscallDesc> RiscvLinuxProcess::syscallDescs = {
+std::map<int, SyscallDesc> Riscv64LinuxProcess::syscallDescs = {
     {0,    SyscallDesc("io_setup")},
     {1,    SyscallDesc("io_destroy")},
     {2,    SyscallDesc("io_submit")},
@@ -400,12 +400,14 @@ std::map<int, SyscallDesc> RiscvLinuxProcess::syscallDescs = {
     {2011, SyscallDesc("getmainvars")}
 };
 
-RiscvLinuxProcess::RiscvLinuxProcess(ProcessParams * params,
-    ObjectFile *objFile) : RiscvProcess(params, objFile)
+Riscv64LinuxProcess::Riscv64LinuxProcess(ProcessParams * params,
+                                     ObjectFile *objFile,
+                                     ObjectFile::Arch _arch)
+    : Riscv64Process(params, objFile, _arch)
 {}
 
 SyscallDesc*
-RiscvLinuxProcess::getDesc(int callnum)
+Riscv64LinuxProcess::getDesc(int callnum)
 {
     return syscallDescs.find(callnum) != syscallDescs.end() ?
         &syscallDescs.at(callnum) : nullptr;

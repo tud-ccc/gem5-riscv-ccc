@@ -37,25 +37,23 @@
 #include <string>
 #include <vector>
 
+#include "base/loader/object_file.hh"
 #include "mem/page_table.hh"
 #include "sim/process.hh"
 
 class ObjectFile;
-class System;
 
 class RiscvProcess : public Process
 {
   protected:
-    RiscvProcess(ProcessParams * params, ObjectFile *objFile);
-
-    void initState() override;
-
+    ObjectFile::Arch arch;
+    RiscvProcess(ProcessParams * params, ObjectFile *objFile,
+                 ObjectFile::Arch _arch);
     template<class IntType>
     void argsInit(int pageSize);
 
   public:
     RiscvISA::IntReg getSyscallArg(ThreadContext *tc, int &i) override;
-    /// Explicitly import the otherwise hidden getSyscallArg
     using Process::getSyscallArg;
     void setSyscallArg(ThreadContext *tc, int i,
                        RiscvISA::IntReg val) override;
@@ -63,6 +61,24 @@ class RiscvProcess : public Process
                           SyscallReturn return_value) override;
 
     virtual bool mmapGrowsDown() const override { return false; }
+};
+
+class Riscv32Process : public RiscvProcess
+{
+  protected:
+    Riscv32Process(ProcessParams *params, ObjectFile *objFile,
+                   ObjectFile::Arch _arch);
+
+    void initState();
+};
+
+class Riscv64Process : public RiscvProcess
+{
+  protected:
+    Riscv64Process(ProcessParams *params, ObjectFile *objFile,
+                   ObjectFile::Arch _arch);
+
+    void initState();
 };
 
 #endif // __RISCV_PROCESS_HH__
