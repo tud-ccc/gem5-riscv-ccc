@@ -33,7 +33,7 @@
 
 #include "kern/linux/linux.hh"
 
-class RiscvLinux : public Linux
+class Riscv64Linux : public Linux
 {
   public:
     static const int TGT_SIGHUP         =  1;
