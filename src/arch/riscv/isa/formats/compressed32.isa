@@ -50,18 +50,18 @@ def format CI32Op(imm_code, code, imm_type='int32_t', *opt_flags) {{
 
 def format CB32Op(code, *opt_flags) {{
     imm_code = '''
-            ^  imm = CIMM5<2:1> << 1 |
+               imm = CIMM5<2:1> << 1 |
                      CIMM3<1:0> << 3 |
                      CIMM5<0:0> << 5 |
                      CIMM5<4:3> << 6;
                if (CIMM3<2:2> > 0)
-                    imm |= ~((int32_t)0xFF);
+                    imm |= ~((int32_t)0xff);
                '''
     regs = ['_srcRegIdx[0]','_srcRegIdx[1]']
     iop = InstObjParams(name, Name, 'ImmOp<int32_t>',
         {'code': code, 'imm_code': imm_code,
          'regs': ','.join(regs)}, opt_flags)
-    eader_output = Branch32Declare.subst(iop)
+    header_output = Branch32Declare.subst(iop)
     decoder_output = Imm32Constructor.subst(iop)
     decode_block = Basic32Decode.subst(iop)
     exec_output = Branch32Execute.subst(iop)

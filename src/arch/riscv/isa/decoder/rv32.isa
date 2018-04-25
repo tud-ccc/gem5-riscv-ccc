@@ -36,6 +36,243 @@
 
 decode QUADRANT default Unknown::unknown() {
 
+    0x0: decode COPCODE {
+
+        0x0: CI32Op::c_addi4spn({{
+            imm = CIMM8<1:1> << 2 |
+                  CIMM8<0:0> << 3 |
+                  CIMM8<7:6> << 4 |
+                  CIMM8<5:2> << 6;
+        }}, {{
+            if (machInst.all == 0)
+                fault = make_shared<IllegalInstFault>("zero instruction");
+            Rp2_uw = sp_uw + imm;
+        }}, uint32_t);
+
+        0x2: CompressedLoad32::c_lw({{
+            offset = CIMM2<1:1> << 2 |
+                     CIMM3 << 3 |
+                     CIMM2<0:0> << 6;
+        }}, {{
+            Rp2_sw = Mem_sw;
+        }}, {{
+            EA = Rp1_uw + offset;
+        }});
+        0x6: CompressedStore32::c_sw({{
+            offset = CIMM2<1:1> << 2 |
+                     CIMM3 << 3 |
+                     CIMM2<0:0> << 6;
+        }}, {{
+            Mem_uw = Rp2_uw;
+        }}, {{
+            EA = Rp1_uw + offset;
+        }});
+    }
+
+    0x1: decode COPCODE {
+        0x0: CI32Op::c_addi({{
+            imm = CIMM5;
+            if (CIMM1 > 0)
+                imm |= ~((int32_t)0x1f);
+        }}, {{
+            if ((RC1 == 0) != (imm == 0)) {
+                if (RC1 == 0) {
+                    fault = make_shared<IllegalInstFault>("source reg x0");
+                } else // imm == 0
+                    fault = make_shared<IllegalInstFault>("immediate = 0");
+            }
+            Rc1_sw = Rc1_sw + imm;
+        }});
+        0x1: J32Op::c_jal({{
+            int32_t offset = CJUMPIMM<3:1> << 1 |
+                             CJUMPIMM<9:9> << 4 |
+                             CJUMPIMM<0:0> << 5 |
+                             CJUMPIMM<5:5> << 6 |
+                             CJUMPIMM<4:4> << 7 |
+                             CJUMPIMM<8:7> << 8 |
+                             CJUMPIMM<6:6> << 10;
+            if (CJUMPIMM<10:10> > 0)
+                offset |= ~((int32_t)0x7ff);
+            ra_uw = NPC_uw;
+            NPC_uw = PC_uw + offset;
+        }}, IsIndirectControl, IsUncondControl, IsCall);
+        format CI32Op {
+            0x2: c_li({{
+                imm = CIMM5;
+                if (CIMM1 > 0)
+                    imm |= ~((int32_t)0x1f)
+            }}, {{
+                if (RC1 == 0)
+                    fault = make_shared<IllegalInstFault>("source reg x0");
+                Rc1_sw = imm;
+            }});
+            0x3: decode RC1 {
+                0x2: c_addi16sp({{
+                    imm = CIMM5<4:4> << 4 |
+                          CIMM5<0:0> << 5 |
+                          CIMM5<3:3> << 6 |
+                          CIMM5<2:1> << 7;
+                    if (CIMM1 > 0)
+                        imm |= ~((int32_t)0x1ff);
+                }}, {{
+                    if (imm == 0) {
+                        fault = make_shared<IllegalInstFault>("immediate = 0");
+                    }
+                    sp_sw = sp_sw + imm;
+                }});
+                default: c_lui({{
+                    imm = CIMM5 << 12;
+                    if (CIMM1 > 0)
+                        imm |= ~((int32_t)0x1ffff);
+                }}, {{
+                    if (RC1 == 0 || RC1 == 2) {
+                        fault = make_shared<IllegalInstFault>("source reg x0");
+                    }
+                    if (imm == 0) {
+                        fault = make_shared<IllegalInstFault>("immediate = 0");
+                    }
+                    Rc1_sw = imm;
+                }});
+            }
+        }
+        0x4: decode CFUNCT2HIGH {
+            format CI32Op {
+                0x0: c_srli({{
+                    imm = CIMM5 | (CIMM1 << 5);
+                }}, {{
+                    if (imm == 0)
+                        fault = make_shared<IllegalInstFault>("immediate = 0");
+                    Rp1_uw = Rp1_uw >> imm;
+                }}, uint32_t);
+                0x1: c_srai({{
+                    imm = CIMM5 | (CIMM1 << 5);
+                }}, {{
+                    if (imm == 0)
+                        fault = make_shared<IllegalInstFault>("immediate = 0");
+                    Rp1_sw = Rp1_sw >> imm;
+                }}, uint32_t);
+                0x2: c_andi({{
+                    imm = CIMM5;
+                    if (CIMM1 > 0)
+                        imm |= ~((int32_t)0x1f);
+                }}, {{
+                    Rp1_uw = Rp1_uw & imm;
+                }}, uint32_t);
+            }
+            format R32Op {
+                0x3: decode CFUNCT1 {
+                    0x0: decode CFUNCT2LOW {
+                        0x0: c_sub({{
+                            Rp1_sw = Rp1_sw - Rp2_sw;
+                        }});
+                        0x1: c_xor({{
+                            Rp1_uw = Rp1_uw ^ Rp2_uw;
+                        }});
+                        0x2: c_or({{
+                            Rp1_uw = Rp1_uw | Rp2_uw;
+                        }});
+                        0x3: c_and({{
+                            Rp1_uw = Rp1_uw & Rp2_uw
+                        }});
+                    }
+                }
+            }
+        }
+        0x5: J32Op::c_j({{
+            int32_t offset = CJUMPIMM<3:1> << 1 |
+                             CJUMPIMM<9:9> << 4 |
+                             CJUMPIMM<0:0> << 5 |
+                             CJUMPIMM<5:5> << 6 |
+                             CJUMPIMM<4:4> << 7 |
+                             CJUMPIMM<8:7> << 8 |
+                             CJUMPIMM<6:6> << 10;
+            if (CJUMPIMM<10:10> > 0)
+                offset |= ~((int32_t)0x7ff);
+            NPC_uw = PC_uw + offset;
+        }}, IsDirectControl, IsUncondControl, IsCall);
+        format CB32Op {
+            0x6: c_beqz({{
+                if (Rp1_uw == 0)
+                    NPC_uw = PC_uw + imm;
+                else
+                    NPC_uw = NPC_uw;
+            }}, IsDirectControl, IsCondControl);
+            0x7: c_bnez({{
+                if (Rp1_uw != 0)
+                    NPC_uw = PC_uw + imm;
+                else
+                    NPC_uw = NPC_uw;
+            }}, IsDirectControl, IsCondControl);
+        }
+    }
+
+    0x2: decode COPCODE {
+        0x0: CI32Op::c_slli({{
+            imm = CIMM5 | (CIMM1 << 5);
+        }}, {{
+            if (imm == 0)
+                fault = make_shared<IllegalInstFault>("immediate = 0");
+            if (RC1 == 0)
+                fault = make_shared<IllegalInstFault>("source reg x0");
+            Rc1_uw = Rc1_uw << imm;
+        }}, uint32_t);
+        0x2: CompressedLoad32::c_lwsp({{
+            offset = CIMM5<4:2> << 2 |
+                     CIMM1 << 5 |
+                     CIMM5<1:0> << 6;
+        }}, {{
+            if (RC1 == 0)
+                fault = make_shared<IllegalInstFault>("source reg x0");
+            Rc1_sw = Mem_sw;
+        }}, {{
+            EA = sp_uw + offset;
+        }});
+        0x4: decode CFUNCT1 {
+            0x0: decode RC2 {
+                0x0: Jump32::c_jr({{
+                    if (RC1 == 0)
+                        fault = make_shared<IllegalInstFault>("source reg x0");
+                    NPC_uw = Rc1_uw;
+                }}, IsIndirectControl, IsUncondControl, IsCall);
+                default: CR32Op::c_mv({{
+                    if (RC1 == 0)
+                        fault = make_shared<IllegalInstFault>("source reg x0");
+                    Rc1_uw = Rc2_uw;
+                }});
+            }
+            0x1: decode RC1 {
+                0x0: System32Op::c_ebreak({{
+                    if (RC2 != 0) {
+                        fault = make_shared<IllegalInstFault>("source reg x1");
+                    }
+                    fault = make_shared<BreakpointFault>();
+                }}, IsSerializeAfter, IsNonSpeculative, No_OpClass);
+                default: decode RC2 {
+                    0x0: Jump32::c_jalr({{
+                        if (RC1 == 0) {
+                            fault = make_shared<IllegalInstFault>(
+                                "source reg x0");
+                        }
+                        ra_uw = NPC_uw;
+                        NPC_uw = Rc1_uw;
+                    }}, IsIndirectControl, IsUncondControl, IsCall);
+                    default: R32Op::c_add({{
+                        Rc1_sw = Rc1_sw + Rc2_sw;
+                    }});
+                }
+            }
+        }
+        0x6: CompressedStore32::c_swsp({{
+            offset = CIMM6<5:2> << 3 |
+                     CIMM6<1:0> << 6;
+        }}, {{
+            Mem_uw = Rc2_uw;
+        }}, {{
+            EA = sp_uw + offset;
+        }});
+
+    }
+
     0x3: decode OPCODE {
 
         0x00: decode FUNCT3 {

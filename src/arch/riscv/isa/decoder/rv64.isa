@@ -42,7 +42,7 @@ decode QUADRANT default Unknown::unknown() {
                   CIMM8<7:6> << 4 |
                   CIMM8<5:2> << 6;
         }}, {{
-            if (machInst == 0)
+            if (machInst.all == 0)
                 fault = make_shared<IllegalInstFault>("zero instruction");
             Rp2 = sp + imm;
         }}, uint64_t);
