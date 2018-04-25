@@ -44,6 +44,7 @@
 
 // Include formats for nonstandard extensions
 ##include "compressed.isa"
+##include "compressed32.isa"
 
 // Include the unknown
 ##include "unknown.isa"
