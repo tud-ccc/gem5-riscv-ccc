@@ -33,5 +33,9 @@
 #include <fcntl.h>
 #include <sys/mman.h>
 
+#define TARGET Riscv32Linux
+#include "kern/linux/flag_tables.hh"
+
+#undef TARGET
 #define TARGET Riscv64Linux
 #include "kern/linux/flag_tables.hh"
