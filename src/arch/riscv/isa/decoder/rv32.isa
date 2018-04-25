@@ -100,7 +100,7 @@ decode QUADRANT default Unknown::unknown() {
             0x2: c_li({{
                 imm = CIMM5;
                 if (CIMM1 > 0)
-                    imm |= ~((int32_t)0x1f)
+                    imm |= ~((uint32_t)0x1f)
             }}, {{
                 if (RC1 == 0)
                     fault = make_shared<IllegalInstFault>("source reg x0");
@@ -263,7 +263,7 @@ decode QUADRANT default Unknown::unknown() {
             }
         }
         0x6: CompressedStore32::c_swsp({{
-            offset = CIMM6<5:2> << 3 |
+            offset = CIMM6<5:2> << 2 |
                      CIMM6<1:0> << 6;
         }}, {{
             Mem_uw = Rc2_uw;
