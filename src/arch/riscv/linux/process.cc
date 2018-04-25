@@ -52,8 +52,26 @@ using namespace std;
 using namespace RiscvISA;
 
 /// Target uname() handler.
+// static SyscallReturn
+// uname32Func(SyscallDesc *desc, int callnum, Process *process,
+//           ThreadContext *tc)
+// {
+//     int index = 0;
+//     TypedBufferArg<Linux::utsname> name(process->getSyscallArg(tc, index));
+
+//     strcpy(name->sysname, "Linux");
+//     strcpy(name->nodename,"sim.gem5.org");
+//     strcpy(name->release, "3.0.0");
+//     strcpy(name->version, "#1 Mon Aug 18 11:32:15 EDT 2003");
+//     strcpy(name->machine, "riscv32");
+
+//     name.copyOut(tc->getMemProxy());
+//     return 0;
+// }
+
+/// Target uname() handler.
 static SyscallReturn
-unameFunc(SyscallDesc *desc, int callnum, Process *process,
+uname64Func(SyscallDesc *desc, int callnum, Process *process,
           ThreadContext *tc)
 {
     int index = 0;
@@ -63,7 +81,7 @@ unameFunc(SyscallDesc *desc, int callnum, Process *process,
     strcpy(name->nodename,"sim.gem5.org");
     strcpy(name->release, "3.0.0");
     strcpy(name->version, "#1 Mon Aug 18 11:32:15 EDT 2003");
-    strcpy(name->machine, "riscv");
+    strcpy(name->machine, "riscv64");
 
     name.copyOut(tc->getMemProxy());
     return 0;
@@ -229,7 +247,7 @@ std::map<int, SyscallDesc> Riscv64LinuxProcess::syscallDescs = {
     {157,  SyscallDesc("setsid")},
     {158,  SyscallDesc("getgroups")},
     {159,  SyscallDesc("setgroups")},
-    {160,  SyscallDesc("uname", unameFunc)},
+    {160,  SyscallDesc("uname", uname64Func)},
     {161,  SyscallDesc("sethostname")},
     {162,  SyscallDesc("setdomainname")},
     {163,  SyscallDesc("getrlimit", getrlimitFunc<RiscvLinux>)},
