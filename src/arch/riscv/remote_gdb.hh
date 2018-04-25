@@ -82,13 +82,17 @@ class RemoteGDB : public BaseRemoteGDB
         }
     };
 
+    /**
+     * 32 Bit architecture
+     */
     class Riscv32GdbRegCache : public BaseGdbRegCache
     {
-        using BaseGdbRegCache::BaseGdbRegCache;
+      using BaseGdbRegCache::BaseGdbRegCache;
       private:
         struct {
             uint32_t gpr[NumIntArchRegs];
             uint32_t pc;
+            uint32_t fpr[NumFloatRegs];
         } __attribute__((__packed__)) r;
       public:
         char *data() const { return (char *)&r; }

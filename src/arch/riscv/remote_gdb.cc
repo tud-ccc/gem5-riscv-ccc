@@ -212,37 +212,32 @@ RemoteGDB::RiscvGdbRegCache::setRegs(ThreadContext *context) const
 void
 RemoteGDB::Riscv32GdbRegCache::getRegs(ThreadContext *context)
 {
-    DPRINTF(GDBAcc, "getregs in remotegdb, size %lu\n", size());
-    for (int i = 0; i < NumIntArchRegs; i++)
-        r.gpr[i] = context->readIntReg(i);
-    r.pc = context->pcState().pc();
+    DPRINTF(GDBAcc, "getregs in remotegdb\n");
 
-    // r.csr_misa = context->readMiscReg(MISCREG_MISA);
-    // r.csr_mstatus = context->readMiscReg(MISCREG_MSTATUS);
-    // r.csr_mtvec = context->readMiscReg(MISCREG_MTVEC);
-    // r.csr_mip = context->readMiscReg(MISCREG_MIP);
-    // r.csr_mie = context->readMiscReg(MISCREG_MIE);
-    // r.csr_mscratch = context->readMiscReg(MISCREG_MSCRATCH);
-    // r.csr_mepc = context->readMiscReg(MISCREG_MEPC);
-    // r.csr_mcause = context->readMiscReg(MISCREG_MCAUSE);
+    // read pc
+    r.pc = context->pcState().pc();
+    DPRINTF(GDBAcc, "current pc: %#x\n", r.pc);
+    // read general purpose registers
+    for (int i = 0; i < NumIntArchRegs; i++) {
+        r.gpr[i] = context->readIntReg(i);
+    }
+    // read floating point registers
+    for (int i = 0; i < NumFloatRegs; i++) {
+        r.fpr[i] = context->readFloatRegBits(i);
+    }
 }
 
 void
 RemoteGDB::Riscv32GdbRegCache::setRegs(ThreadContext *context) const
 {
-    DPRINTF(GDBAcc, "setregs in remotegdb \n");
-    for (int i = 0; i < NumIntArchRegs; i++)
-        context->setIntReg(i, r.gpr[i]);
-    context->pcState(r.pc);
+    DPRINTF(GDBAcc, "setregs in remotegdb\n");
 
-    // context->setMiscReg(MISCREG_MISA, r.csr_misa);
-    // context->setMiscReg(MISCREG_MSTATUS, r.csr_mstatus);
-    // context->setMiscReg(MISCREG_MTVEC, r.csr_mtvec);
-    // context->setMiscReg(MISCREG_MIP, r.csr_mip);
-    // context->setMiscReg(MISCREG_MIE, r.csr_mie);
-    // context->setMiscReg(MISCREG_MSCRATCH, r.csr_mscratch);
-    // context->setMiscReg(MISCREG_MEPC, r.csr_mepc);
-    // context->setMiscReg(MISCREG_MCAUSE, r.csr_mcause);
+    // set pc
+    context->pcState(r.pc);
+    // set general purpose registers
+    for (int i = 0; i < NumIntArchRegs; i++) {
+        context->setIntReg(i, r.gpr[i]);
+    }
 }
 
 BaseGdbRegCache*
