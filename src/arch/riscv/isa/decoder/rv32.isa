@@ -287,10 +287,10 @@ decode QUADRANT default Unknown::unknown() {
                     Rd_sw = Mem_sw;
                 }});
                 0x4: lbu({{
-                    Rd_sw = Mem_ub;
+                    Rd_uw = Mem_ub;
                 }});
                 0x5: lhu({{
-                    Rd_sw = Mem_uh;
+                    Rd_uw = Mem_uh;
                 }});
             }
         }

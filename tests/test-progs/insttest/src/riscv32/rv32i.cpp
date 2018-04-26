@@ -28,10 +28,18 @@
  * Authors: Robert Scheffel
  */
 
+
+#include <cstdint>
+#include <limits>
+
+#include "insttest.h"
 #include "rv32i.h"
 
 int main()
 {
+    using namespace std;
+    using namespace insttest;
+
     // lui
     expect<int32_t>(4096, []{return I::lui(1);}, "lui");
     expect<int32_t>(numeric_limits<int32_t>::min(),
@@ -103,10 +111,10 @@ int main()
         "lw");
 
     // lbu
-    expect<int32_t>(0xff, []{return I::load<uint8_t, int32_t>(255)}, "lbu");
+    expect<int32_t>(0xff, []{return I::load<uint8_t, int32_t>(255);}, "lbu");
 
     // lhu
-    expect<int32_t>(0xffff, []{return I::load<uint16_t, int32_t>(65535)},
+    expect<int32_t>(0xffff, []{return I::load<uint16_t, int32_t>(65535);},
         "lhu");
 
     // sb

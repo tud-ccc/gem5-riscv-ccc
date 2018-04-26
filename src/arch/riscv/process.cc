@@ -73,7 +73,7 @@ Riscv32Process::Riscv32Process(ProcessParams *params, ObjectFile *objFile,
                                ObjectFile::Arch _arch)
     : RiscvProcess(params, objFile, _arch)
 {
-    const Addr stack_base = 0x7ffffffffL;
+    const Addr stack_base = 0x7fffffffL;
     const Addr max_stack_size = 8 * 1024 * 1024;
     const Addr next_thread_stack_base = stack_base - max_stack_size;
     const Addr mmap_end = 0x40000000L;

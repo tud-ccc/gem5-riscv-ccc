@@ -32,6 +32,7 @@
 #pragma once
 
 #include <cstdint>
+#include <iostream>
 
 #include "insttest.h"
 
@@ -44,6 +45,16 @@ lui(const uint32_t imm)
     int32_t rd = -1;
     asm volatile("lui %0,%1" : "=r" (rd) : "i" (imm));
     return rd;
+}
+
+inline bool
+auipc(const uint32_t imm)
+{
+    int32_t rd = -1;
+    asm volatile("auipc %0,%1" : "=r" (rd) : "i" (imm));
+    std::cout << "auipc: 0x" << std::hex << std::uppercase << rd <<
+        std::nouppercase << std::dec << std::endl;
+    return rd >= imm;
 }
 
 inline bool

@@ -26,8 +26,8 @@
 #
 # Authors: Robert Scheffel
 
-CXX=riscv32-unknown-linux-gnu-g++
-CFLAGS=-std=gnu++11 -O3 -static -march=rv32imc
+CXX=riscv64-unknown-linux-gnu-g++
+CFLAGS=-std=gnu++11 -O3 -static -march=rv32imac -mabi=ilp32
 
 TARGETS=rv32i
 PREFIX=../../bin/riscv32/linux
@@ -39,7 +39,7 @@ $(TARGETS):
 	-mkdir -p $(PREFIX)-$@
 	$(CXX) $< $(CFLAGS) -o $(PREFIX)-$@/$(BIN)
 
-rv64i: rv32i.cpp
+rv32i: rv32i.cpp
 
 clean:
 	-rm $(PREFIX)-*/$(BIN)
