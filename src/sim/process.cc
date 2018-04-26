@@ -631,7 +631,11 @@ ProcessParams::create()
         warn("Unknown operating system; assuming Linux.");
         // fall through
       case ObjectFile::Linux:
-        process = new Riscv64LinuxProcess(this, obj_file, arch);
+        if (arch == ObjectFile::Riscv32) {
+            process = new Riscv32LinuxProcess(this, obj_file, arch);
+        } else {
+            process = new Riscv64LinuxProcess(this, obj_file, arch);
+        }
         break;
       default:
         fatal("Unknown/unsupported operating system.");
