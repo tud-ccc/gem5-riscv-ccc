@@ -68,7 +68,7 @@ expect(const T& expected, std::function<T()> func,
     T result = func();
     cout << test << ": ";
     if (result == expected) {
-        cout << "PASS" << endl;
+        cout << "\033[1;32mPASS\033[0m" << endl;
     } else {
         cout << "\033[1;31mFAIL\033[0m (expected " << expected << "; found " <<
             result << ")" << endl;
