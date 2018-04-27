@@ -59,55 +59,27 @@
 using namespace std;
 using namespace RiscvISA;
 
-RiscvProcess::RiscvProcess(ProcessParams *params, ObjectFile *objFile,
-                           ObjectFile::Arch _arch)
-    : Process(params,
-              new EmulationPageTable(params->name, params->pid, PageBytes),
-              objFile),
-      arch(_arch)
+RiscvProcess::RiscvProcess(ProcessParams *params, ObjectFile *objFile) :
+        Process(params,
+                new EmulationPageTable(params->name, params->pid, PageBytes),
+                objFile)
 {
     fatal_if(params->useArchPT, "Arch page tables not implemented.");
-}
-
-Riscv32Process::Riscv32Process(ProcessParams *params, ObjectFile *objFile,
-                               ObjectFile::Arch _arch)
-    : RiscvProcess(params, objFile, _arch)
-{
-    const Addr stack_base = 0x7fffffffL;
+    const Addr stack_base = 0x7FFFFFFFFFFFFFFFL;
     const Addr max_stack_size = 8 * 1024 * 1024;
     const Addr next_thread_stack_base = stack_base - max_stack_size;
-    const Addr mmap_end = 0x40000000L;
     const Addr brk_point = roundUp(objFile->bssBase() + objFile->bssSize(),
             PageBytes);
-    memState = make_shared<MemState>(brk_point, stack_base, max_stack_size,
-            next_thread_stack_base, mmap_end);
-}
-
-Riscv64Process::Riscv64Process(ProcessParams *params, ObjectFile *objFile,
-                               ObjectFile::Arch _arch)
-    : RiscvProcess(params, objFile, _arch)
-{
-    const Addr stack_base = 0x7fffffffffffffffL;
-    const Addr max_stack_size = 8 * 1024 * 1024;
-    const Addr next_thread_stack_base = stack_base - max_stack_size;
     const Addr mmap_end = 0x4000000000000000L;
-    const Addr brk_point = roundUp(objFile->bssBase() + objFile->bssSize(),
-            PageBytes);
     memState = make_shared<MemState>(brk_point, stack_base, max_stack_size,
             next_thread_stack_base, mmap_end);
 }
 
 void
-Riscv32Process::initState()
+RiscvProcess::initState()
 {
     Process::initState();
-    argsInit<uint32_t>(PageBytes);
-}
 
-void
-Riscv64Process::initState()
-{
-    Process::initState();
     argsInit<uint64_t>(PageBytes);
 }
 
@@ -130,17 +102,16 @@ RiscvProcess::argsInit(int pageSize)
         stack_top -= env.size() + 1;
     stack_top &= -sizeof(Addr);
 
-    typedef AuxVector<IntType> auxv_t;
-    vector<auxv_t> auxv;
+    vector<AuxVector<IntType>> auxv;
     if (elfObject != nullptr) {
-        auxv.push_back(auxv_t(M5_AT_ENTRY, objFile->entryPoint()));
-        auxv.push_back(auxv_t(M5_AT_PHNUM, elfObject->programHeaderCount()));
-        auxv.push_back(auxv_t(M5_AT_PHENT, elfObject->programHeaderSize()));
-        auxv.push_back(auxv_t(M5_AT_PHDR, elfObject->programHeaderTable()));
-        auxv.push_back(auxv_t(M5_AT_PAGESZ, PageBytes));
-        auxv.push_back(auxv_t(M5_AT_SECURE, 0));
-        auxv.push_back(auxv_t(M5_AT_RANDOM, stack_top));
-        auxv.push_back(auxv_t(M5_AT_NULL, 0));
+        auxv.push_back({M5_AT_ENTRY, objFile->entryPoint()});
+        auxv.push_back({M5_AT_PHNUM, elfObject->programHeaderCount()});
+        auxv.push_back({M5_AT_PHENT, elfObject->programHeaderSize()});
+        auxv.push_back({M5_AT_PHDR, elfObject->programHeaderTable()});
+        auxv.push_back({M5_AT_PAGESZ, PageBytes});
+        auxv.push_back({M5_AT_SECURE, 0});
+        auxv.push_back({M5_AT_RANDOM, stack_top});
+        auxv.push_back({M5_AT_NULL, 0});
     }
     stack_top -= (1 + argv.size()) * sizeof(Addr) +
                    (1 + envp.size()) * sizeof(Addr) +
@@ -239,11 +210,7 @@ RiscvProcess::argsInit(int pageSize)
 
     ThreadContext *tc = system->getThreadContext(contextIds[0]);
     tc->setIntReg(StackPointerReg, memState->getStackMin());
-
-    PCState pc;
-    pc.rv32(arch == ObjectFile::Riscv32);
-    pc.set(getStartPC());
-    tc->pcState(pc);
+    tc->pcState(getStartPC());
 
     memState->setStackMin(roundDown(memState->getStackMin(), pageSize));
 }

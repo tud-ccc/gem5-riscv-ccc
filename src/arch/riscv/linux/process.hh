@@ -41,34 +41,20 @@
 #include "sim/eventq.hh"
 
 /// A process with emulated Riscv/Linux syscalls.
-class Riscv32LinuxProcess: public Riscv32Process
-{
-  public:
-    Riscv32LinuxProcess(ProcessParams * params, ObjectFile *objFile,
-                        ObjectFile::Arch _arch);
-    virtual SyscallDesc* getDesc(int callnum);
-
-    /// The target system's hostname.
-    static const char *hostname;
-    /// ID of the thread group leader for the process
-    uint64_t __tgid;
-    /// Array of syscall descriptors, indexed by call number.
-    static std::map<int, SyscallDesc> syscallDescs;
-};
-
-/// A process with emulated Riscv/Linux syscalls.
-class Riscv64LinuxProcess : public Riscv64Process
+class RiscvLinuxProcess : public RiscvProcess
 {
   public:
     /// Constructor.
-    Riscv64LinuxProcess(ProcessParams * params, ObjectFile *objFile,
-                        ObjectFile::Arch _arch);
+    RiscvLinuxProcess(ProcessParams * params, ObjectFile *objFile);
+
     virtual SyscallDesc* getDesc(int callnum);
 
     /// The target system's hostname.
     static const char *hostname;
+
     /// ID of the thread group leader for the process
     uint64_t __tgid;
+
     /// Array of syscall descriptors, indexed by call number.
     static std::map<int, SyscallDesc> syscallDescs;
 };
