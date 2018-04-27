@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2013,2017-2018 ARM Limited
+ * Copyright (c) 2017-2018 ARM Limited
  * All rights reserved
  *
  * The license below extends only to copyright in the software and shall
@@ -10,6 +10,9 @@
  * terms below provided that you ensure that this notice is replicated
  * unmodified and in its entirety in all distributions of the software,
  * modified or unmodified, in source code or in binary form.
+ *
+ * Copyright (c) 2008 The Regents of The University of Michigan
+ * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -35,72 +38,40 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * Authors: Gabe Black
+ *          Andreas Sandberg
  */
 
-#include "arch/arm/insts/misc64.hh"
+#ifndef __DEV_PS2_MOUSE_HH__
+#define __DEV_PS2_MOUSE_HH__
 
-std::string
-ImmOp64::generateDisassembly(Addr pc, const SymbolTable *symtab) const
-{
-    std::stringstream ss;
-    printMnemonic(ss, "", false);
-    ccprintf(ss, "#0x%x", imm);
-    return ss.str();
-}
+#include "dev/ps2/device.hh"
 
-std::string
-RegRegImmImmOp64::generateDisassembly(Addr pc, const SymbolTable *symtab) const
-{
-    std::stringstream ss;
-    printMnemonic(ss, "", false);
-    printIntReg(ss, dest);
-    ss << ", ";
-    printIntReg(ss, op1);
-    ccprintf(ss, ", #%d, #%d", imm1, imm2);
-    return ss.str();
-}
+struct PS2MouseParams;
 
-std::string
-RegRegRegImmOp64::generateDisassembly(
-    Addr pc, const SymbolTable *symtab) const
+class PS2Mouse : public PS2Device
 {
-    std::stringstream ss;
-    printMnemonic(ss, "", false);
-    printIntReg(ss, dest);
-    ss << ", ";
-    printIntReg(ss, op1);
-    ss << ", ";
-    printIntReg(ss, op2);
-    ccprintf(ss, ", #%d", imm);
-    return ss.str();
-}
+  protected:
+    BitUnion8(Status)
+        Bitfield<6> remote;
+        Bitfield<5> enabled;
+        Bitfield<4> twoToOne;
+        Bitfield<2> leftButton;
+        Bitfield<0> rightButton;
+    EndBitUnion(Status)
 
-std::string
-UnknownOp64::generateDisassembly(Addr pc, const SymbolTable *symtab) const
-{
-    return csprintf("%-10s (inst %#08x)", "unknown", machInst & mask(32));
-}
+    Status status;
+    uint8_t resolution;
+    uint8_t sampleRate;
 
-std::string
-MiscRegRegImmOp64::generateDisassembly(
-    Addr pc, const SymbolTable *symtab) const
-{
-    std::stringstream ss;
-    printMnemonic(ss);
-    printMiscReg(ss, dest);
-    ss << ", ";
-    printIntReg(ss, op1);
-    return ss.str();
-}
+  public:
+    PS2Mouse(const PS2MouseParams *p);
 
-std::string
-RegMiscRegImmOp64::generateDisassembly(
-    Addr pc, const SymbolTable *symtab) const
-{
-    std::stringstream ss;
-    printMnemonic(ss);
-    printIntReg(ss, dest);
-    ss << ", ";
-    printMiscReg(ss, op1);
-    return ss.str();
-}
+    void serialize(CheckpointOut &cp) const override;
+    void unserialize(CheckpointIn &cp) override;
+
+  protected: // PS2Device
+    bool recv(const std::vector<uint8_t> &data) override;
+};
+
+#endif // __DEV_PS2_MOUSE_hH__
+

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2013,2017-2018 ARM Limited
+ * Copyright (c) 2017-2018 ARM Limited
  * All rights reserved
  *
  * The license below extends only to copyright in the software and shall
@@ -10,6 +10,9 @@
  * terms below provided that you ensure that this notice is replicated
  * unmodified and in its entirety in all distributions of the software,
  * modified or unmodified, in source code or in binary form.
+ *
+ * Copyright (c) 2008 The Regents of The University of Michigan
+ * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -35,72 +38,87 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * Authors: Gabe Black
+ *          Andreas Sandberg
  */
 
-#include "arch/arm/insts/misc64.hh"
+#include "dev/ps2/device.hh"
 
-std::string
-ImmOp64::generateDisassembly(Addr pc, const SymbolTable *symtab) const
+#include "base/logging.hh"
+#include "debug/PS2.hh"
+#include "dev/ps2/types.hh"
+#include "params/PS2Device.hh"
+
+PS2Device::PS2Device(const PS2DeviceParams *p)
+    : SimObject(p)
 {
-    std::stringstream ss;
-    printMnemonic(ss, "", false);
-    ccprintf(ss, "#0x%x", imm);
-    return ss.str();
+    inBuffer.reserve(16);
 }
 
-std::string
-RegRegImmImmOp64::generateDisassembly(Addr pc, const SymbolTable *symtab) const
+void
+PS2Device::serialize(CheckpointOut &cp) const
 {
-    std::stringstream ss;
-    printMnemonic(ss, "", false);
-    printIntReg(ss, dest);
-    ss << ", ";
-    printIntReg(ss, op1);
-    ccprintf(ss, ", #%d, #%d", imm1, imm2);
-    return ss.str();
+    std::vector<uint8_t> buffer(outBuffer.size());
+    std::copy(outBuffer.begin(), outBuffer.end(), buffer.begin());
+    arrayParamOut(cp, "outBuffer", buffer);
+
+    SERIALIZE_CONTAINER(inBuffer);
 }
 
-std::string
-RegRegRegImmOp64::generateDisassembly(
-    Addr pc, const SymbolTable *symtab) const
+void
+PS2Device::unserialize(CheckpointIn &cp)
 {
-    std::stringstream ss;
-    printMnemonic(ss, "", false);
-    printIntReg(ss, dest);
-    ss << ", ";
-    printIntReg(ss, op1);
-    ss << ", ";
-    printIntReg(ss, op2);
-    ccprintf(ss, ", #%d", imm);
-    return ss.str();
+    std::vector<uint8_t> buffer;
+    arrayParamIn(cp, "outBuffer", buffer);
+    for (auto c : buffer)
+        outBuffer.push_back(c);
+
+    UNSERIALIZE_CONTAINER(inBuffer);
 }
 
-std::string
-UnknownOp64::generateDisassembly(Addr pc, const SymbolTable *symtab) const
+void
+PS2Device::hostRegDataAvailable(const std::function<void()> &c)
 {
-    return csprintf("%-10s (inst %#08x)", "unknown", machInst & mask(32));
+    fatal_if(dataAvailableCallback,
+             "A data pending callback has already been associated with this "
+             "PS/2 device.\n");
+
+    dataAvailableCallback = c;
 }
 
-std::string
-MiscRegRegImmOp64::generateDisassembly(
-    Addr pc, const SymbolTable *symtab) const
+uint8_t
+PS2Device::hostRead()
 {
-    std::stringstream ss;
-    printMnemonic(ss);
-    printMiscReg(ss, dest);
-    ss << ", ";
-    printIntReg(ss, op1);
-    return ss.str();
+    uint8_t data = outBuffer.front();
+    outBuffer.pop_front();
+    return data;
 }
 
-std::string
-RegMiscRegImmOp64::generateDisassembly(
-    Addr pc, const SymbolTable *symtab) const
+void
+PS2Device::hostWrite(uint8_t c)
 {
-    std::stringstream ss;
-    printMnemonic(ss);
-    printIntReg(ss, dest);
-    ss << ", ";
-    printMiscReg(ss, op1);
-    return ss.str();
+    DPRINTF(PS2, "PS2: Host -> device: %#x\n", c);
+    inBuffer.push_back(c);
+    if (recv(inBuffer))
+        inBuffer.clear();
+}
+
+void
+PS2Device::send(const uint8_t *data, size_t size)
+{
+    assert(data || size == 0);
+    while (size) {
+        DPRINTF(PS2, "PS2: Device -> host: %#x\n", *data);
+        outBuffer.push_back(*(data++));
+        size--;
+    }
+
+    // Registering a callback is optional.
+    if (dataAvailableCallback)
+        dataAvailableCallback();
+}
+
+void
+PS2Device::sendAck()
+{
+    send(Ps2::Ack);
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2013,2017-2018 ARM Limited
+ * Copyright (c) 2010, 2017-2018 ARM Limited
  * All rights reserved
  *
  * The license below extends only to copyright in the software and shall
@@ -34,73 +34,60 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * Authors: Gabe Black
+ * Authors: Andreas Sandberg
  */
 
-#include "arch/arm/insts/misc64.hh"
+#ifndef __DEV_PS2_TOUCHKIT_HH__
+#define __DEV_PS2_TOUCHKIT_HH__
 
-std::string
-ImmOp64::generateDisassembly(Addr pc, const SymbolTable *symtab) const
-{
-    std::stringstream ss;
-    printMnemonic(ss, "", false);
-    ccprintf(ss, "#0x%x", imm);
-    return ss.str();
-}
+#include "base/vnc/vncinput.hh"
+#include "dev/ps2/device.hh"
 
-std::string
-RegRegImmImmOp64::generateDisassembly(Addr pc, const SymbolTable *symtab) const
-{
-    std::stringstream ss;
-    printMnemonic(ss, "", false);
-    printIntReg(ss, dest);
-    ss << ", ";
-    printIntReg(ss, op1);
-    ccprintf(ss, ", #%d, #%d", imm1, imm2);
-    return ss.str();
-}
+struct PS2TouchKitParams;
 
-std::string
-RegRegRegImmOp64::generateDisassembly(
-    Addr pc, const SymbolTable *symtab) const
+class PS2TouchKit : public PS2Device, public VncMouse
 {
-    std::stringstream ss;
-    printMnemonic(ss, "", false);
-    printIntReg(ss, dest);
-    ss << ", ";
-    printIntReg(ss, op1);
-    ss << ", ";
-    printIntReg(ss, op2);
-    ccprintf(ss, ", #%d", imm);
-    return ss.str();
-}
+  protected:
+    enum PS2Commands {
+        TpReadId = 0xE1,
+        TouchKitDiag = 0x0A,
+    };
 
-std::string
-UnknownOp64::generateDisassembly(Addr pc, const SymbolTable *symtab) const
-{
-    return csprintf("%-10s (inst %#08x)", "unknown", machInst & mask(32));
-}
+    enum TKCommands {
+        TouchKitActive = 'A',
+        TouchKitFWRev = 'D',
+        TouchKitCtrlType = 'E',
+    };
 
-std::string
-MiscRegRegImmOp64::generateDisassembly(
-    Addr pc, const SymbolTable *symtab) const
-{
-    std::stringstream ss;
-    printMnemonic(ss);
-    printMiscReg(ss, dest);
-    ss << ", ";
-    printIntReg(ss, op1);
-    return ss.str();
-}
+  public:
+    PS2TouchKit(const PS2TouchKitParams *p);
 
-std::string
-RegMiscRegImmOp64::generateDisassembly(
-    Addr pc, const SymbolTable *symtab) const
-{
-    std::stringstream ss;
-    printMnemonic(ss);
-    printIntReg(ss, dest);
-    ss << ", ";
-    printMiscReg(ss, op1);
-    return ss.str();
-}
+    void serialize(CheckpointOut &cp) const override;
+    void unserialize(CheckpointIn &cp) override;
+
+  protected: // PS2Device
+    bool recv(const std::vector<uint8_t> &data) override;
+
+  public: // VncMouse
+    void mouseAt(uint16_t x, uint16_t y, uint8_t buttons) override;
+
+  protected:
+    bool recvTouchKit(const std::vector<uint8_t> &data);
+    void sendTouchKit(const uint8_t *data, size_t size);
+    void sendTouchKit(uint8_t data) { sendTouchKit(&data, 1); }
+
+    /** The vnc server we're connected to (if any) */
+    VncInput *const vnc;
+
+    /** Is the device enabled? */
+    bool enabled;
+
+    /**
+     * Has the driver enabled TouchKit mode?  The model suppresses
+     * touch event generation until this is true.
+     */
+    bool touchKitEnabled;
+};
+
+#endif // __DEV_PS2_TOUCHKIT_HH__
+
