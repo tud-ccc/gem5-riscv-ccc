@@ -54,7 +54,7 @@ auipc(const uint32_t imm)
     asm volatile("auipc %0,%1" : "=r" (rd) : "i" (imm));
     std::cout << "auipc: 0x" << std::hex << std::uppercase << rd <<
         std::nouppercase << std::dec << std::endl;
-    return rd >= imm;
+    return (uint32_t)rd >= imm;
 }
 
 inline bool

@@ -1,4 +1,4 @@
-# Copyright (c) 2016 The University of Virginia
+# Copyright (c) 2018 TU Dresden
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -26,22 +26,40 @@
 #
 # Authors: Robert Scheffel
 
-CXX=riscv64-unknown-linux-gnu-g++
-CFLAGS=-std=gnu++11 -O3 -static -march=rv32imac -mabi=ilp32
+TARGET=insttest
+PREFIX=../../bin/riscv32
 
-TARGETS=rv32i
-PREFIX=../../bin/riscv32/linux
-BIN=insttest
+SRC=$(wildcard *.cpp)
+ASM=$(wildcard *.S)
+OBJ=$(ASM:.S=.o) $(SRC:.cpp=.o)
 
-all: $(TARGETS)
+CXX=riscv32-unknown-elf-g++
+AS=riscv32-unknown-elf-as
 
-$(TARGETS):
-	-mkdir -p $(PREFIX)-$@
-	$(CXX) $< $(CFLAGS) -o $(PREFIX)-$@/$(BIN)
+ASMFLAGS=-march=rv32imc
+CFLAGS=-std=gnu++11 -O3 -march=rv32imc -Wall
+LDFLAGS=-T link.ld
+
+
+all : pre-build $(TARGET)
+
+pre-build :
+	-mkdir -p $(PREFIX)
+
+$(TARGET) : $(OBJ)
+	$(CXX) $(LDFLAGS) $^ -o $(PREFIX)/$@
+
+%.o : %.S
+	$(AS) $(ASMFLAGS) $< -o $@
+
+%.o : %.cpp
+	$(CXX) -c $(CFLAGS) $< -o $@
 
 rv32i: rv32i.cpp
 
+.PHONY: clean clean_objects
 clean:
-	-rm $(PREFIX)-*/$(BIN)
+	$(RM) -rf $(PREFIX) $(OBJ)
 
-.PHONY: all clean
+clean_objects:
+	$(RM) -rf $(OBJ)
