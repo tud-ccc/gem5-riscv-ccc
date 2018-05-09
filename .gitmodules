@@ -1,0 +1,3 @@
+[submodule "ext/riscv-custom-extension"]
+	path = ext/riscv-custom-extension
+	url = git@factor.cc.inf.tu-dresden.de:scheffel/riscv-custom-extension.git
