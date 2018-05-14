@@ -73,14 +73,14 @@ class TimerCpu : public BasicPioDevice
     TimerCpu(Params *p);
 
     /**
-     * Overrides pure virtual read method.
-     * Handles a read to the device.
+     * Overrides pure virtual read method of pio device.
+     * Handles a read to the timer device.
      */
     Tick read(PacketPtr pkt) override;
 
     /**
-     * Overrides pure virtual write method.
-     * Handles a write to the device.
+     * Overrides pure virtual write method of pio device.
+     * Handles a write to the timer device.
      */
     Tick write(PacketPtr pkt) override;
 };
