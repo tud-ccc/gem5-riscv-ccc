@@ -28,4 +28,43 @@
  * Authors: Robert Scheffel
  */
 
+#ifndef __DEV_RISCV_CUSTOM_REGS_HH__
+#define __DEV_RISCV_CUSTOM_REGS_HH__
 
+#include "dev/io_device.hh"
+#include "params/CustomRegs.hh"
+
+class CustomRegs : public BasicPioDevice
+{
+  private:
+    /**
+     * Map address to register value
+     */
+    std::map<uint32_t, uint32_t>regmap;
+
+  public:
+    typedef CustomRegsParams Params;
+    const Params *
+    params() const
+    {
+      return dynamic_cast<const Params *>(_params);
+    }
+    /**
+     * The constructor.
+     */
+    CustomRegs(Params *p);
+
+    /**
+     * Overrides pure virtual read method of pio device.
+     * Handles read of registers.
+     */
+    Tick read(PacketPtr pkt) override;
+
+    /**
+     * Overrides pure virtual write method of pio device.
+     *
+     */
+    Tick write(PacketPtr pkt) override;
+};
+
+#endif // __DEV_RISCV_CUSTOM_REGS_HH__

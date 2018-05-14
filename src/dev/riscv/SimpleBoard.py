@@ -35,6 +35,13 @@ from Terminal import Terminal
 from Uart import Uart8250
 
 
+class CustomRegs(BasicPioDevice):
+    type = 'CustomRegs'
+    cxx_header = 'dev/riscv/custom_regs.hh'
+
+    regs = VectorParam.UInt32("Addresses of the custom registers.")
+
+
 class TimerCpu(BasicPioDevice):
     type = 'TimerCpu'
     cxx_header = 'dev/riscv/timer_cpu.hh'

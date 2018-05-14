@@ -29,3 +29,6 @@
  */
 
 #include "custom_regs.hh"
+
+// CustomRegs::CustomRegs(Params *p)
+// 	: BasicPioDevice(p, )
