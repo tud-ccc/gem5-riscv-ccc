@@ -33,5 +33,6 @@ Import('*')
 if env['TARGET_ISA'] == 'riscv':
     SimObject('SimpleBoard.py')
 
+    Source('custom_regs.cc')
     Source('simpleboard.cc')
     Source('timer_cpu.cc')
