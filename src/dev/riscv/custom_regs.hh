@@ -40,7 +40,7 @@ class CustomRegs : public BasicPioDevice
     /**
      * Map address to register value
      */
-    std::map<uint32_t, uint32_t>regmap;
+    std::map<uint64_t, uint64_t> regmap;
 
   public:
     typedef CustomRegsParams Params;

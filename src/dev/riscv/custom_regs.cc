@@ -28,7 +28,49 @@
  * Authors: Robert Scheffel
  */
 
-#include "custom_regs.hh"
+#include "dev/riscv/custom_regs.hh"
 
-// CustomRegs::CustomRegs(Params *p)
-// 	: BasicPioDevice(p, )
+#include "mem/packet.hh"
+#include "mem/packet_access.hh"
+
+CustomRegs::CustomRegs(Params *p)
+    : BasicPioDevice(p, sizeof(p->regs)*4)
+{
+    for (auto const& addr : p->regs) {
+        regmap[addr] = 0;
+    }
+
+    pioDelay = clockPeriod();
+}
+
+Tick
+CustomRegs::read(PacketPtr pkt)
+{
+    assert(pkt->getAddr() >= pioAddr && pkt->getAddr() < pioAddr + pioSize);
+    assert(regmap[pkt->getAddr()]);
+
+    Addr addr = pkt->getAddr() - pioAddr;
+    pkt->set<uint32_t>(regmap[addr]);
+
+    pkt->makeAtomicResponse();
+    return pioDelay;
+}
+
+Tick
+CustomRegs::write(PacketPtr pkt)
+{
+    assert(pkt->getAddr() >= pioAddr && pkt->getAddr() < pioAddr + pioSize);
+    assert(regmap[pkt->getAddr()]);
+
+    Addr addr = pkt->getAddr() - pioAddr;
+    regmap[addr] = pkt->get<uint32_t>();
+
+    pkt->makeAtomicResponse();
+    return pioDelay;
+}
+
+CustomRegs *
+CustomRegsParams::create()
+{
+    return new CustomRegs(this);
+}
