@@ -59,12 +59,16 @@ class SimpleBoard(Platform):
     term = Terminal()
     uart = Uart8250(pio_addr=0x80000000)
 
-    cust = CustomRegs()
-    cust.regs = [0x0, 0x4, 0x8]
+    cust_regs = CustomRegs(pio_addr=0x90000000,
+                           regs=[0x90000000,
+                                 0x90000004,
+                                 0x90000008,
+                                 0x9000000c])
 
     # attach I/O devices to bus
     # call this method after bus is defined at system level
     def attachIO(self, bus):
+        self.cust_regs.pio = bus.master
         self.timer_cpu.pio = bus.master
         self.uart.device = self.term
         self.uart.pio = bus.master

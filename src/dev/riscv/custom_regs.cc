@@ -47,7 +47,6 @@ Tick
 CustomRegs::read(PacketPtr pkt)
 {
     assert(pkt->getAddr() >= pioAddr && pkt->getAddr() < pioAddr + pioSize);
-    assert(regmap[pkt->getAddr()]);
 
     Addr addr = pkt->getAddr() - pioAddr;
     pkt->set<uint32_t>(regmap[addr]);
@@ -59,8 +58,11 @@ CustomRegs::read(PacketPtr pkt)
 Tick
 CustomRegs::write(PacketPtr pkt)
 {
+    // warn("addr: %#x\n", pkt->getAddr());
+    // for (auto const& x: regmap) {
+    //     warn("key = %#x", x.first);
+    // }
     assert(pkt->getAddr() >= pioAddr && pkt->getAddr() < pioAddr + pioSize);
-    assert(regmap[pkt->getAddr()]);
 
     Addr addr = pkt->getAddr() - pioAddr;
     regmap[addr] = pkt->get<uint32_t>();
