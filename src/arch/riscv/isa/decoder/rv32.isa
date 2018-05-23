@@ -651,16 +651,5 @@ decode QUADRANT default Unknown::unknown() {
                 }}, IsNonSpeculative, No_OpClass);
             }
         }
-0x2: decode FUNCT3 {
-0x0: decode FUNCT7 {
-0x0: R32Op::mac({{
-    uint32_t tmp = Rs1 * Rs2;
-    Rd = Rd + tmp;
-}});
-}
-0x1: I32Op::foo({{
-    // function definition
-}}, uint32_t);
-}
     }
 }
