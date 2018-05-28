@@ -656,11 +656,11 @@ decode QUADRANT default Unknown::unknown() {
 0x0: R32Op::mac({{
     uint32_t tmp = Rs1 * Rs2;
     Rd = Rd + tmp;
-}});
+}}, IntCustOp);
 }
 0x1: I32Op::foo({{
     // function definition
-}}, uint32_t);
+}}, uint32_t, IntCustOp);
 }
     }
 }
