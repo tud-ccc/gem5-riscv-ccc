@@ -29,12 +29,16 @@
 from m5.objects import *
 
 
-class MinorDefaultIntCustFU(MinorFU):
+class MinorFUMacTiming(MinorFUTiming):
+    description = 'CustomMac'
+    srcRegsRelativeLats = [2]
+    extraAssumedLat = 5
+
+
+class MinorCustIntFU(MinorFU):
     opClasses = minorMakeOpClassSet(['IntCustom'])
 
-    timings = [MinorFUTiming(description='CustomMac',
-                             srcRegsRelativeLats=[2],
-                             extraAssumedLat=5)]
+    timings = [MinorFUMacTiming()]
 
 
 class MinorCustomFUPool(MinorFUPool):
