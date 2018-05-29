@@ -156,14 +156,6 @@ class MinorDefaultIntDivFU(MinorFU):
     opLat = 9
 
 
-class MinorDefaultIntCustFU(MinorFU):
-    opClasses = minorMakeOpClassSet(['IntCustom'])
-
-    timings = [MinorFUTiming(description='CustomMac',
-                             srcRegsRelativeLats=[2],
-                             extraAssumedLat=5)]
-
-
 class MinorDefaultFloatSimdFU(MinorFU):
     opClasses = minorMakeOpClassSet([
         'FloatAdd', 'FloatCmp', 'FloatCvt', 'FloatMisc', 'FloatMult',
