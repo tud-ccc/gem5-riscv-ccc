@@ -161,7 +161,7 @@ class MinorDefaultIntCustFU(MinorFU):
 
     timings = [MinorFUTiming(description='CustomMac',
                              srcRegsRelativeLats=[2],
-                             extraAssumedLat=3)]
+                             extraAssumedLat=5)]
 
 
 class MinorDefaultFloatSimdFU(MinorFU):
@@ -312,7 +312,8 @@ class MinorCPU(BaseCPU):
         " (1 means next cycle)")
 
     executeFuncUnits = Param.MinorFUPool(
-        MinorDefaultFUPool(),
+        Parent.any,
+        # MinorDefaultFUPool(),
         "FUlines for this processor")
 
     executeSetTraceTimeOnCommit = Param.Bool(

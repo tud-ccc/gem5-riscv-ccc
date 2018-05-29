@@ -86,7 +86,7 @@ def main():
                         help='The binary to run')
     parser.add_argument('--cpu',
                         type=str,
-                        default='atomic',
+                        default='minor',
                         help='CPU model to use')
     parser.add_argument('-w',
                         '--wait-for-gdb',
