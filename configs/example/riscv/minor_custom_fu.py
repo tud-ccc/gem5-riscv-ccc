@@ -34,6 +34,7 @@ class MinorCustomIntFU(MinorFU):
     opClasses = minorMakeOpClassSet(['IntCustom'])
 
     timings = custom_timings
+    opLat = 1
 
 
 class MinorCustomFUPool(MinorFUPool):

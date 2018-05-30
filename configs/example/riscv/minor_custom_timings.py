@@ -32,7 +32,7 @@ from m5.objects import *
 class MinorFUMacTiming(MinorFUTiming):
     description = 'CustomMac'
     srcRegsRelativeLats = [2]
-    extraAssumedLat = 5
+    extraCommitLat = 3
 
 
 custom_timings = [MinorFUMacTiming()]
