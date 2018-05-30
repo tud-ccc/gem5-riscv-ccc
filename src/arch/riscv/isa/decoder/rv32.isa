@@ -658,8 +658,9 @@ decode QUADRANT default Unknown::unknown() {
     Rd = Rd + tmp;
 }}, IntCustOp);
 }
-0x1: I32Op::foo({{
-    // function definition
+0x1: I32Op::binom({{
+    uint32_t tmp = Rs1 + imm;
+    Rd = tmp * tmp;
 }}, uint32_t, IntCustOp);
 }
     }
