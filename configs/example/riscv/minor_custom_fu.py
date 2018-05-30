@@ -35,7 +35,7 @@ class MinorFUMacTiming(MinorFUTiming):
     extraAssumedLat = 5
 
 
-class MinorCustIntFU(MinorFU):
+class MinorCustomIntFU(MinorFU):
     opClasses = minorMakeOpClassSet(['IntCustom'])
 
     timings = [MinorFUMacTiming()]
@@ -44,6 +44,6 @@ class MinorCustIntFU(MinorFU):
 class MinorCustomFUPool(MinorFUPool):
     funcUnits = [MinorDefaultIntFU(), MinorDefaultIntFU(),
                  MinorDefaultIntMulFU(), MinorDefaultIntDivFU(),
-                 MinorDefaultIntCustFU(),
+                 MinorCustomIntFU(),
                  MinorDefaultFloatSimdFU(), MinorDefaultMemFU(),
                  MinorDefaultMiscFU()]
