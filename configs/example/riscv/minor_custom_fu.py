@@ -29,7 +29,7 @@
 import m5
 from m5.objects import *
 
-m5.util.addToPath('../../../ext/riscv-custom-extension/build')
+m5.util.addToPath('../../../ext/riscv-custom-extension/build/python')
 
 try:
     from minor_custom_timings import custom_timings
