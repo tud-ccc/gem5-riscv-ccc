@@ -205,6 +205,8 @@ FUPipeline::findTiming(const StaticInstPtr &inst)
 #if THE_ISA == ARM_ISA
     /* This should work for any ISA with a POD mach_inst */
     TheISA::ExtMachInst mach_inst = inst->machInst;
+#elif THE_ISA == RISCV_ISA
+    TheISA::ExtMachInst mach_inst = inst->machInst;
 #else
     /* Just allow extra decode based on op classes */
     uint64_t mach_inst = 0;
