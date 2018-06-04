@@ -33,7 +33,7 @@
 // The RISC-V ISA decoder
 //
 
-decode ARCH default Unknown::unknown() {
+decode ARCH default Custom::custom() {
     // 0:
     // ##include "rv64.isa"
     1:

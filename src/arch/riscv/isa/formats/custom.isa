@@ -1,7 +1,6 @@
 // -*- mode:c++ -*-
 
-// Copyright (c) 2015 RISC-V Foundation
-// Copyright (c) 2016-2017 The University of Virginia
+// Copyright (c) 2018 TU Dresden
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -27,27 +26,13 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
-// Authors: Maxwell Walter
-//          Alec Roelke
+// Authors: Robert Scheffel
 
-// Include the basic format
-##include "basic.isa"
-##include "basic32.isa"
+////////////////////////////////////////////////////////////////////
+//
+// try custom decoder
+//
 
-// Include the type formats
-##include "standard.isa"
-##include "standard32.isa"
-##include "mem.isa"
-##include "mem32.isa"
-##include "fp.isa"
-##include "amo.isa"
-
-// Include formats for nonstandard extensions
-##include "compressed.isa"
-##include "compressed32.isa"
-
-// Include the custom decoder
-##include "custom.isa"
-
-// Include the unknown
-##include "unknown.isa"
+def format Custom() {{
+    decode_block = 'return decodeCustomInst(machInst);\n'
+}};
