@@ -33,6 +33,7 @@
 #define __CPU_STATIC_INST_HH__
 
 #include <bitset>
+#include <csignal>
 #include <memory>
 #include <string>
 
@@ -47,6 +48,7 @@
 #include "cpu/reg_class_impl.hh"
 #include "cpu/static_inst_fwd.hh"
 #include "cpu/thread_context.hh"
+#include "debug/Decode.hh"
 #include "enums/StaticInstFlags.hh"
 #include "sim/byteswap.hh"
 
@@ -250,7 +252,13 @@ class StaticInst : public RefCounted, public StaticInstFlags
           _numFPDestRegs(0), _numIntDestRegs(0), _numCCDestRegs(0),
           _numVecDestRegs(0), _numVecElemDestRegs(0), machInst(_machInst),
           mnemonic(_mnemonic), cachedDisassembly(0)
-    { }
+    {
+        DPRINTF(Decode, "this %#x, mnemonic = %s, %llu\n",
+          this, _mnemonic, static_cast<const void*>(mnemonic));
+        if (strcmp(_mnemonic, "mac") == 0) {
+            std::raise(SIGINT);
+        }
+    }
 
   public:
     virtual ~StaticInst();
@@ -318,7 +326,14 @@ class StaticInst : public RefCounted, public StaticInstFlags
     void printFlags(std::ostream &outs, const std::string &separator) const;
 
     /// Return name of machine instruction
-    std::string getName() { return mnemonic; }
+    std::string getName() {
+        if (reinterpret_cast<uintptr_t>(mnemonic) == 0xffff000d00000000ull) {
+            std::raise(SIGINT);
+        }
+        DPRINTF(Decode, "get name %#x %llu\n",
+          this, static_cast<const void*>(mnemonic));
+        return mnemonic;
+    }
 
   protected:
     template<typename T>
