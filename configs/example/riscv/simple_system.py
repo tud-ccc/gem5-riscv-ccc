@@ -69,6 +69,10 @@ class SimpleSystem(BareMetalRiscvSystem):
         self.cpu.createInterruptController()
         self.cpu.wait_for_remote_gdb = wfgdb
 
+        isa = RiscvISA()
+        isa.cust_regs = [0x800]
+        self.cpu.isa = [isa]
+
         # system memory bus
         self.membus = MemBus()
 
