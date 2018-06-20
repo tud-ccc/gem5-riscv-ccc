@@ -62,6 +62,11 @@ class ISA : public SimObject
   protected:
     std::vector<MiscReg> miscRegFile;
 
+    /**
+     * Map address to register value
+     */
+    std::map<uint32_t, uint32_t> cust_regmap;
+
     // corresponding system
     RiscvSystem *system;
 
