@@ -65,7 +65,7 @@ class ISA : public SimObject
     /**
      * Map address to register value
      */
-    std::map<uint32_t, uint32_t> cust_regmap;
+    std::map<int, MiscReg> cust_regmap;
 
     // corresponding system
     RiscvSystem *system;

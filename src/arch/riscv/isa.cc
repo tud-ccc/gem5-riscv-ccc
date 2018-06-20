@@ -120,6 +120,11 @@ void ISA::clear()
 MiscReg
 ISA::readMiscRegNoEffect(int misc_reg) const
 {
+    // check if we access a miscreg
+    if (cust_regmap.count(misc_reg)) {
+        return cust_regmap.at(misc_reg);
+    }
+
     DPRINTF(RiscvMisc, "Reading CSR %s (0x%016llx).\n",
         MiscRegNames.at(misc_reg), miscRegFile[misc_reg]);
     switch (misc_reg) {
@@ -183,6 +188,11 @@ ISA::readMiscReg(int misc_reg, ThreadContext *tc)
 void
 ISA::setMiscRegNoEffect(int misc_reg, const MiscReg &val)
 {
+    // check if we access a miscreg
+    if (cust_regmap.count(misc_reg)) {
+        cust_regmap[misc_reg] = val;
+    }
+
     DPRINTF(RiscvMisc, "Setting CSR %s to 0x%016llx.\n",
         MiscRegNames.at(misc_reg), val);
     switch (misc_reg) {
