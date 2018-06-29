@@ -52,6 +52,6 @@ class RiscvISA(SimObject):
     cxx_class = 'RiscvISA::ISA'
     cxx_header = "arch/riscv/isa.hh"
 
-    cust_regs = VectorParam.UInt32("Indexes of custom registers.")
+    cust_regs = VectorParam.UInt32([], "Indexes of custom registers.")
 
     system = Param.System(Parent.any, "System this ISA object belongs to")

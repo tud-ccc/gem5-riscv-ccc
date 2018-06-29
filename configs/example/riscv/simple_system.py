@@ -72,9 +72,8 @@ class SimpleSystem(BareMetalRiscvSystem):
         # TODO:
         # better: modify existing isa
         # read only, init value
-        isa = RiscvISA()
-        isa.cust_regs = [0x800]
-        self.cpu.isa = [isa]
+        regs = [0x800, 0xcc0]
+        self.cpu.isa[0].cust_regs = regs
 
         # system memory bus
         self.membus = MemBus()

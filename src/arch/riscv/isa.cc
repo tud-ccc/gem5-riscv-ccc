@@ -52,8 +52,8 @@ ISA::ISA(Params *p)
 {
     miscRegFile.resize(NumMiscRegs);
 
-    for (auto const& addr : p->cust_regs) {
-        cust_regmap[addr] = 0;
+    for (auto const& index : p->cust_regs) {
+        cust_regmap[index] = 0;
     }
 
     system = dynamic_cast<RiscvSystem *>(p->system);
