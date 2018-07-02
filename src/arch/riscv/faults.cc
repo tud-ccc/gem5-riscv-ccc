@@ -37,6 +37,7 @@
 #include "cpu/thread_context.hh"
 #include "sim/debug.hh"
 #include "sim/full_system.hh"
+#include "sim/pseudo_inst.hh"
 
 using namespace RiscvISA;
 
@@ -79,10 +80,26 @@ void Reset::invoke(ThreadContext *tc, const StaticInstPtr &inst)
 }
 
 void
+UnknownInstFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
+{
+    warn("Illegal instruction 0x%08x at pc 0x%016llx", inst->machInst,
+        tc->pcState().pc());
+    PseudoInst::m5exit(tc, 0);
+}
+
+void
 UnknownInstFault::invoke_se(ThreadContext *tc, const StaticInstPtr &inst)
 {
     panic("Unknown instruction 0x%08x at pc 0x%016llx", inst->machInst,
         tc->pcState().pc());
+}
+
+void
+IllegalInstFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
+{
+    warn("Illegal instruction 0x%08x at pc 0x%016llx: %s", inst->machInst,
+        tc->pcState().pc(), reason.c_str());
+    PseudoInst::m5exit(tc, 0);
 }
 
 void

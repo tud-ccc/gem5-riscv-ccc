@@ -144,8 +144,8 @@ class UnknownInstFault : public RiscvFault
             SOFTWARE)
     {}
 
-    void
-    invoke_se(ThreadContext *tc, const StaticInstPtr &inst);
+    void invoke(ThreadContext *tc, const StaticInstPtr &inst);
+    void invoke_se(ThreadContext *tc, const StaticInstPtr &inst);
 };
 
 class IllegalInstFault : public RiscvFault
@@ -158,6 +158,7 @@ class IllegalInstFault : public RiscvFault
           reason(r)
     {}
 
+    void invoke(ThreadContext *tc, const StaticInstPtr &inst);
     void invoke_se(ThreadContext *tc, const StaticInstPtr &inst);
 };
 

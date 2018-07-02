@@ -71,7 +71,7 @@ def create(args):
 
 def run():
     '''Run the simulation'''
-    exit_event = m5.simulate()
+    exit_event = m5.simulate(m5.MaxTick)
     print('Exiting because %s @ %d ' % (exit_event.getCause(), m5.curTick()))
 
 
