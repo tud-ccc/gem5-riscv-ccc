@@ -49,13 +49,31 @@ TimerCpu::read(PacketPtr pkt)
 
     Addr addr = pkt->getAddr() - pioAddr;
     switch (pkt->getSize()) {
+        case 4:
+            switch (addr) {
+                case Time:
+                    warn("cur cycle: %d\n", curCycle());
+                    pkt->set<uint32_t>(curCycle());
+                    break;
+                case (Time + 4):
+                    warn("cur upper cycle: %d\n", (curCycle() >> 32));
+                    pkt->set<uint32_t>(curCycle() >> 32);
+                    break;
+                case TimeCmp:
+                    pkt->set<uint32_t>(timecmp);
+                    break;
+                case (TimeCmp + 4):
+                    pkt->set<uint32_t>(timecmp >> 32);
+                    break;
+                default:
+                    panic("Tried to write TimerCpu at offset %#x\n", addr);
+                    break;
+            }
+            break;
         case 8:
             switch (addr) {
                 case Time:
-                    /**
-                     * this register does not exist explicitly in code
-                     * instead calculate value
-                     */
+                    pkt->set<uint64_t>(curCycle());
                     break;
                 case TimeCmp:
                     pkt->set<uint64_t>(timecmp);
@@ -65,7 +83,7 @@ TimerCpu::read(PacketPtr pkt)
             }
             break;
         default:
-            panic("Unsupported packet size for write access on TimerCpu");
+            panic("Unsupported packet size for read access on TimerCpu");
             break;
     }
 
@@ -103,7 +121,7 @@ TimerCpu::write(PacketPtr pkt)
                     startTimer(timecmp);
                     break;
                 default:
-                    panic("Tried to read TimerCpu at offset %#x\n", addr);
+                    panic("Tried to write TimerCpu at offset %#x\n", addr);
                     break;
             }
             break;
@@ -121,7 +139,7 @@ TimerCpu::write(PacketPtr pkt)
                     startTimer(timecmp);
                     break;
                 default:
-                    panic("Tried to read TimerCpu at offset %#x\n", addr);
+                    panic("Tried to write TimerCpu at offset %#x\n", addr);
                     break;
             }
             break;

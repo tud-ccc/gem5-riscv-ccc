@@ -308,7 +308,7 @@ decode QUADRANT default Custom::custom() {
             format I32Op {
                 0x0: addi({{
                     Rd_sw = Rs1_sw + imm;
-                }}, uint32_t);
+                }}, int32_t);
                 0x1: slli({{
                     Rd_uw = Rs1_uw << SHAMT5;
                 }});
