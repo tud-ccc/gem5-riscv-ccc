@@ -31,13 +31,11 @@ Full system script
 '''
 
 import argparse
-from simple_system import SimpleSystem
+from hifive1 import HiFive1
 
 import m5
 from m5.objects import *
 
-m5.util.addToPath('../..')
-from common import MemConfig
 
 cpu_types = {
     'atomic': AtomicSimpleCPU,
@@ -51,18 +49,10 @@ def create(args):
     cpu_class = cpu_types[args.cpu]
     mem_mode = cpu_class.memory_mode()
 
-    system = SimpleSystem(cpu_class=cpu_class,
-                          wfgdb=args.wait_for_gdb,
-                          mem_mode=mem_mode,
-                          bootloader=args.binary)
-
-    # some required stuff
-    mem_type = 'SimpleMemory'
-    mem_channels = 1
-    args.mem_type = mem_type
-    args.mem_channels = mem_channels
-
-    MemConfig.config_mem(args, system)
+    system = HiFive1(cpu_class=cpu_class,
+                     wfgdb=args.wait_for_gdb,
+                     mem_mode=mem_mode,
+                     bootloader=args.binary)
 
     system.connect()
 
