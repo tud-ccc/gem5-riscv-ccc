@@ -40,6 +40,7 @@ class HiFive1FUPool(MinorFUPool):
     funcUnits = [MinorDefaultIntFU(),
                  MinorDefaultIntMulFU(),
                  MinorDefaultIntDivFU(),
+                 MinorDefaultFloatSimdFU(),
                  MinorDefaultMemFU(),
                  MinorDefaultMiscFU()]
 
@@ -47,6 +48,12 @@ class HiFive1FUPool(MinorFUPool):
 class MemBus(SystemXBar):
     badaddr_responder = BadAddr(warn_access="warn")
     default = Self.badaddr_responder.pio
+
+    frontend_latency = 1
+    forward_latency = 0
+    response_latency = 1
+    snoop_response_latency = 1
+    snoop_filter = SnoopFilter(lookup_latency=1)
 
 
 class L1I(L1_ICache):
@@ -118,7 +125,7 @@ class HiFive1(BareMetalRiscvSystem):
         self.iflash = SimpleMemory(latency='37us')
         self.iflash.range = self.mem_ranges[0]
 
-        self.dmem = SimpleMemory()
+        self.dmem = SimpleMemory(latency='8ns')
         self.dmem.range = self.mem_ranges[1]
 
         # define bit mode
