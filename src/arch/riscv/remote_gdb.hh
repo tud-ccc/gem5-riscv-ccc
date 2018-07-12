@@ -93,6 +93,9 @@ class RemoteGDB : public BaseRemoteGDB
             uint32_t gpr[NumIntArchRegs];
             uint32_t pc;
             uint32_t fpr[NumFloatRegs];
+            uint32_t dcsr;
+            uint32_t dpc;
+            uint32_t dscratch;
         } __attribute__((__packed__)) r;
       public:
         char *data() const { return (char *)&r; }

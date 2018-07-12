@@ -225,6 +225,10 @@ RemoteGDB::Riscv32GdbRegCache::getRegs(ThreadContext *context)
     for (int i = 0; i < NumFloatRegs; i++) {
         r.fpr[i] = context->readFloatRegBits(i);
     }
+
+    r.dcsr = context->readMiscReg(MISCREG_DCSR);
+    r.dpc = context->readMiscReg(MISCREG_DPC);
+    r.dscratch = context->readMiscReg(MISCREG_DSCRATCH);
 }
 
 void
