@@ -95,7 +95,7 @@ class Samara(BareMetalRiscvSystem):
 
         # create clock and voltage domain
         # set to 100MHz clock frequency (like real hw board)
-        self.clk_domain = SrcClockDomain(clock='100MHz')
+        self.clk_domain = SrcClockDomain(clock='64MHz')
         self.clk_domain.voltage_domain = VoltageDomain()
 
         # set up our board
