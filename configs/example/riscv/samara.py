@@ -116,7 +116,7 @@ class Samara(BareMetalRiscvSystem):
         self.cpu.wait_for_remote_gdb = wfgdb
 
         # system memory bus
-        self.membus = TimingMemBus()
+        self.membus = MemBus()
 
         # create mem_range
         # for now start at 0x0
