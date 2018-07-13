@@ -323,7 +323,7 @@ decode QUADRANT default Custom::custom() {
                 }}, uint32_t);
                 0x5: decode SRTYPE {
                     0x0: srli({{
-                        Rd_uw = Rs1 >> SHAMT5;
+                        Rd_uw = Rs1_uw >> SHAMT5;
                     }});
                     0x1: srai({{
                         Rd_sw = Rs1_sw >> SHAMT5;

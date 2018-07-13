@@ -36,12 +36,41 @@ m5.util.addToPath('../../')
 from common.Caches import *
 
 
+class HiFive1IntFU(MinorFU):
+    opClasses = minorMakeOpClassSet(['IntAlu'])
+    timings = [MinorFUTiming(description="Int",
+                             srcRegsRelativeLats=[2])]
+    opLat = 1
+
+
+class HiFive1IntMulFU(MinorFU):
+    opClasses = minorMakeOpClassSet(['IntMult'])
+    timings = [MinorFUTiming(description='Mul',
+                             srcRegsRelativeLats=[0])]
+    opLat = 9
+    issueLat = 9
+
+
+class HiFive1IntDivFU(MinorFU):
+    opClasses = minorMakeOpClassSet(['IntDiv'])
+    issueLat = 5
+    opLat = 9
+
+
+class HiFive1MemFU(MinorFU):
+    opClasses = minorMakeOpClassSet(['MemRead', 'MemWrite', 'FloatMemRead',
+                                     'FloatMemWrite'])
+    # timings = [MinorFUTiming(description='Mem',
+    #                         srcRegsRelativeLats=[1], extraAssumedLat=1)]
+    opLat = 1
+
+
 class HiFive1FUPool(MinorFUPool):
-    funcUnits = [MinorDefaultIntFU(),
-                 MinorDefaultIntMulFU(),
-                 MinorDefaultIntDivFU(),
+    funcUnits = [HiFive1IntFU(),
+                 HiFive1IntMulFU(),
+                 HiFive1IntDivFU(),
                  MinorDefaultFloatSimdFU(),
-                 MinorDefaultMemFU(),
+                 HiFive1MemFU(),
                  MinorDefaultMiscFU()]
 
 
@@ -49,11 +78,11 @@ class MemBus(SystemXBar):
     badaddr_responder = BadAddr(warn_access="warn")
     default = Self.badaddr_responder.pio
 
-    frontend_latency = 1
+    frontend_latency = 0
     forward_latency = 0
-    response_latency = 1
-    snoop_response_latency = 1
-    snoop_filter = SnoopFilter(lookup_latency=1)
+    response_latency = 0
+    snoop_response_latency = 0
+    snoop_filter = SnoopFilter(lookup_latency=0)
 
 
 class L1I(L1_ICache):
@@ -62,15 +91,6 @@ class L1I(L1_ICache):
     response_latency = 1
     size = '16kB'
     assoc = 2
-
-
-class L1D(L1_DCache):
-    tag_latency = 2
-    data_latency = 2
-    response_latency = 1
-    size = '16kB'
-    assoc = 2
-    addr_ranges = [AddrRange(start=0x0, size='128MB')]
 
 
 class HiFive1(BareMetalRiscvSystem):
@@ -125,7 +145,7 @@ class HiFive1(BareMetalRiscvSystem):
         self.iflash = SimpleMemory(latency='37us')
         self.iflash.range = self.mem_ranges[0]
 
-        self.dmem = SimpleMemory(latency='8ns')
+        self.dmem = SimpleMemory(latency='1ns')
         self.dmem.range = self.mem_ranges[1]
 
         # define bit mode
