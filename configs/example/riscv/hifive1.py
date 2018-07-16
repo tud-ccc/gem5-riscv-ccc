@@ -47,8 +47,8 @@ class HiFive1IntMulFU(MinorFU):
     opClasses = minorMakeOpClassSet(['IntMult'])
     timings = [MinorFUTiming(description='Mul',
                              srcRegsRelativeLats=[0])]
-    opLat = 9
-    issueLat = 9
+    opLat = 7
+    issueLat = 7
 
 
 class HiFive1IntDivFU(MinorFU):
@@ -62,7 +62,8 @@ class HiFive1MemFU(MinorFU):
                                      'FloatMemWrite'])
     # timings = [MinorFUTiming(description='Mem',
     #                         srcRegsRelativeLats=[1], extraAssumedLat=1)]
-    opLat = 1
+    opLat = 2
+    issueLat = 2
 
 
 class HiFive1FUPool(MinorFUPool):
@@ -85,12 +86,15 @@ class MemBus(SystemXBar):
     snoop_filter = SnoopFilter(lookup_latency=0)
 
 
-class L1I(L1_ICache):
+class L1I(Cache):
     tag_latency = 1
     data_latency = 1
     response_latency = 1
     size = '16kB'
     assoc = 2
+
+    mshrs = 1
+    tgts_per_mshr = 1
 
 
 class HiFive1(BareMetalRiscvSystem):
@@ -123,6 +127,8 @@ class HiFive1(BareMetalRiscvSystem):
         self.cpu.createInterruptController()
         self.cpu.wait_for_remote_gdb = wfgdb
 
+        self.cache_line_size = 32
+
         # add caches
         # self.cpu.addPrivateSplitL1Caches(L1I(), L1D())
         l1i = L1I()
@@ -142,7 +148,7 @@ class HiFive1(BareMetalRiscvSystem):
         self.mem_ranges = [AddrRange(start=iflash_start, size=iflash_size),
                            AddrRange(start=dram_start, size=dram_size)]
 
-        self.iflash = SimpleMemory(latency='37us')
+        self.iflash = SimpleMemory(latency='18us')
         self.iflash.range = self.mem_ranges[0]
 
         self.dmem = SimpleMemory(latency='1ns')
