@@ -40,7 +40,7 @@ class HiFive1IntFU(MinorFU):
     opClasses = minorMakeOpClassSet(['IntAlu'])
     timings = [MinorFUTiming(description="Int",
                              srcRegsRelativeLats=[2])]
-    opLat = 1
+    opLat = 3
 
 
 class HiFive1IntMulFU(MinorFU):
@@ -53,17 +53,16 @@ class HiFive1IntMulFU(MinorFU):
 
 class HiFive1IntDivFU(MinorFU):
     opClasses = minorMakeOpClassSet(['IntDiv'])
-    issueLat = 5
-    opLat = 9
+    issueLat = 7
+    opLat = 7
 
 
 class HiFive1MemFU(MinorFU):
     opClasses = minorMakeOpClassSet(['MemRead', 'MemWrite', 'FloatMemRead',
                                      'FloatMemWrite'])
-    # timings = [MinorFUTiming(description='Mem',
-    #                         srcRegsRelativeLats=[1], extraAssumedLat=1)]
-    opLat = 2
-    issueLat = 2
+    timings = [MinorFUTiming(description='Mem',
+                             srcRegsRelativeLats=[1], extraAssumedLat=1)]
+    opLat = 1
 
 
 class HiFive1FUPool(MinorFUPool):
@@ -87,6 +86,7 @@ class MemBus(SystemXBar):
 
 
 class L1I(Cache):
+    is_read_only = True
     tag_latency = 1
     data_latency = 1
     response_latency = 1
@@ -126,6 +126,13 @@ class HiFive1(BareMetalRiscvSystem):
         self.cpu.createThreads()
         self.cpu.createInterruptController()
         self.cpu.wait_for_remote_gdb = wfgdb
+
+        # configure cpu parameter
+        # self.cpu.fetch1FetchLimit = 2
+        # self.cpu.fetch1LineSnapWidth = 4
+        # self.cpu.fetch1LineWidth = 4
+        # self.cpu.executeAllowEarlyMemoryIssue = False
+        # self.cpu.executeMemoryWidth = 4
 
         self.cache_line_size = 32
 
