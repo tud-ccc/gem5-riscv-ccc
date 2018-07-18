@@ -36,6 +36,8 @@ from minor_custom_fu import MinorCustomFUPool
 
 class SamaraIntFU(MinorFU):
     opClasses = minorMakeOpClassSet(['IntAlu'])
+    timings = [MinorFUTiming(description="Int",
+                             srcRegsRelativeLats=[2])]
     opLat = 5
     issueLat = 5
 
@@ -54,12 +56,21 @@ class SamaratIntDivFU(MinorFU):
     opLat = 40
 
 
+class SamaraMemFU(MinorFU):
+    opClasses = minorMakeOpClassSet(['MemRead', 'MemWrite', 'FloatMemRead',
+                                     'FloatMemWrite'])
+    # timings = [MinorFUTiming(description='Mem',
+    #    srcRegsRelativeLats=[1], extraAssumedLat=2)]
+    opLat = 8
+    issueLat = 8
+
+
 class SamaraFUPool(MinorFUPool):
     funcUnits = [SamaraIntFU(),
                  SamaraIntMulFU(),
                  SamaratIntDivFU(),
                  MinorDefaultFloatSimdFU(),
-                 MinorDefaultMemFU(),
+                 SamaraMemFU(),
                  MinorDefaultMiscFU()]
 
 
@@ -67,10 +78,10 @@ class MemBus(SystemXBar):
     badaddr_responder = BadAddr(warn_access="warn")
     default = Self.badaddr_responder.pio
 
-    frontend_latency = 2
-    forward_latency = 1
-    response_latency = 2
-    snoop_response_latency = 1
+    frontend_latency = 0
+    forward_latency = 0
+    response_latency = 0
+    snoop_response_latency = 0
     snoop_filter = SnoopFilter(lookup_latency=1)
 
 
@@ -114,6 +125,13 @@ class Samara(BareMetalRiscvSystem):
         self.cpu.createThreads()
         self.cpu.createInterruptController()
         self.cpu.wait_for_remote_gdb = wfgdb
+
+        # configure cpu parameter
+        # self.cpu.fetch1FetchLimit = 2
+        self.cpu.fetch1LineSnapWidth = 4
+        self.cpu.fetch1LineWidth = 4
+        # self.cpu.executeAllowEarlyMemoryIssue = False
+        # self.cpu.executeMemoryWidth = 4
 
         # system memory bus
         self.membus = MemBus()
