@@ -47,7 +47,7 @@ class HiFive1IntMulFU(MinorFU):
     opClasses = minorMakeOpClassSet(['IntMult'])
     timings = [MinorFUTiming(description='Mul',
                              srcRegsRelativeLats=[0])]
-    opLat = 7
+    opLat = 3
     issueLat = 7
 
 
@@ -71,6 +71,7 @@ class HiFive1FUPool(MinorFUPool):
                  HiFive1IntDivFU(),
                  MinorDefaultFloatSimdFU(),
                  HiFive1MemFU(),
+                 HiFive1MemFU(),
                  MinorDefaultMiscFU()]
 
 
@@ -81,8 +82,6 @@ class MemBus(SystemXBar):
     frontend_latency = 0
     forward_latency = 0
     response_latency = 0
-    snoop_response_latency = 0
-    snoop_filter = SnoopFilter(lookup_latency=0)
 
 
 class L1I(Cache):
@@ -93,8 +92,8 @@ class L1I(Cache):
     size = '16kB'
     assoc = 2
 
-    mshrs = 1
-    tgts_per_mshr = 1
+    mshrs = 12
+    tgts_per_mshr = 8
 
 
 class HiFive1(BareMetalRiscvSystem):
@@ -134,6 +133,11 @@ class HiFive1(BareMetalRiscvSystem):
         # self.cpu.executeAllowEarlyMemoryIssue = False
         # self.cpu.executeMemoryWidth = 4
 
+        # self.cpu.executeCommitLimit = 4
+        # self.cpu.executeMemoryCommitLimit = 4
+        # self.cpu.executeMaxAccessesInMemory = 4
+        # self.cpu.executeLSQMaxStoreBufferStoresPerCycle = 4
+
         self.cache_line_size = 32
 
         # add caches
@@ -148,9 +152,9 @@ class HiFive1(BareMetalRiscvSystem):
         # create mem_range
         # for now start at 0x0
         # take 3GB as size as it is a bit lower than 0xffffffff bytes
-        iflash_start = Addr(0x00000000)
+        iflash_start = Addr(0x20400000)
         iflash_size = '512MB'
-        dram_start = Addr(0x20000300)
+        dram_start = Addr(0x80000000)
         dram_size = '32kB'
         self.mem_ranges = [AddrRange(start=iflash_start, size=iflash_size),
                            AddrRange(start=dram_start, size=dram_size)]

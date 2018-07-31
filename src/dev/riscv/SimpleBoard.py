@@ -54,10 +54,10 @@ class SimpleBoard(Platform):
     cxx_header = 'dev/riscv/simpleboard.hh'
     system = Param.System(Parent.any, 'system')
 
-    timer_cpu = TimerCpu(pio_addr=0x80000100)
+    timer_cpu = TimerCpu(pio_addr=0x02000000)
 
     term = Terminal()
-    uart = Uart8250(pio_addr=0x80000000)
+    uart = Uart8250(pio_addr=0x10013000)
 
     cust_regs = CustomRegs(pio_addr=0x90000000,
                            regs=[0x90000000,
