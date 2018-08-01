@@ -48,14 +48,14 @@ namespace RiscvISA {
 inline Addr
 vtophys(Addr vaddr)
 {
-    warn("VTOPHYS: Unimplemented on RISC-V\n");
+    warn_once("VTOPHYS: Unimplemented on RISC-V\n");
     return vaddr;
 }
 
 inline Addr
 vtophys(ThreadContext *tc, Addr vaddr)
 {
-    warn("VTOPHYS: Unimplemented on RISC-V\n");
+    warn_once("VTOPHYS: Unimplemented on RISC-V\n");
     return vtophys(vaddr);
 }
 

@@ -47,14 +47,14 @@ class HiFive1IntMulFU(MinorFU):
     opClasses = minorMakeOpClassSet(['IntMult'])
     timings = [MinorFUTiming(description='Mul',
                              srcRegsRelativeLats=[0])]
-    opLat = 3
+    opLat = 7
     issueLat = 7
 
 
 class HiFive1IntDivFU(MinorFU):
     opClasses = minorMakeOpClassSet(['IntDiv'])
-    issueLat = 7
-    opLat = 7
+    issueLat = 9
+    opLat = 9
 
 
 class HiFive1MemFU(MinorFU):
@@ -76,12 +76,14 @@ class HiFive1FUPool(MinorFUPool):
 
 
 class MemBus(SystemXBar):
-    badaddr_responder = BadAddr(warn_access="warn")
+    badaddr_responder = BadAddr(warn_access="warn", pio_latency='1ns')
     default = Self.badaddr_responder.pio
 
     frontend_latency = 0
     forward_latency = 0
     response_latency = 0
+    snoop_response_latency = 0
+    snoop_filter = SnoopFilter(lookup_latency=1)
 
 
 class L1I(Cache):
@@ -126,17 +128,8 @@ class HiFive1(BareMetalRiscvSystem):
         self.cpu.createInterruptController()
         self.cpu.wait_for_remote_gdb = wfgdb
 
-        # configure cpu parameter
-        # self.cpu.fetch1FetchLimit = 2
-        # self.cpu.fetch1LineSnapWidth = 4
-        # self.cpu.fetch1LineWidth = 4
-        # self.cpu.executeAllowEarlyMemoryIssue = False
-        # self.cpu.executeMemoryWidth = 4
-
-        # self.cpu.executeCommitLimit = 4
-        # self.cpu.executeMemoryCommitLimit = 4
-        # self.cpu.executeMaxAccessesInMemory = 4
-        # self.cpu.executeLSQMaxStoreBufferStoresPerCycle = 4
+        self.cpu.fetch1LineSnapWidth = 4
+        self.cpu.fetch1LineWidth = 4
 
         self.cache_line_size = 32
 
