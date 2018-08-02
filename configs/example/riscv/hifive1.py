@@ -128,8 +128,9 @@ class HiFive1(BareMetalRiscvSystem):
         self.cpu.createInterruptController()
         self.cpu.wait_for_remote_gdb = wfgdb
 
-        self.cpu.fetch1LineSnapWidth = 4
-        self.cpu.fetch1LineWidth = 4
+        if cpu_class is MinorCPU:
+            self.cpu.fetch1LineSnapWidth = 4
+            self.cpu.fetch1LineWidth = 4
 
         self.cache_line_size = 32
 

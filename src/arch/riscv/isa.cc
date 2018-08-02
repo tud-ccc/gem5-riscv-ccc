@@ -166,7 +166,15 @@ ISA::readMiscReg(int misc_reg, ThreadContext *tc)
         DPRINTF(RiscvMisc, "Reading CSR %s (0x%016llx).\n",
             MiscRegNames.at(misc_reg), miscRegFile[misc_reg]);
         return tc->getCpuPtr()->totalInsts();
+      case MISCREG_MINSTRET:
+        DPRINTF(RiscvMisc, "Reading CSR %s (0x%016llx).\n",
+            MiscRegNames.at(misc_reg), miscRegFile[misc_reg]);
+        return tc->getCpuPtr()->totalInsts();
       case MISCREG_CYCLE:
+        DPRINTF(RiscvMisc, "Reading CSR %s (0x%016llx).\n",
+            MiscRegNames.at(misc_reg), miscRegFile[misc_reg]);
+        return tc->getCpuPtr()->curCycle();
+      case MISCREG_MCYCLE:
         DPRINTF(RiscvMisc, "Reading CSR %s (0x%016llx).\n",
             MiscRegNames.at(misc_reg), miscRegFile[misc_reg]);
         return tc->getCpuPtr()->curCycle();
@@ -174,7 +182,15 @@ ISA::readMiscReg(int misc_reg, ThreadContext *tc)
         DPRINTF(RiscvMisc, "Reading CSR %s (0x%016llx).\n",
             MiscRegNames.at(misc_reg), miscRegFile[misc_reg]);
         return tc->getCpuPtr()->totalInsts() >> 32;
+      case MISCREG_MINSTRETH:
+        DPRINTF(RiscvMisc, "Reading CSR %s (0x%016llx).\n",
+            MiscRegNames.at(misc_reg), miscRegFile[misc_reg]);
+        return tc->getCpuPtr()->totalInsts() >> 32;
       case MISCREG_CYCLEH:
+        DPRINTF(RiscvMisc, "Reading CSR %s (0x%016llx).\n",
+            MiscRegNames.at(misc_reg), miscRegFile[misc_reg]);
+        return tc->getCpuPtr()->curCycle() >> 32;
+      case MISCREG_MCYCLEH:
         DPRINTF(RiscvMisc, "Reading CSR %s (0x%016llx).\n",
             MiscRegNames.at(misc_reg), miscRegFile[misc_reg]);
         return tc->getCpuPtr()->curCycle() >> 32;
