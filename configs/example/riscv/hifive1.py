@@ -132,6 +132,13 @@ class HiFive1(BareMetalRiscvSystem):
             self.cpu.fetch1LineSnapWidth = 4
             self.cpu.fetch1LineWidth = 4
 
+            # branch predictor
+            branchpred = LocalBP()
+            branchpred.BTBEntries = 64
+            branchpred.RASSize = 2
+            branchpred.localPredictorSize = 128
+            self.cpu.branchPred = branchpred
+
         self.cache_line_size = 32
 
         # add caches
