@@ -128,16 +128,17 @@ class HiFive1(BareMetalRiscvSystem):
         self.cpu.createInterruptController()
         self.cpu.wait_for_remote_gdb = wfgdb
 
-        if cpu_class is MinorCPU:
-            self.cpu.fetch1LineSnapWidth = 4
-            self.cpu.fetch1LineWidth = 4
+        #if cpu_class is MinorCPU:
+        self.cpu.fetch1LineSnapWidth = 4
+        self.cpu.fetch1LineWidth = 4
+        self.cpu.fetch1ToFetch2BackwardDelay = 0
 
-            # branch predictor
-            branchpred = LocalBP()
-            branchpred.BTBEntries = 64
-            branchpred.RASSize = 2
-            branchpred.localPredictorSize = 128
-            self.cpu.branchPred = branchpred
+        # branch predictor
+        branchpred = LocalBP()
+        branchpred.BTBEntries = 64
+        branchpred.RASSize = 2
+        branchpred.localPredictorSize = 128
+        self.cpu.branchPred = branchpred
 
         self.cache_line_size = 32
 
