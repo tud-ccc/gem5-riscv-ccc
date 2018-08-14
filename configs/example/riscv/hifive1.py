@@ -33,7 +33,16 @@ System definition.
 import m5
 from m5.objects import *
 m5.util.addToPath('../../')
+m5.util.addToPath('../../../ext/riscv-custom-extension/build/python')
 from common.Caches import *
+
+try:
+    from minor_custom_timings import custom_timings
+    timings = custom_timings
+except ImportError:
+    timings = []
+    print('module not found')
+    pass
 
 
 class HiFive1IntFU(MinorFU):
@@ -65,10 +74,19 @@ class HiFive1MemFU(MinorFU):
     opLat = 1
 
 
+class MinorCustomIntFU(MinorFU):
+    opClasses = minorMakeOpClassSet(['IntCustom'])
+
+    timings = timings
+    opLat = 1
+
+
 class HiFive1FUPool(MinorFUPool):
     funcUnits = [HiFive1IntFU(),
                  HiFive1IntMulFU(),
                  HiFive1IntDivFU(),
+                 MinorCustomIntFU(),
+                 MinorCustomIntFU(),
                  MinorDefaultFloatSimdFU(),
                  HiFive1MemFU(),
                  HiFive1MemFU(),
@@ -128,7 +146,7 @@ class HiFive1(BareMetalRiscvSystem):
         self.cpu.createInterruptController()
         self.cpu.wait_for_remote_gdb = wfgdb
 
-        #if cpu_class is MinorCPU:
+        # if cpu_class is MinorCPU:
         self.cpu.fetch1LineSnapWidth = 4
         self.cpu.fetch1LineWidth = 4
         self.cpu.fetch1ToFetch2BackwardDelay = 0
