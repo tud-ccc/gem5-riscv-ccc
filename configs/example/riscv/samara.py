@@ -143,7 +143,7 @@ class Samara(BareMetalRiscvSystem):
         mem_size = '2GB'
         self.mem_ranges = [AddrRange(start=mem_start, size=mem_size)]
 
-        self.ram = SimpleMemory(latency='12ns')
+        self.ram = SimpleMemory(latency='62ns')
         self.ram.range = self.mem_ranges[0]
 
         # define bit mode
