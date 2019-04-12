@@ -1,3 +1,13 @@
+This is a fork of the gem5 simulator. It provides rudimenrary support for full
+system simulation for RISC-V as well ass support for integrating custom
+extensions. Please refer to Robert Scheffel's diploma thesis [1] for a more detailed
+documentation.
+
+[1] https://cfaed.tu-dresden.de/publications?pubId=2203
+
+The original gem5 README follows below.
+___
+
 This is the gem5 simulator.
 
 The main website can be found at http://www.gem5.org
