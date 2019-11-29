@@ -1,5 +1,5 @@
 This is a fork of the gem5 simulator. It provides rudimenrary support for full
-system simulation for RISC-V as well ass support for integrating custom
+system simulation for RISC-V as well as support for integrating custom
 extensions. Please refer to Robert Scheffel's diploma thesis [1] for a more detailed
 documentation.
 
